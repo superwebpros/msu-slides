@@ -1,0 +1,56 @@
+# MSU Course Slides - RevealJS Presentation Repository
+
+> This repository contains RevealJS-based slide presentations for Michigan State University courses. Slides are organized by course ID and lesson name, with tight coupling to an Obsidian vault for course planning and content management.
+
+## Project Structure
+
+This is a RevealJS 5.2.1 repository configured for multiple course presentations. Slides are written in Markdown format with one file per lesson, organized in a flat two-level structure: `course-id/lesson-name`.
+
+## Key Resources
+
+### Course Content
+[Course Calendar](/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md): Master 28-session schedule with learning objectives, deliverables, and session structure
+[Course Proposal](/Users/jesseflores/vaults/courses/msu-ai-course/course-proposal.md): Strategic overview and course design philosophy
+[Jesse's Scratchpad](/Users/jesseflores/vaults/courses/msu-ai-course/jesse-notes-scratchpad.md): Implementation details and scaffolding decisions
+
+### Documentation
+[claude.md](./claude.md): Instructions for AI assistants on how to work with this repository
+[README.md](./README.md): RevealJS framework documentation
+
+### Core Framework Files
+[package.json](./package.json): Dependencies and npm scripts (start, build, test)
+[gulpfile.js](./gulpfile.js): Build automation and development server configuration
+[index.html](./index.html): Master index page listing all available presentations
+
+## Directory Organization
+
+```
+msu-slides/
+├── [course-id]/              # e.g., msu-ai-course, csc-101
+│   ├── index.html            # Course presentation index
+│   ├── [lesson-name].html    # HTML wrapper for each lesson
+│   └── markdown/
+│       └── [lesson-name].md  # Markdown content for each lesson
+├── assets/                   # Shared assets (logos, QR codes, common images)
+├── dist/                     # Compiled RevealJS framework
+├── plugin/                   # RevealJS plugins (markdown, highlight, notes, etc.)
+└── css/                      # Themes and styling
+```
+
+## Workflow Commands
+
+Start development server with live reload:
+```bash
+npm start
+```
+
+Build production assets:
+```bash
+npm run build
+```
+
+## Optional
+
+[Examples Directory](./examples/): Sample presentations demonstrating RevealJS features
+[Demo Presentation](./demo.html): Full-featured demo of RevealJS capabilities
+[Test Suite](./test/): QUnit tests for framework functionality

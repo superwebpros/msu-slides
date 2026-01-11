@@ -1,40 +1,190 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MSU Course Slides - Presentation Index</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-		<title>reveal.js</title>
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+			line-height: 1.6;
+			color: #333;
+			background: #f5f5f5;
+			padding: 2rem;
+		}
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+			background: white;
+			padding: 3rem;
+			border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		}
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+		h1 {
+			color: #2c3e50;
+			margin-bottom: 0.5rem;
+			font-size: 2.5rem;
+		}
+
+		.subtitle {
+			color: #7f8c8d;
+			margin-bottom: 2rem;
+			font-size: 1.1rem;
+		}
+
+		h2 {
+			color: #34495e;
+			margin-top: 2rem;
+			margin-bottom: 1rem;
+			font-size: 1.8rem;
+			border-bottom: 2px solid #3498db;
+			padding-bottom: 0.5rem;
+		}
+
+		.course-section {
+			margin-bottom: 2rem;
+		}
+
+		.course-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			margin-bottom: 0.5rem;
+		}
+
+		.course-title {
+			font-weight: 600;
+			color: #2c3e50;
+			font-size: 1.2rem;
+		}
+
+		.course-meta {
+			color: #7f8c8d;
+			font-size: 0.9rem;
+		}
+
+		.course-description {
+			color: #555;
+			margin-bottom: 1rem;
+			font-size: 0.95rem;
+		}
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		li {
+			margin-bottom: 0.75rem;
+		}
+
+		a {
+			color: #3498db;
+			text-decoration: none;
+			font-size: 1rem;
+			transition: color 0.2s ease;
+		}
+
+		a:hover {
+			color: #2980b9;
+			text-decoration: underline;
+		}
+
+		.session-link {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			background: #ecf0f1;
+			border-radius: 4px;
+			margin-right: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.session-link:hover {
+			background: #3498db;
+			color: white;
+			text-decoration: none;
+		}
+
+		.empty-state {
+			color: #95a5a6;
+			font-style: italic;
+			padding: 2rem;
+			text-align: center;
+			background: #f8f9fa;
+			border-radius: 4px;
+		}
+
+		.footer {
+			margin-top: 3rem;
+			padding-top: 2rem;
+			border-top: 1px solid #ecf0f1;
+			color: #7f8c8d;
+			font-size: 0.9rem;
+		}
+
+		.footer a {
+			color: #7f8c8d;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>MSU Course Slides</h1>
+		<p class="subtitle">RevealJS Presentation Repository - Michigan State University</p>
+
+		<h2>Available Courses</h2>
+
+		<!-- Course presentations listed below -->
+
+		<div class="course-section">
+			<div class="course-header">
+				<h3 class="course-title">SSC 493: AI Workflows & Organizational Intelligence</h3>
+				<span class="course-meta">Spring 2026 • 28 Sessions</span>
 			</div>
+			<p class="course-description">
+				A hands-on course in building AI-powered business systems using modern tools and frameworks. Students work in teams with real business partners to implement production AI workflows.
+			</p>
+			<ul>
+				<li><a href="ssc-493/index.html" class="session-link">View All Sessions →</a></li>
+			</ul>
 		</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+		<!--
+		Template for adding additional courses:
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+		<div class="course-section">
+			<div class="course-header">
+				<h3 class="course-title">[Course Name]</h3>
+				<span class="course-meta">[Semester Year] • [N] Sessions</span>
+			</div>
+			<p class="course-description">
+				[Course description here]
+			</p>
+			<ul>
+				<li><a href="[course-id]/index.html" class="session-link">View All Sessions →</a></li>
+			</ul>
+		</div>
+		-->
+
+		<div class="footer">
+			<p>
+				<strong>Documentation:</strong>
+				<a href="claude.md">claude.md</a> •
+				<a href="llms.txt">llms.txt</a> •
+				<a href="README.md">RevealJS Documentation</a>
+			</p>
+			<p style="margin-top: 0.5rem;">
+				<strong>Development:</strong> Run <code>npm start</code> for local server with live reload
+			</p>
+		</div>
+	</div>
+</body>
 </html>
