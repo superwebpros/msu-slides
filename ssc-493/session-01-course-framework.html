@@ -9,8 +9,35 @@
 	<link rel="stylesheet" href="../dist/reveal.css">
 	<link rel="stylesheet" href="../dist/theme/white.css" id="theme">
 	<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+	<style>
+		.slido-banner {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: #7c3aed;
+			color: white;
+			text-align: center;
+			padding: 12px 20px;
+			font-size: 18px;
+			font-weight: 500;
+			z-index: 1000;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+		}
+		.slido-banner strong {
+			font-weight: 700;
+		}
+		.reveal {
+			margin-top: 48px;
+		}
+	</style>
 </head>
 <body>
+	<!-- Slido Banner -->
+	<div class="slido-banner">
+		Ask questions anytime • Join at <strong>slido.com #4027 289</strong>
+	</div>
+
 	<div class="reveal">
 		<div class="slides">
 			<!-- Title slide -->
@@ -34,12 +61,14 @@
 	<script src="../plugin/markdown/markdown.js"></script>
 	<script src="../plugin/highlight/highlight.js"></script>
 	<script src="../plugin/notes/notes.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js"></script>
 
 	<script>
 		Reveal.initialize({
 			hash: true,
 			pdfSeparateFragments: false,
-			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			mermaid: {},
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid ]
 		});
 	</script>
 </body>
