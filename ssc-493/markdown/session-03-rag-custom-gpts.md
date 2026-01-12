@@ -1,24 +1,3 @@
----
-title: "Session 3: RAG Fundamentals & Custom GPTs"
-course: "ssc-493"
-week: 2
-session: 3
-date: "2026-01-20"
-duration: 80
-tags:
-  - ssc493
-  - claude
-  - spring2026
-  - unit-1
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ai-course/units/unit-1-simple-rag-business-discovery/01-03-rag-fundamentals-custom-gpts.md"
-published_slide_url: "https://msu-slides.superwebpros.com/ssc-493/session-03-rag-custom-gpts.html"
-learning_objectives:
-  - Build a Custom GPT with uploaded documents
-  - Explain how RAG gives AI memory and why it matters
-  - Understand the retrieve augment generate pattern
-  - Demonstrate the difference between prompting alone vs prompting with RAG
----
-
 # Session 3: RAG Fundamentals & Custom GPTs
 
 ## SSC 493: AI Workflows & Organizational Intelligence

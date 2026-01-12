@@ -1,24 +1,3 @@
----
-title: "Session 1: Course Framework & Team Formation"
-course: "ssc-493"
-week: 1
-session: 1
-date: "2026-01-13"
-duration: 80
-tags:
-  - ssc493
-  - claude
-  - spring2026
-  - unit-0
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ai-course/units/unit-0-foundations/00-01-course-framework-team-formation.md"
-published_slide_url: "https://msu-slides.superwebpros.com/ssc-493/session-01-course-framework.html"
-learning_objectives:
-  - Identify the components of the AI periodic table
-  - Navigate the course structure and understand expectations
-  - Complete PrinciplesYou assessment for team formation
-  - Articulate personal learning goals for the semester
----
-
 # Session 1: Course Framework & Team Formation
 
 ## SSC 493: AI Workflows & Organizational Intelligence
