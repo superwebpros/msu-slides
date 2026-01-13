@@ -58,6 +58,10 @@ Set collaborative tone from the start. This is a hands-on, project-based course.
 
 ---
 
+## About Me
+
+---
+
 ## What You'll Build This Semester
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 30px 0;">
