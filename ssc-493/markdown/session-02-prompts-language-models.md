@@ -1,19 +1,3 @@
----
-title: "Session 2: Prompts & Language Models"
-course: "ssc-493"
-week: 1
-session: 2
-date: "2026-01-15"
-duration: 80
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md#Week 1 Session 2"
-published_slide_url: "https://msu-slides.superwebpros.com/ssc-493/session-02-prompts-language-models.html"
-learning_objectives:
-  - Explain how LLMs are trained and what makes models different
-  - Compare outputs from 4+ different models using the same prompt
-  - Apply basic prompting strategies across multiple models
-  - Select appropriate models based on cost, quality, speed, and task requirements
----
-
 <div style="text-align: center;">
 <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Session 2: Prompts & Language Models</h1>
 
@@ -27,15 +11,37 @@ Welcome to Session 2. Today we're diving into the first two primitives from the 
 
 ---
 
+## Warmup: Your LLM Best Practices
+
+<div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
+<div>
+<h3>Question for reflection:</h3>
+<p style="font-size: 22px; line-height: 1.8;">
+<strong>"What best practices have you discovered working with LLMs to get better outcomes?"</strong>
+</p>
+<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+Scan the QR code or visit:<br>
+<strong>slido.com #4027 289</strong>
+</p>
+</div>
+<div style="text-align: center;">
+<img src="assets/slido-1.png" alt="Slido QR Code" style="width: 320px; height: 320px;">
+</div>
+</div>
+
+Note:
+As you come in and get settled, take a moment to reflect on your own experiences. What techniques have you discovered on your own? This activates your existing knowledge and helps me understand where you're starting from.
+
+---
+
 ## Session Roadmap
 
 **What we'll cover today (80 minutes):**
 
-1. Get to know each other (10 min)
-2. Warmup: Your current AI practices (5 min)
-3. How models work & differ (20 min)
-4. Hands-on: Multi-model prompting lab (40 min)
-5. Wrap & preview (5 min)
+1. Get to know each of you a bit (10 min)
+2. How models work & differ (20 min)
+3. Hands-on: Multi-model prompting lab (40 min)
+4. Wrap & preview (5 min)
 
 Note:
 Today's packed with hands-on work. We'll start by getting to know each other, then dive into understanding how models work, and spend most of our time experimenting with different prompting strategies across multiple models.
@@ -51,147 +57,258 @@ Today's packed with hands-on work. We'll start by getting to know each other, th
 3. Your major
 4. What you'd like to do after graduating
 
-<div style="margin-top: 40px; font-size: 18px; color: #6b7280;">
-~2-3 minutes each • No pressure, just introduce yourself!
-</div>
-
 Note:
 This is informal - just want to get a sense of who everyone is and where you're headed. We'll be working together all semester, so let's start building that rapport.
 
 ---
 
-## Warmup: What Do You Already Know?
+## Today's Focus: Pr + Lg, Sm, Th
 
-**Quick discussion:**
+<div style="font-size: 14px; margin: 20px auto; max-width: 900px;">
 
-- What have you already learned or tried to "steer AI"?
-- What are your current "best practices" for getting good results?
-- Any techniques that work particularly well for you?
+| | Reactive | Retrieval | Orchestration | Validation | Models |
+| --- | --- | --- | --- | --- | --- |
+| **Primitives** | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Prompts (Pr)</span> | Embeddings | | | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">LLMs (Lg)</span> |
+| **Compositions** | Function Calling | Vector DBs | RAG | Guardrails | Multi-modal |
+| **Deployment** | Agents | Fine-tuning | Frameworks | Red-teaming | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Small Models (Sm)</span> |
+| **Emerging** | Multi-agent | Synthetic Data | | Interpretability | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Thinking Models (Th)</span> |
 
-<div style="margin-top: 40px; font-size: 18px; color: #6b7280;">
-Take 2 minutes to share - what's worked for you?
+</div>
+
+<div style="margin-top: 30px; font-size: 20px; color: #7c3aed; text-align: center;">
+Today we focus on the <strong>Models family</strong> plus how to steer them with <strong>Prompts</strong>
 </div>
 
 Note:
-You've all used AI tools before. What have you figured out on your own? Some of you probably have techniques you swear by. Let's hear them. This activates your existing knowledge and helps me understand where you're starting from.
+These are elements from the AI Periodic Table. Highlighted in gray are what we'll cover today: Prompts (Row 1), and three types of models - Large Language Models (Row 1), Small Models (Row 3), and Thinking Models (Row 4). Everything else builds from these foundations.
 
 ---
 
-## Today's Focus: Pr + Lg
+## How LLMs Work: Tokens
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+**Tokens are NOT words - they're subword pieces**
 
-<div style="background: #f0f9ff; padding: 30px; border-radius: 10px;">
-<h3 style="color: #0284c7;">Pr: Prompts</h3>
-<p style="font-size: 18px; line-height: 1.6;">
-Row 1 (Primitives)<br><br>
-<strong>Instructions you give to AI</strong><br><br>
-How you steer model behavior through language
-</p>
+<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
+
+**Example: The word "enlist" breaks into 2 tokens:**
+- Token 1: `en` (a common prefix)
+- Token 2: `list` (a root word)
+
+**The prefix `en` can combine with many words:**
+- `en` + `list` = enlist
+- `en` + `sign` = ensign
+- `en` + `gage` = engage
+
+**Rule of thumb:** ~750 words = 1,000 tokens
+
 </div>
 
-<div style="background: #ede9fe; padding: 30px; border-radius: 10px;">
-<h3 style="color: #7c3aed;">Lg: Large Language Models</h3>
-<p style="font-size: 18px; line-height: 1.6;">
-Row 1 (Primitives)<br><br>
-<strong>The models themselves</strong><br><br>
-ChatGPT, Claude, Gemini, Llama, etc.
-</p>
+<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
+Why this matters: You're billed per token, not per word
 </div>
+
+Note:
+This is how LLMs actually see text. They don't see whole words - they break everything into subword pieces called tokens. Common prefixes, suffixes, and roots get their own tokens. This lets models understand new words they've never seen by recognizing familiar pieces.
+
+---
+
+## How LLMs Work: Training & Prediction
+
+<div class="mermaid" style="transform: scale(0.85);">
+graph LR
+    A[Input: The cat sat on] --> B[Neural Network<br/>Billions of Parameters]
+    B --> C{Probability<br/>Distribution}
+    C --> D1[the: 35%]
+    C --> D2[a: 20%]
+    C --> D3[my: 15%]
+    C --> D4[her: 12%]
+    C --> D5[...: 18%]
+    style B fill:#e0e0ff
+    style C fill:#ffe0e0
+</div>
+
+<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
+
+**Training:** Model learns patterns from billions of text examples
+**Parameters:** The "knobs" that store learned patterns (billions of them)
+**Prediction:** Given input, model predicts most likely next token
+
+</div>
+
+<div style="margin-top: 20px; font-size: 20px; color: #dc2626;">
+LLMs don't "know" things - they predict likely continuations based on patterns
+</div>
+
+Note:
+This neural network diagram shows the core process. Input text flows through billions of parameters (the model's "learned patterns"), which output probabilities for what token should come next. The model picks from that probability distribution. It's not looking up facts - it's predicting based on statistical patterns it learned during training.
+
+---
+
+## What Are Parameters?
+
+**Parameters = the "weights" that store what the model learned**
+
+<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
+
+Think of parameters like knobs on a massive mixing board:
+- Each knob slightly adjusts how the model processes text
+- More parameters = more nuance and capability (but slower & more expensive)
+
+**Model sizes:**
+- **GPT-4o:** ~200 billion parameters
+- **Claude Haiku:** ~20 billion parameters
+- **Llama 3.3 70B:** 70 billion parameters
+
+**Concrete example:**
+The parameter that connects "doctor" → "hospital" has a high weight
+The parameter that connects "doctor" → "spaceship" has a low weight
 
 </div>
 
 Note:
-These are two of the three primitives from Row 1 of the AI Periodic Table. Everything else builds from these foundations. Master prompting and understand models, and you can work with any AI system.
+Parameters are literally numbers (weights) in the neural network. During training, these weights get adjusted billions of times until the model learns useful patterns. More parameters means the model can store more complex patterns, but it also means slower responses and higher costs to run.
 
 ---
 
-## How LLMs Work: The Basics
+## Model Categories: Size vs Capability
 
-**Three key concepts:**
+<div style="font-size: 17px; line-height: 1.6; margin: 20px 0;">
 
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
-
-1. **Tokens:** LLMs break text into ~750 words = 1,000 tokens
-2. **Training:** Models learn patterns from massive datasets
-3. **Prediction:** They predict the next token based on probability
+| Category | Parameter Range | Examples | Strengths | Weaknesses |
+|----------|----------------|----------|-----------|------------|
+| **Frontier** | 120B+ | GPT-4o, Claude Opus | Best reasoning, complex tasks | Expensive, slower |
+| **Balanced** | 20-70B | Claude Sonnet, Llama 70B | Good quality, reasonable cost | Not best at everything |
+| **Fast/Small** | 7-20B | Claude Haiku, Gemini Flash | Very fast, very cheap | Less capable on hard tasks |
+| **Thinking** | Varies | o1, Claude Thinking | Extended reasoning | Very expensive, very slow |
 
 </div>
 
-<div style="margin-top: 40px; font-size: 22px; color: #7c3aed;">
-LLMs don't "know" things - they predict likely continuations
+<div style="margin-top: 30px; font-size: 19px; color: #7c3aed;">
+**Key insight:** You can't just use the biggest model for everything - cost & speed matter
 </div>
 
 Note:
-This is fundamental. LLMs don't have a database of facts. They're statistical models that learned patterns from training data. When you prompt them, they're predicting what tokens are most likely to come next based on those patterns.
+This framework helps you categorize models. Frontier models are the most capable but expensive. Balanced models hit a sweet spot for most tasks. Fast models are great for high-volume simple tasks. Thinking models spend extra compute time reasoning through problems. The trap is thinking "just use GPT-4o for everything" - you'll blow your budget fast.
 
 ---
 
-## What Makes Models Different?
+## How Models Are Evaluated
 
-**Three main factors:**
+**Common benchmarks that compare model capabilities:**
 
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
+<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
 
-1. **Parameters:** Model size (20B vs 120B vs 1.8T)
-   - More parameters ≠ always better (tradeoff with speed/cost)
+**MMLU (Massive Multitask Language Understanding):**
+Tests knowledge across 57 subjects (math, history, law, etc.)
 
-2. **Training Data:** What the model learned from
-   - Claude: Careful, nuanced, technical precision
-   - GPT-4: Broad general knowledge
-   - Gemini: Optimized for multimodal tasks
+**HumanEval:**
+Tests ability to write correct code from descriptions
 
-3. **Optimization Goals:** What they were tuned for
-   - Speed vs quality vs cost vs safety
+**MT-Bench:**
+Tests conversation quality and following instructions
 
-</div>
-
-Note:
-This is why the same prompt produces different outputs. Models have different architectures, training data, and optimization goals. Understanding these differences helps you pick the right model for the job.
-
----
-
-## Model Selection: The Tradeoffs
-
-<div style="font-size: 16px; margin: 20px 0;">
-
-| Model | Cost | Quality | Speed | Best For |
-|-------|------|---------|-------|----------|
-| **GPT-4o** | $$$ | Excellent | Fast | Complex reasoning, creative tasks |
-| **Claude Sonnet** | $$$ | Excellent | Fast | Technical precision, long context |
-| **Gemini Flash** | $ | Good | Very Fast | High-volume, multimodal, cost-sensitive |
-| **Groq/Llama** | $ | Good | Very Fast | Speed optimization, open source |
-
-</div>
-
-<div style="margin-top: 30px; font-size: 20px; color: #dc2626;">
-<strong>No "best" model - only the right model for your task</strong>
-</div>
-
-Note:
-This is critical for real projects. If you're generating 10,000 product descriptions, Gemini Flash might save you $500 vs GPT-4. If you need careful legal analysis, Claude Sonnet is worth the cost. You'll experiment with all four today.
-
----
-
-## Token Pricing: Why It Matters
-
-**Pricing comparison (per 1M tokens):**
-
-<div style="font-size: 18px; line-height: 2; margin: 40px 0;">
-
-- **GPT-4o Mini:** $0.15 input / $0.60 output
-- **Claude Sonnet:** ~$3 input / $15 output
-- **Gemini Flash:** $0.08 input / $0.30 output
+**LMSYS Chatbot Arena:**
+Real humans vote on which model gives better responses
 
 </div>
 
 <div style="margin-top: 30px; font-size: 20px; color: #15803d;">
-<strong>Real scenario:</strong> Generate 1,000 blog posts (500 words each)<br>
-GPT-4o: ~$400 • Claude: ~$1,000 • Gemini: ~$200
+Frontier models score 85-90% on these. Fast models score 70-80%.
 </div>
 
 Note:
-This is why understanding tokens and pricing matters. When you're building production systems for businesses, these costs add up fast. Choosing the right model for the task can save thousands of dollars.
+These benchmarks help us compare apples to apples. MMLU tests broad knowledge. HumanEval tests coding ability. MT-Bench tests how well models follow complex instructions. The Arena is interesting - it's real people blind-voting between responses. This is why we can say "Claude Opus and GPT-4o are comparable" - they score similarly on these benchmarks.
+
+---
+
+## Why Not Just Use The Best Model?
+
+**Let's do the math on a real project:**
+
+<div style="font-size: 18px; line-height: 1.8; margin: 30px 0; background: #f9fafb; padding: 30px; border-radius: 10px;">
+
+**Scenario:** Generate product descriptions for 10,000 products
+**Input:** 200 tokens per product (product specs)
+**Output:** 300 tokens per description
+
+**Cost with GPT-5.2 (Frontier):**
+Input: 10K × 200 tokens × $1.75/1M = **$3.50**
+Output: 10K × 300 tokens × $14.00/1M = **$42.00**
+**Total: $45.50**
+
+**Cost with Gemini 2.0 Flash (Fast):**
+Input: 10K × 200 tokens × $0.10/1M = **$0.20**
+Output: 10K × 300 tokens × $0.40/1M = **$1.20**
+**Total: $1.40**
+
+</div>
+
+<div style="margin-top: 20px; font-size: 22px; color: #dc2626;">
+<strong>32x cost difference</strong> - and for product descriptions, Gemini Flash is "good enough"
+</div>
+
+Note:
+This is the real-world tradeoff. For creative or complex reasoning tasks, you need GPT-4o or Claude Opus. But for high-volume simple tasks like product descriptions, using a frontier model is wasteful. You'd pay 33x more for marginally better output. Smart model selection is about matching capability to task requirements.
+
+---
+
+## Model Pricing: January 2026
+
+<div style="font-size: 14px; margin: 20px 0;">
+
+| Provider | Model | Category | Input (per 1M) | Output (per 1M) | Use Case |
+|----------|-------|----------|----------------|-----------------|----------|
+| **OpenAI** | GPT-5.2 | Frontier | $1.75 | $14.00 | Complex reasoning, creative writing |
+| **OpenAI** | GPT-5 mini | Balanced | $0.25 | $2.00 | General purpose, cost-sensitive |
+| **Anthropic** | Claude Opus 4.5 | Frontier | $5.00 | $25.00 | Technical precision, long documents |
+| **Anthropic** | Claude Sonnet 4.5 | Balanced | $3.00 | $15.00 | Best quality/cost balance |
+| **Anthropic** | Claude Haiku 4.5 | Fast | $1.00 | $5.00 | High-volume, speed-critical |
+| **Google** | Gemini 2.0 Flash | Fast | $0.10 | $0.40 | Ultra-high volume, multimodal |
+| **Groq** | Llama 3.3 70B | Balanced | $0.59 | $0.79 | Fast inference, open source |
+
+</div>
+
+<div style="margin-top: 20px; font-size: 18px; color: #6b7280;">
+<strong>Note:</strong> Prices current as of Jan 2026. Batch processing offers 50% discounts on most providers.
+</div>
+
+Note:
+This is real current pricing. Notice the ranges - Claude Opus is 62x more expensive than Gemini Flash for output tokens ($25 vs $0.40). But Opus is worth it when you need maximum quality. For your semester projects, you'll learn to mix models - use frontier models for critical content, fast models for bulk operations. Batch processing can cut costs in half if you're not in a rush.
+
+---
+
+## Prompting: The Other Half of the Equation
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+
+<div style="background: #fef3c7; padding: 30px; border-radius: 10px;">
+<h3 style="color: #92400e;">The Model</h3>
+<ul style="font-size: 17px; line-height: 1.8;">
+<li>Parameters & training data</li>
+<li>Speed & cost characteristics</li>
+<li>Baseline capabilities</li>
+</ul>
+<p style="margin-top: 20px; color: #92400e;"><strong>What the model brings</strong></p>
+</div>
+
+<div style="background: #dbeafe; padding: 30px; border-radius: 10px;">
+<h3 style="color: #1e3a8a;">The User</h3>
+<ul style="font-size: 17px; line-height: 1.8;">
+<li>Prompt engineering skills</li>
+<li>Domain knowledge</li>
+<li>Ability to iterate & refine</li>
+</ul>
+<p style="margin-top: 20px; color: #1e3a8a;"><strong>What you bring</strong></p>
+</div>
+
+</div>
+
+<div style="text-align: center; font-size: 22px; color: #7c3aed; margin-top: 20px;">
+<strong>Both matter!</strong> A great prompt on a weak model beats a bad prompt on a strong model
+</div>
+
+Note:
+This is crucial to understand. The model is only half the equation. Your skill as a prompter - how you frame the task, provide context, show examples - is equally important. You can get amazing results from a small model with expert prompting, and terrible results from GPT-4o with lazy prompting. Today's lab teaches you the prompting half.
 
 ---
 
@@ -217,27 +334,32 @@ These three techniques work across all models. Zero-shot is fastest but least co
 
 ---
 
-## Live Demo: Same Prompt, Four Models
+## Live Demo: Course LibreChat
 
-**Let's see the differences in action**
-
-<div style="margin: 40px 0; padding: 30px; background: #f9fafb; border-radius: 10px;">
-
-<strong>Test Prompt:</strong><br>
-<em>"Write a product description for noise-cancelling headphones aimed at remote workers."</em>
-
-<div style="margin-top: 30px; font-size: 18px;">
-We'll run this across:<br>
-• GPT-4o<br>
-• Claude Sonnet<br>
-• Gemini Flash<br>
-• Groq/Llama
+<div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
+<div>
+<h3>Access your course AI workspace:</h3>
+<p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+<strong>LibreChat gives you access to:</strong><br><br>
+• GPT-4o, GPT-4o Mini<br>
+• Claude Opus, Sonnet, Haiku<br>
+• Gemini 2.0 Flash<br>
+• Groq Llama models
+</p>
+<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+Scan QR code for login →<br>
+Use your MSU credentials
+</p>
 </div>
-
+<div style="text-align: center;">
+<div style="width: 320px; height: 320px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+<p style="color: #666;">LibreChat QR Code<br>(TBD)</p>
+</div>
+</div>
 </div>
 
 Note:
-Watch for these differences: length and detail, tone and style, speed of response, and whether they add features not mentioned in the prompt. This is what you'll explore in depth during the hands-on session.
+This is your AI workspace for the entire course. You have access to all major models in one place. No need to juggle multiple accounts or API keys. I'll demo how to switch between models and run the same prompt across different options.
 
 ---
 
@@ -294,7 +416,7 @@ Each exercise is designed to teach you something specific about prompting. You'l
 
 <div style="font-size: 20px; line-height: 2; margin: 40px 0;">
 
-1. Open LibreChat (credentials from Session 1)
+1. Open LibreChat (scan QR code from previous slide)
 2. Verify you can access all 4 models
 3. Get the interactive workbook (distributed now)
 4. Start with Exercise 1
@@ -343,21 +465,22 @@ Let's hear what you discovered. This is where individual observations become col
 
 <div style="font-size: 20px; line-height: 2; margin: 40px 0;">
 
-✅ **Different models = different strengths** (cost, quality, speed, task fit)
+✅ **Models come in categories** - Frontier, Balanced, Fast, Thinking
 
-✅ **Same prompt → different outputs** (model selection matters!)
+✅ **Parameters = learned patterns** - More isn't always better (cost/speed tradeoffs)
 
-✅ **Prompting strategies work across all models:**
-   - Be clear and direct
-   - Show examples (few-shot)
-   - Ask models to think step-by-step (CoT)
+✅ **Benchmarks help compare models** - But real-world fit matters more
 
-✅ **Pr (Prompts) + Lg (LLMs) = foundation for everything else**
+✅ **Pricing varies 62x** - Match model to task complexity
+
+✅ **Prompting matters as much as the model** - Your skill is half the equation
+
+✅ **Three core techniques** - Zero-shot, few-shot, chain-of-thought
 
 </div>
 
 Note:
-These are the core lessons from today. You now understand that model selection is a strategic decision based on requirements. And you have three fundamental prompting techniques you can apply anywhere.
+These are the core lessons from today. You now understand model categories, what parameters actually are, how to evaluate models, and why pricing matters. Most importantly, you've practiced prompting strategies hands-on across multiple models.
 
 ---
 
@@ -378,7 +501,7 @@ Today: steering models • Next: giving them memory
 </div>
 
 Note:
-Today you learned to steer models with prompts. But they don't remember things between conversations. Next session introduces RAG - how to upload your own documents and give AI access to specific knowledge. You'll build something immediately useful.
+Today you learned to steer models with prompts and understand their differences. But they don't remember things between conversations. Next session introduces RAG - how to upload your own documents and give AI access to specific knowledge. You'll build something immediately useful.
 
 ---
 
