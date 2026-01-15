@@ -11,7 +11,7 @@ Welcome to Session 2. Today we're diving into the first two primitives from the 
 
 ---
 
-## Warmup: Your LLM Best Practices
+## What are Your LLM Best Practices?
 
 <div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
 <div>
@@ -36,12 +36,12 @@ As you come in and get settled, take a moment to reflect on your own experiences
 
 ## Session Roadmap
 
-**What we'll cover today (80 minutes):**
+**What we'll cover today:**
 
-1. Get to know each of you a bit (10 min)
-2. How models work & differ (20 min)
-3. Hands-on: Multi-model prompting lab (40 min)
-4. Wrap & preview (5 min)
+1. Get to know each of you a bit
+2. How models work & differ
+3. Hands-on: Multi-model prompting lab
+4. Wrap & preview
 
 Note:
 Today's packed with hands-on work. We'll start by getting to know each other, then dive into understanding how models work, and spend most of our time experimenting with different prompting strategies across multiple models.
@@ -55,7 +55,7 @@ Today's packed with hands-on work. We'll start by getting to know each other, th
 1. Your name
 2. Where you're from
 3. Your major
-4. What you'd like to do after graduating
+4. What is your ideal post-grad job?
 
 Note:
 This is informal - just want to get a sense of who everyone is and where you're headed. We'll be working together all semester, so let's start building that rapport.
@@ -86,26 +86,35 @@ These are elements from the AI Periodic Table. Highlighted in gray are what we'l
 
 ## How LLMs Work: Tokens
 
-**Tokens are NOT words - they're subword pieces**
+- Tokens are the basic units of text that LLMs process, similar to how words work in human language.
+- A token can be a whole word, part of a word, or even a single character
+- LLMs read input and generate output by processing sequences of these tokens
 
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
+;;;
 
-**Example: The word "enlist" breaks into 2 tokens:**
-- Token 1: `en` (a common prefix)
-- Token 2: `list` (a root word)
+### For Example
 
-**The prefix `en` can combine with many words:**
-- `en` + `list` = enlist
-- `en` + `sign` = ensign
-- `en` + `gage` = engage
+- Tokenization -> "Token" + "ization"
+- Understanding -> "under" + "standing"
+- Hello World! -> "hello" + "world" + "!"
 
-**Rule of thumb:** ~750 words = 1,000 tokens
+;;;
 
-</div>
+### Tokens Not Standardized
 
-<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
-Why this matters: You're billed per token, not per word
-</div>
+- Different providers use different tokenization algorithms like BPE (Byte Pair Encoding), WordPiece, or SentencePiece.
+- The choice depends on factors like the languages they want to support, desired vocabulary size (typically 30K-100K tokens), computational efficiency, and how well it handles rare words or multiple languages.
+
+Note:
+**BPE (Byte Pair Encoding):** Iteratively merges the most frequently occurring pairs of characters or tokens in the training data to build up a vocabulary from individual characters to common subwords.
+**WordPiece:** Similar to BPE but chooses merges based on which pair maximizes the likelihood of the training data, rather than just raw frequency.
+**SentencePiece:** Treats text as raw Unicode characters (no pre-tokenization needed) and applies algorithms like BPE or unigram, making it language-agnostic and able to handle spaces as regular characters.
+
+;;;
+
+### Why This Matters
+
+You're billed per token, not per word
 
 Note:
 This is how LLMs actually see text. They don't see whole words - they break everything into subword pieces called tokens. Common prefixes, suffixes, and roots get their own tokens. This lets models understand new words they've never seen by recognizing familiar pieces.
@@ -113,6 +122,34 @@ This is how LLMs actually see text. They don't see whole words - they break ever
 ---
 
 ## How LLMs Work: Training & Prediction
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'24px'}}}%%
+flowchart LR
+    A[Data Collection]
+    B[Pre-training]
+    C[Fine-tuning]
+    D[Alignment/RLHF]
+    E[Evaluation & Deployment]
+
+    A --> B --> C --> D --> E
+```
+
+;;;
+
+**High-level LLM Training Process:**
+
+1. **Data Collection:** Gather massive amounts of text data from the internet, books, code repositories, etc. and clean/filter it
+
+2. **Pre-training:** Train the model to predict the next token in sequences, learning language patterns, facts, and reasoning abilities from billions of examples
+
+3. **Fine-tuning (Optional):** Further train on specific datasets for particular tasks like instruction-following or conversation
+
+4. **Alignment (RLHF):** Use human feedback to teach the model to be helpful, harmless, and honest—reinforcing desired behaviors and reducing unwanted ones
+
+5. **Evaluation & Deployment:** Test the model on benchmarks, safety checks, and real-world scenarios before releasing it
+
+;;;
 
 <div class="mermaid" style="transform: scale(0.85);">
 graph LR

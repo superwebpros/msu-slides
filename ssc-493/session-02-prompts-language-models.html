@@ -30,26 +30,11 @@
 		.reveal {
 			margin-top: 48px;
 		}
-		/* Mermaid diagram styling - make text readable */
-		.mermaid {
-			margin: 40px auto !important;
-		}
-		.mermaid svg {
-			max-width: 100%;
-			height: auto;
-		}
-		/* Make boxes bigger and text readable */
-		.mermaid .nodeLabel {
-			font-size: 20px !important;
-			font-weight: 500 !important;
-			padding: 15px 25px !important;
-		}
-		.mermaid .node rect {
-			rx: 8px !important;
-			ry: 8px !important;
-		}
-		.mermaid .edgeLabel {
-			font-size: 16px !important;
+		/* Mermaid diagram styling */
+		.reveal .mermaid svg {
+			min-height: 300px;
+			transform: scale(1.2);
+			transform-origin: center center;
 		}
 	</style>
 </head>
@@ -89,20 +74,8 @@
 			hash: true,
 			pdfSeparateFragments: false,
 			mermaid: {
-				theme: 'default',
-				flowchart: {
-					nodeSpacing: 120,
-					rankSpacing: 120,
-					padding: 25,
-					useMaxWidth: true
-				},
-				themeVariables: {
-					fontSize: '20px',
-					fontFamily: 'arial, sans-serif',
-					primaryTextColor: '#1f2937',
-					primaryColor: '#e0e0ff',
-					primaryBorderColor: '#9ca3af'
-				}
+				startOnLoad: true,
+				theme: 'base'
 			},
 			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid ]
 		});
