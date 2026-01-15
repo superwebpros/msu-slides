@@ -1,16 +1,3 @@
-<div style="text-align: center;">
-<h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Session 2: Prompts & Language Models</h1>
-
-<h2 style="font-size: 1.8rem; margin-bottom: 1rem;">SSC 493: AI Workflows & Organizational Intelligence</h2>
-
-<p style="font-size: 1.2rem;">Spring 2026 • Michigan State University</p>
-</div>
-
-Note:
-Welcome to Session 2. Today we're diving into the first two primitives from the AI Periodic Table: Pr (Prompts) and Lg (Language Models). By the end of today, you'll understand how different models behave differently and how to steer them effectively.
-
----
-
 ## What are Your LLM Best Practices?
 
 <div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
@@ -124,15 +111,11 @@ This is how LLMs actually see text. They don't see whole words - they break ever
 ## How LLMs Work: Training & Prediction
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'fontSize':'24px'}}}%%
-flowchart LR
-    A[Data Collection]
-    B[Pre-training]
-    C[Fine-tuning]
-    D[Alignment/RLHF]
-    E[Evaluation & Deployment]
-
-    A --> B --> C --> D --> E
+graph LR
+    A[Data Collection] --> B[Pre-training]
+    B --> C[Fine-tuning]
+    C --> D[Alignment/RLHF]
+    D --> E[Evaluation + Deployment]
 ```
 
 ;;;
@@ -143,67 +126,83 @@ flowchart LR
 
 2. **Pre-training:** Train the model to predict the next token in sequences, learning language patterns, facts, and reasoning abilities from billions of examples
 
+;;;
+
 3. **Fine-tuning (Optional):** Further train on specific datasets for particular tasks like instruction-following or conversation
 
 4. **Alignment (RLHF):** Use human feedback to teach the model to be helpful, harmless, and honest—reinforcing desired behaviors and reducing unwanted ones
 
-5. **Evaluation & Deployment:** Test the model on benchmarks, safety checks, and real-world scenarios before releasing it
-
 ;;;
 
-<div class="mermaid" style="transform: scale(0.85);">
-graph LR
-    A[Input: The cat sat on] --> B[Neural Network<br/>Billions of Parameters]
-    B --> C{Probability<br/>Distribution}
-    C --> D1[the: 35%]
-    C --> D2[a: 20%]
-    C --> D3[my: 15%]
-    C --> D4[her: 12%]
-    C --> D5[...: 18%]
-    style B fill:#e0e0ff
-    style C fill:#ffe0e0
-</div>
-
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
-
-**Training:** Model learns patterns from billions of text examples
-**Parameters:** The "knobs" that store learned patterns (billions of them)
-**Prediction:** Given input, model predicts most likely next token
-
-</div>
-
-<div style="margin-top: 20px; font-size: 20px; color: #dc2626;">
-LLMs don't "know" things - they predict likely continuations based on patterns
-</div>
-
-Note:
-This neural network diagram shows the core process. Input text flows through billions of parameters (the model's "learned patterns"), which output probabilities for what token should come next. The model picks from that probability distribution. It's not looking up facts - it's predicting based on statistical patterns it learned during training.
+5. **Evaluation & Deployment:** Test the model on benchmarks, safety checks, and real-world scenarios before releasing it
 
 ---
 
-## What Are Parameters?
+## What Happens When You "Talk" to an LLM
 
-**Parameters = the "weights" that store what the model learned**
+```mermaid
+graph LR
+    A[Tokenization & Embedding] --> B[Transformer Layers Processing]
+    B --> C[Output Prediction]
+    C --> D[Token Selection]
+    D --> E[Repeat for Generation]
+    E -.-> B
+```
 
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
+;;;
 
-Think of parameters like knobs on a massive mixing board:
-- Each knob slightly adjusts how the model processes text
-- More parameters = more nuance and capability (but slower & more expensive)
+**What Happens When Text is Sent to an LLM:**
 
-**Model sizes:**
-- **GPT-4o:** ~200 billion parameters
-- **Claude Haiku:** ~20 billion parameters
-- **Llama 3.3 70B:** 70 billion parameters
+1. **Tokenization & Embedding:** The input text is split into tokens, then each token is converted into a numerical vector (embedding) that the neural network can process
 
-**Concrete example:**
-The parameter that connects "doctor" → "hospital" has a high weight
-The parameter that connects "doctor" → "spaceship" has a low weight
+2. **Transformer Layers Processing:** The embeddings pass through multiple transformer layers, where attention mechanisms identify relationships between tokens and feedforward networks transform the representations
 
-</div>
+;;;
+
+## This repeats until complete
+
+3. **Output Prediction:** The final layer produces a probability distribution over all possible next tokens in the "vocabulary"
+
+4. **Token Selection:** The model selects the next token based on probability algorithm
+
+5. **Repeat for Generation:** The newly generated token is added to the input sequence, and steps 2-4 repeat until the model generates a complete response or hits a stopping condition
+
+---
+
+## Different Models Have Different "Sizes"
+
+Some models are 'small' and some models are 'large'
+
+;;;
+
+## Size & Parameters
+
+- **Parameters** - The numerical values (numbers) in the neural network that are learned during training. They determine how the model processes information and what patterns it recognizes.
+
+- **Size** - Refers to the total count of these parameters (e.g., 70B = 70 billion parameters). More parameters = larger model file, more memory needed, slower inference.
 
 Note:
-Parameters are literally numbers (weights) in the neural network. During training, these weights get adjusted billions of times until the model learns useful patterns. More parameters means the model can store more complex patterns, but it also means slower responses and higher costs to run.
+Weights represent the learned transformations and relationships in the network, not specific tokens or concepts.
+They're the numbers that define:
+- How to convert token IDs into embeddings (embedding layer weights)
+- How tokens should pay attention to each other (attention weights)
+- How to transform information between layers (feedforward weights)
+- What patterns, grammar rules, facts, and reasoning steps to apply
+They don't directly "mean" anything human-readable—they're just mathematical values that, when combined through billions of calculations, produce intelligent behavior. The model learned these specific numbers by adjusting them during training to minimize prediction errors.
+
+;;;
+
+## Why this Matters
+
+- Larger models (120B) are generally smarter and more capable but require expensive GPUs, cost more to run, and respond slower.
+- Smaller models (7B, 13B) are faster, cheaper, and can run on consumer hardware but are less capable.
+
+;;;
+
+## In General
+
+- You'd use a massive model for complex reasoning tasks, but a smaller model works fine for simple tasks like classification or when you need real-time responses.
+- It's about balancing performance, cost, and speed.
 
 ---
 
@@ -213,10 +212,10 @@ Parameters are literally numbers (weights) in the neural network. During trainin
 
 | Category | Parameter Range | Examples | Strengths | Weaknesses |
 |----------|----------------|----------|-----------|------------|
-| **Frontier** | 120B+ | GPT-4o, Claude Opus | Best reasoning, complex tasks | Expensive, slower |
+| **Frontier** | 120B+ | GPT-5.2, Claude Opus | Best reasoning, complex tasks | Expensive, slower |
 | **Balanced** | 20-70B | Claude Sonnet, Llama 70B | Good quality, reasonable cost | Not best at everything |
 | **Fast/Small** | 7-20B | Claude Haiku, Gemini Flash | Very fast, very cheap | Less capable on hard tasks |
-| **Thinking** | Varies | o1, Claude Thinking | Extended reasoning | Very expensive, very slow |
+| **Thinking** | Varies | GPT-5.2 Pro, Claude Thinking | Extended reasoning | Very expensive, very slow |
 
 </div>
 
@@ -227,67 +226,7 @@ Parameters are literally numbers (weights) in the neural network. During trainin
 Note:
 This framework helps you categorize models. Frontier models are the most capable but expensive. Balanced models hit a sweet spot for most tasks. Fast models are great for high-volume simple tasks. Thinking models spend extra compute time reasoning through problems. The trap is thinking "just use GPT-4o for everything" - you'll blow your budget fast.
 
----
-
-## How Models Are Evaluated
-
-**Common benchmarks that compare model capabilities:**
-
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
-
-**MMLU (Massive Multitask Language Understanding):**
-Tests knowledge across 57 subjects (math, history, law, etc.)
-
-**HumanEval:**
-Tests ability to write correct code from descriptions
-
-**MT-Bench:**
-Tests conversation quality and following instructions
-
-**LMSYS Chatbot Arena:**
-Real humans vote on which model gives better responses
-
-</div>
-
-<div style="margin-top: 30px; font-size: 20px; color: #15803d;">
-Frontier models score 85-90% on these. Fast models score 70-80%.
-</div>
-
-Note:
-These benchmarks help us compare apples to apples. MMLU tests broad knowledge. HumanEval tests coding ability. MT-Bench tests how well models follow complex instructions. The Arena is interesting - it's real people blind-voting between responses. This is why we can say "Claude Opus and GPT-4o are comparable" - they score similarly on these benchmarks.
-
----
-
-## Why Not Just Use The Best Model?
-
-**Let's do the math on a real project:**
-
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0; background: #f9fafb; padding: 30px; border-radius: 10px;">
-
-**Scenario:** Generate product descriptions for 10,000 products
-**Input:** 200 tokens per product (product specs)
-**Output:** 300 tokens per description
-
-**Cost with GPT-5.2 (Frontier):**
-Input: 10K × 200 tokens × $1.75/1M = **$3.50**
-Output: 10K × 300 tokens × $14.00/1M = **$42.00**
-**Total: $45.50**
-
-**Cost with Gemini 2.0 Flash (Fast):**
-Input: 10K × 200 tokens × $0.10/1M = **$0.20**
-Output: 10K × 300 tokens × $0.40/1M = **$1.20**
-**Total: $1.40**
-
-</div>
-
-<div style="margin-top: 20px; font-size: 22px; color: #dc2626;">
-<strong>32x cost difference</strong> - and for product descriptions, Gemini Flash is "good enough"
-</div>
-
-Note:
-This is the real-world tradeoff. For creative or complex reasoning tasks, you need GPT-4o or Claude Opus. But for high-volume simple tasks like product descriptions, using a frontier model is wasteful. You'd pay 33x more for marginally better output. Smart model selection is about matching capability to task requirements.
-
----
+;;;
 
 ## Model Pricing: January 2026
 
@@ -295,6 +234,7 @@ This is the real-world tradeoff. For creative or complex reasoning tasks, you ne
 
 | Provider | Model | Category | Input (per 1M) | Output (per 1M) | Use Case |
 |----------|-------|----------|----------------|-----------------|----------|
+| **OpenAI** | GPT-5.2 Pro | Frontier | $21.00 | $168.00 | Advanced reasoning, research |
 | **OpenAI** | GPT-5.2 | Frontier | $1.75 | $14.00 | Complex reasoning, creative writing |
 | **OpenAI** | GPT-5 mini | Balanced | $0.25 | $2.00 | General purpose, cost-sensitive |
 | **Anthropic** | Claude Opus 4.5 | Frontier | $5.00 | $25.00 | Technical precision, long documents |
@@ -349,22 +289,15 @@ This is crucial to understand. The model is only half the equation. Your skill a
 
 ---
 
-## Prompting Strategies: The Toolkit
+## Prompt Engineering Principles
 
-**Three fundamental techniques you'll test today:**
-
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
-
-1. **Zero-Shot:** Just ask directly
-   - "Write a product description for noise-cancelling headphones"
-
-2. **Few-Shot:** Show examples of what you want
-   - Give 2-3 examples, then ask for more
-
-3. **Chain-of-Thought (CoT):** Ask model to think step-by-step
-   - "Think through this step by step..."
-
-</div>
+1. Be clear and direct
+2. Use examples
+3. Invite participation
+4. Use Chains of Thought (CoT)
+5. Separate instruction from Data
+6. Use roles
+7. Tweak parameters
 
 Note:
 These three techniques work across all models. Zero-shot is fastest but least controlled. Few-shot guides the model with examples. Chain-of-thought makes the model show its reasoning, which often improves accuracy for complex tasks.
@@ -376,22 +309,10 @@ These three techniques work across all models. Zero-shot is fastest but least co
 <div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
 <div>
 <h3>Access your course AI workspace:</h3>
-<p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
-<strong>LibreChat gives you access to:</strong><br><br>
-• GPT-4o, GPT-4o Mini<br>
-• Claude Opus, Sonnet, Haiku<br>
-• Gemini 2.0 Flash<br>
-• Groq Llama models
-</p>
-<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
-Scan QR code for login →<br>
-Use your MSU credentials
-</p>
+<a href="https://msu-ai.superwebpros.com/">https://msu-ai.superwebpros.com</a>
 </div>
 <div style="text-align: center;">
-<div style="width: 320px; height: 320px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
-<p style="color: #666;">LibreChat QR Code<br>(TBD)</p>
-</div>
+<img src="assets/librechat-qr.png" alt="LibreChat QR Code" style="width: 320px; height: 320px;">
 </div>
 </div>
 
@@ -402,17 +323,7 @@ This is your AI workspace for the entire course. You have access to all major mo
 
 ## Hands-On: Multi-Model Prompting Lab
 
-**Next 40 minutes - you'll experiment with:**
-
-<div style="font-size: 18px; line-height: 1.8; margin: 30px 0;">
-
-✅ LibreChat interface across 4+ models<br>
-✅ Interactive workbook with 6-8 exercises<br>
-✅ Testing zero-shot, few-shot, and chain-of-thought prompting<br>
-✅ Comparing outputs across models<br>
-✅ Submitting your observations
-
-</div>
+**Now it's time to experiment:**
 
 <div style="margin-top: 40px; font-size: 22px; color: #7c3aed;">
 <strong>Goal:</strong> Develop intuition for model selection and prompting strategies
@@ -421,115 +332,314 @@ This is your AI workspace for the entire course. You have access to all major mo
 Note:
 This is individual work. You'll get hands-on with LibreChat and complete structured exercises adapted from Anthropic's prompt engineering tutorial. The workbook will guide you through specific prompting challenges across multiple models.
 
----
+;;;
 
-## Workbook Structure
+## Example Case Study
 
-**You'll complete 6-8 exercises testing different strategies:**
+You are a marketing consultant who just signed a local Pilates studio as a client. Our goal is to help them generate a plan to scale their business.
 
-<div style="font-size: 16px; line-height: 1.6; margin: 30px 0;">
+;;;
 
-1. **Being Clear and Direct** - Get models to skip preamble
-2. **Output Control** - Strict formatting constraints
-3. **Zero-Shot Classification** - Categorize customer emails
-4. **Few-Shot Learning** - Same task with examples
-5. **Chain-of-Thought** - Complex reasoning tasks
-6. **Temperature Experiment** - Creativity vs accuracy
+## Exercise 1: Zero-Shot Baseline
 
-</div>
+> Principle: Be clear and direct
 
-<div style="margin-top: 30px; font-size: 18px; color: #6b7280;">
-Minimum 4 exercises required • Submit via form before next session
-</div>
+What to observe:
 
-Note:
-Each exercise is designed to teach you something specific about prompting. You'll test the same prompts across multiple models and observe differences. This builds your intuition for when to use which model and which technique.
+- Which model is fastest?
+- Which model provides the most helpful answer?
+- Which model provides the most over-confident answer?
+- Which model provides the least helpful answer?
 
----
+;;;
 
-## Getting Started: LibreChat Setup
+### Exercise 1
 
-**Steps to begin:**
+#### Prompt
+```
+Generate a marketing plan for local Pilates studio.
+```
 
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
+Models to use:
 
-1. Open LibreChat (scan QR code from previous slide)
-2. Verify you can access all 4 models
-3. Get the interactive workbook (distributed now)
-4. Start with Exercise 1
-
-</div>
-
-<div style="margin-top: 40px; font-size: 18px; background: #fef3c7; padding: 20px; border-radius: 10px;">
-<strong>If you have tech issues:</strong> Raise your hand immediately - we'll troubleshoot
-</div>
-
-Note:
-I'll be circulating to help with any technical issues and answer questions. Try to complete at least 4 exercises during class time. If you don't finish all 6-8, complete them before next session.
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
 
 ---
 
-## Work Time: 40 Minutes
+## Exercise 2
 
-<div style="text-align: center; margin: 80px 0;">
-<h2 style="font-size: 3rem; color: #7c3aed;">🚀 Get started!</h2>
+> Principle: Be clear and direct
 
-<p style="font-size: 24px; margin-top: 40px; color: #6b7280;">
-Experiment • Compare • Observe • Learn
-</p>
-</div>
+What to observe:
 
-Note:
-I'll give you a 10-minute warning before we wrap up. Focus on learning, not just completing exercises. Pay attention to what works and what doesn't. These insights will serve you throughout the course.
+- How does bounding the 'set' of possibilities impact the result?
+
+;;;
+
+### Exercise 2
+
+> Note: start a new 'chat' session (don't use the one you were already using)
+
+#### Prompt
+
+```
+Generate a marketing plan for local Pilates studio. Only give me solutions I can self-implement for less than $2,000/month
+```
+
+Models to use:
+
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
 
 ---
 
-## Debrief: What Did You Notice?
+## Exercise 3
 
-**Quick discussion - share your observations:**
+> Principle: Use Chains of Thought/Planning
 
-- Which model surprised you the most?
-- Which prompting strategy worked best?
-- Any unexpected results?
-- What would you use each model for?
+What to observe:
 
-Note:
-Let's hear what you discovered. This is where individual observations become collective learning. What patterns emerged?
+- How do the models change when you ask it to think or plan?
+- Which model(s) change the most? The least? Why do you suppose that is?
+
+;;;
+
+### Exercise 3
+
+#### Prompt
+```
+Generate a marketing plan for my local Pilates studio. Think step-by-step through the time and money constraints I may have. Then, give me a plan I can self-implement for less than $2,000/month. Justify your reasoning.
+```
+
+Models to use:
+
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
+
+---
+
+## Exercise 4
+
+> Principle: Invite Participation
+
+What to observe
+
+- How does working with an LLM vs "using" an LLM change the output?
+
+;;;
+
+### Exercise 4
+
+#### Prompt
+```
+I need to generate a marketing plan for my local Pilates studio. I would like you to help me put it together. Please ask me questions to answer so that I can get a high-quality personalized plan for my studio.
+```
+
+Models to use:
+
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
+
+---
+
+## Exercise 5
+
+> Principles: Use Examples, Separate Instruction from Data
+
+What to observe:
+
+- How do examples affect the outcome of what's generated?
+
+;;;
+
+### Exercise 5a
+
+#### Prompt
+```
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer.
+```
+
+Models to use:
+
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
+
+;;;
+
+### Exercise 5b
+
+### Prompt
+```
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer. Use a tone based on the following examples:
+<example>
+Try the low-impact fitness method Jennifer Aniston calls a “game-changer.”
+
+✨ “Within weeks I felt stronger, leaner, and my back pain started to fade. This is the only workout I’ve stuck with.” – Amanda K.
+
+✅ Joint-friendly, results you can see and feel
+✅ Functional, Pilates-inspired movements that sculpt head to toe
+✅ Clinically proven to reduce lower back pain
+
+👉 Get started risk-free for 30 days with a new-member bundle. Love it or send it back for a full refund.
+</example>
+<example>
+Did you know only 6% of sports science research focuses on women? 🤯
+
+That’s why Pvolve ran clinical studies of our own — and the results speak for themselves:
+
+✨ +23% more daily energy
+✨ +21% more flexibility
+✨ +19% more hip strength & function
+
+And members also saw:
+💪 Stronger balance & mobility
+🔥 Lean muscle (without bulk)
+❤️ Healthier blood markers
+🌟 Better overall quality of life
+
+The best part? Every bundle comes with a 30-day money-back guarantee. Don’t love it? Send it back—on us.
+</example>
+<example>
+Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a day with the low-impact method everyone’s talking about.
+
+💪 Total-Body Sculpting From Home
+🏋️ Functional, Pilates-Inspired Movements
+🧠 Backed by Clinical Research
+🌟 Loved by Jennifer Aniston
+
+👉 Try any bundle risk-free for 30 days — streaming included.
+</example>
+
+---
+
+## Exercise 6
+
+> Principle: Tweak parameters
+
+What to observe:
+
+- How does temperature affect the quality and tone of response?
+- Are some models more sensitive than others?
+
+_Note: turn off thinking to see this in effect_
+
+;;;
+
+### Exercise 6a/b
+
+### Prompt
+```
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer.
+```
+
+Temperatures to use: 1, 0.2
+
+Models to use:
+- Opus 4.5 vs GPT 5.2
+- Sonnet 4.5 vs Gemini Flash 2.5
+- Haiku 4.5 vs Groq/OpenAI OSS-120B
+
+---
+
+## Exercise 7
+
+> Principle: Use Roles
+
+What to observe:
+
+- How do 'roles' make it "easier" for an LLM to get to an outcome faster?
+- How do 'roles' reduce your work as a human?
+
+;;;
+
+### Exercise 7
+
+#### Role Prompt
+```
+You are an expert Facebook ad copywriter. You use best practices as exemplified by these examples to craft high-quality ads for local pilates studios:
+<example>
+Try the low-impact fitness method Jennifer Aniston calls a “game-changer.”
+
+✨ “Within weeks I felt stronger, leaner, and my back pain started to fade. This is the only workout I’ve stuck with.” – Amanda K.
+
+✅ Joint-friendly, results you can see and feel
+✅ Functional, Pilates-inspired movements that sculpt head to toe
+✅ Clinically proven to reduce lower back pain
+
+👉 Get started risk-free for 30 days with a new-member bundle. Love it or send it back for a full refund.
+</example>
+<example>
+Did you know only 6% of sports science research focuses on women? 🤯
+
+That’s why Pvolve ran clinical studies of our own — and the results speak for themselves:
+
+✨ +23% more daily energy
+✨ +21% more flexibility
+✨ +19% more hip strength & function
+
+And members also saw:
+💪 Stronger balance & mobility
+🔥 Lean muscle (without bulk)
+❤️ Healthier blood markers
+🌟 Better overall quality of life
+
+The best part? Every bundle comes with a 30-day money-back guarantee. Don’t love it? Send it back—on us.
+</example>
+<example>
+Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a day with the low-impact method everyone’s talking about.
+
+💪 Total-Body Sculpting From Home
+🏋️ Functional, Pilates-Inspired Movements
+🧠 Backed by Clinical Research
+🌟 Loved by Jennifer Aniston
+
+👉 Try any bundle risk-free for 30 days — streaming included.
+</example>
+```
 
 ---
 
 ## Key Takeaways
 
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
+**Model Selection:**
+- Models come in categories: Frontier, Balanced, Fast, Thinking
+- Parameters = learned patterns stored in the model
+- Pricing varies 62x - match model to task complexity
 
-✅ **Models come in categories** - Frontier, Balanced, Fast, Thinking
+;;;
 
-✅ **Parameters = learned patterns** - More isn't always better (cost/speed tradeoffs)
+**Prompting Principles You Practiced:**
+- Be clear and direct
+- Use examples (few-shot learning)
+- Invite participation - work WITH the model
+- Use chains of thought for complex reasoning
+- Separate instructions from data
+- Assign roles to shape responses
+- Tweak parameters (temperature) for creativity vs consistency
 
-✅ **Benchmarks help compare models** - But real-world fit matters more
+> Prompting matters as much as model choice
 
-✅ **Pricing varies 62x** - Match model to task complexity
-
-✅ **Prompting matters as much as the model** - Your skill is half the equation
-
-✅ **Three core techniques** - Zero-shot, few-shot, chain-of-thought
-
-</div>
 
 Note:
-These are the core lessons from today. You now understand model categories, what parameters actually are, how to evaluate models, and why pricing matters. Most importantly, you've practiced prompting strategies hands-on across multiple models.
+These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective prompting. The seven principles you practiced today work across all models and will serve as your foundation for the rest of the course.
 
 ---
 
 ## Preview: Session 3 - RAG & Custom GPTs
 
-**Thursday we'll cover:**
+**Tuesday we'll cover:**
 
 <div style="font-size: 20px; line-height: 2; margin: 40px 0;">
 
-📚 **Rg (RAG)** - Retrieval Augmented Generation<br>
-🧠 How to give AI "memory" with your documents<br>
-🛠️ Hands-on: Build a Custom GPT with your resume
+**Rg (RAG)** - Retrieval Augmented Generation<br>
+How to give AI "memory" with your documents<br>
+Hands-on: Build a Custom GPT with your resume
 
 </div>
 
@@ -542,37 +652,11 @@ Today you learned to steer models with prompts and understand their differences.
 
 ---
 
-## Deliverable: Complete Workbook
+## Deliverable: Class Learnings
 
 **Due before Session 3:**
 
-<div style="font-size: 20px; line-height: 2; margin: 40px 0;">
-
-✅ Complete at least 4 of 6-8 workbook exercises<br>
-✅ Test prompts across multiple models<br>
-✅ Submit observations via form [link provided]
-
-</div>
-
-<div style="margin-top: 40px; font-size: 18px; background: #dbeafe; padding: 20px; border-radius: 10px;">
-<strong>What we're looking for:</strong> Thoughtful analysis of model differences and prompting strategies - not just "this one is better"
-</div>
+- Reflection: **Session 2 - Prompting & Model Selection**
 
 Note:
 Focus on why models behave differently, not just which one you prefer. Evidence of testing multiple strategies. Clear reasoning about tradeoffs. This is your first individual deliverable.
-
----
-
-## Questions?
-
-<div style="text-align: center; margin: 80px 0;">
-<h2 style="font-size: 2.5rem; color: #7c3aed;">See you Thursday!</h2>
-
-<p style="font-size: 20px; margin-top: 40px;">
-Office hours: See syllabus<br>
-Email: jesse@superwebpros.com
-</p>
-</div>
-
-Note:
-Great work today. You now have hands-on experience with multiple models and prompting strategies. Complete the workbook exercises and we'll dive into RAG next session.

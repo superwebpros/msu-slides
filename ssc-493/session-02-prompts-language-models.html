@@ -29,12 +29,7 @@
 		}
 		.reveal {
 			margin-top: 48px;
-		}
-		/* Mermaid diagram styling */
-		.reveal .mermaid svg {
-			min-height: 300px;
-			transform: scale(1.2);
-			transform-origin: center center;
+			font-size: 36px;
 		}
 	</style>
 </head>
@@ -75,7 +70,10 @@
 			pdfSeparateFragments: false,
 			mermaid: {
 				startOnLoad: true,
-				theme: 'base'
+				theme: 'base',
+				themeVariables: {
+					fontSize: '28px'
+				}
 			},
 			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid ]
 		});
