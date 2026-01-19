@@ -1,40 +1,72 @@
-# Session 3: RAG Fundamentals & Custom GPTs
-
 ## SSC 493: AI Workflows & Organizational Intelligence
 
-Week 2 - January 20, 2026
+Week 2 - January 21, 2026
 
 Note:
 Today we're covering Rg (RAG) - Retrieval Augmented Generation. This is your first composition element where we combine multiple primitives into a useful system.
 
 ---
 
-## Where We Are in the Periodic Table
+## Housekeeping (15 min)
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+**Before we start:**
 
-<div>
-<strong>Last Week (Primitives):</strong>
-<ul>
-<li>Pr (Prompts)</li>
-<li>Lg (LLMs)</li>
-<li>Compared 4 different models</li>
-</ul>
-</div>
+1. **PrinciplesYou Results** - Email me your results if you haven't already
+2. **D2L Reflection** - Complete Session 2 reflection in D2L → Quizzes
+   - Open on your laptop now
+   - Takes 5-10 minutes
+   - Reflects on last session's learning
 
-<div style="background: #dcfce7; padding: 20px; border-radius: 10px;">
-<strong>Today (First Composition):</strong>
-<ul>
-<li><strong>Rg (RAG)</strong> - Row 2, G3 (Orchestration)</li>
-<li>Combines: Em + Vx + Pr + Lg</li>
-<li>Gives AI "memory"</li>
-</ul>
-</div>
-
+<div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
+<strong>👉 Do this now:</strong> Log into D2L → Quizzes → Session 2 Reflection
 </div>
 
 Note:
-We're moving from primitives to compositions. RAG sits in row 2 (compositions), family 3 (orchestration) because it orchestrates embeddings, vector storage, prompts, and LLMs together.
+Give them 10 minutes to complete the reflection. Circulate to make sure everyone has D2L access. This reflection asks them to think about what they learned from comparing models and how prompts/roles/examples changed outputs. While they work, check that everyone has emailed PrinciplesYou results. At 10-minute mark, bring everyone back together for quick debrief.
+
+---
+
+## Looking Ahead: Business Partners
+
+**Next Tuesday, January 27th:**
+
+<div style="font-size: 22px; line-height: 1.8; margin: 40px 0;">
+
+✅ Business partners will join us in class<br>
+✅ Team assignments will be announced<br>
+✅ You'll conduct discovery interviews<br>
+✅ Start planning your semester project
+
+</div>
+
+<div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
+<strong>Today's RAG lesson</strong> connects directly to what you'll build for your business partner
+</div>
+
+Note:
+Important announcement: Business partners are coming next Tuesday the 27th. By then, you'll have your team assignments. Today you're learning RAG with Custom GPTs - the simple version. Eventually you'll build production RAG systems for your actual business partners. Keep that in mind as we go through today's material.
+
+---
+
+## Today's Focus: Rg (RAG)
+
+<div style="font-size: 14px; margin: 20px auto; max-width: 900px;">
+
+| | Reactive | Retrieval | Orchestration | Validation | Models |
+| --- | --- | --- | --- | --- | --- |
+| **Primitives** | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Prompts (Pr)</span> | Embeddings (Em) | | | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">LLMs (Lg)</span> |
+| **Compositions** | Function Calling | Vector DBs (Vx) | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">RAG (Rg)</span> | Guardrails | Multi-modal |
+| **Deployment** | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Agents (Ag)</span> | Fine-tuning | Frameworks | Red-teaming | Small Models |
+| **Emerging** | Multi-agent | Synthetic Data | | Interpretability | Thinking Models |
+
+</div>
+
+<div style="margin-top: 30px; font-size: 20px; color: #7c3aed; text-align: center;">
+Today we learn <strong>RAG (Rg)</strong> - our first composition element that combines <strong>Prompts (Pr)</strong> and <strong>LLMs (Lg)</strong> with retrieval
+</div>
+
+Note:
+We're moving from primitives to compositions. Today focuses on RAG (Rg), which sits in row 2 (compositions), family 3 (orchestration). RAG orchestrates multiple primitives together - specifically Prompts (Pr) and LLMs (Lg) that you learned last week, plus Embeddings (Em) and Vector DBs (Vx) that you'll learn more about Thursday. We also touch on Agents (Ag) since Custom GPTs are specialized agents. This is your first time seeing how primitives combine into something more powerful.
 
 ---
 
@@ -70,34 +102,108 @@ We're moving from primitives to compositions. RAG sits in row 2 (compositions), 
 Note:
 This is the pain point we're solving. Organizations have valuable knowledge scattered everywhere. Getting AI to use that knowledge is what RAG enables.
 
----
+;;;
 
-## Why AI "Forgets"
+### Why AI "Forgets"
 
-<div style="text-align: left; font-size: 22px; line-height: 1.8;">
+**LLMs are stateless - each conversation starts fresh**
 
-**LLMs are stateless:**
-- Each conversation starts fresh
+<div style="text-align: left; font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+**What does "stateless" mean?**
 - No persistent memory between sessions
-- Context window limits (8K, 32K, 128K tokens)
+- Previous conversations don't exist to the model
+- Each request is completely independent
 
 **Example:**
 - Session 1: "My favorite color is blue"
-- Session 2: "What's my favorite color?"
+- Session 2 (new chat): "What's my favorite color?"
 - AI: "I don't have that information"
 
 </div>
 
-<div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
-<strong>The AI doesn't "remember" - it only knows what's in the current prompt</strong>
+Note:
+This is fundamental to understanding why RAG matters. LLMs don't have memory between sessions. They process each request independently. Everything they "know" must be in the current prompt. This is why you can't just say "remember this for next time" - there is no "next time" for the model.
+
+;;;
+
+### Context Windows & Token Limits
+
+**Context window = everything the model can "see" at once**
+
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+**Typical context windows (January 2026):**
+- GPT-4o / GPT-4 Turbo: **128K tokens** (~96K words)
+- Claude Sonnet 4.5: **200K tokens** (~150K words)
+- Llama 3.3: **128K tokens** (~96K words)
+
+</div>
+
+<div style="background: #fee2e2; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
+<strong>Problem:</strong> Your business partner's website, docs, and policies won't fit in the context window
 </div>
 
 Note:
-This is fundamental to understanding why RAG matters. LLMs don't have memory. They process each request independently. Everything they "know" must be in the prompt.
+Context window is the amount of text the model can process in a single request - both your prompt AND the response count against this limit. Even with large context windows like 128K-200K tokens, you can't fit everything your business needs to know. That's where RAG comes in - it intelligently selects JUST the relevant pieces to include in the context window.
+
+;;;
+
+### Why Do Context Windows Exist?
+
+**The hard limits:**
+
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+1. **Computational cost** - Processing scales quadratically with context length (2x context = 4x compute)
+2. **Memory requirements** - Models must hold entire context in GPU memory during processing
+3. **Attention mechanism** - Transformer architecture compares every token to every other token
+4. **Inference speed** - Longer contexts = slower responses
+
+</div>
+
+<div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 18px;">
+**Why different sizes?** Larger contexts require more expensive hardware and specialized optimization. Smaller, faster models (like GPT-3.5) have smaller windows. Frontier models invest in larger windows but charge premium pricing.
+</div>
+
+Note:
+Context windows aren't arbitrary - they're constrained by fundamental computer science and economics. The attention mechanism that makes transformers powerful also makes them expensive to scale. Every token in the context must compare to every other token - that's N-squared complexity. Doubling context length quadruples compute cost. Models with larger contexts (Claude 200K, GPT 128K) require specialized hardware, careful optimization, and often charge more. This is why RAG matters - instead of jamming everything into context, we retrieve just what's needed.
+
+;;;
+
+## The Handshake Demo
+
+| n | h |
+| --- | --- |
+| 2 | 1 |
+
+;;;
+
+### The Knowledge Problem for Businesses
+
+**Your business partner needs AI that knows:**
+
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+- Product catalog and specifications
+- Brand voice and messaging guidelines
+- Customer history and preferences
+- Company policies and procedures
+- Competitive positioning
+- Industry-specific terminology
+
+</div>
+
+<div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
+<strong>Challenge:</strong> This knowledge changes daily and won't fit in a context window
+</div>
+
+Note:
+This is the real business problem we're solving. Generic AI gives generic advice. But businesses need AI that knows THEIR specific information. And they need it to stay current - new products launch, policies change, customer preferences evolve. RAG solves this by retrieving current, relevant information on-demand.
 
 ---
 
-## The RAG Solution
+## The RAG Concept
 
 **RAG = Retrieval Augmented Generation**
 
@@ -127,9 +233,9 @@ RAG gives AI access to YOUR knowledge
 Note:
 This is the pattern. When you ask a question, the system searches your documents, finds relevant chunks, includes them in the prompt, and the AI generates a response based on that context.
 
----
+;;;
 
-## RAG vs. Regular Prompting
+### RAG vs. Regular Prompting
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0;">
 
@@ -156,137 +262,238 @@ This is the pattern. When you ask a question, the system searches your documents
 Note:
 See the difference? Without RAG, the AI gives generic advice. With RAG, it cites your actual policy documents. That's the power of retrieval.
 
----
+;;;
 
-## How RAG Works: The Technical View
+### How RAG Works: The Technical View
 
-<div style="text-align: left; font-size: 18px; line-height: 1.8; margin: 30px 0;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; font-size: 18px;">
 
-**Step by step:**
+<div style="background: #dbeafe; padding: 25px; border-radius: 10px;">
+<h4>1. Ingestion (one-time setup)</h4>
+<ul style="margin-top: 15px; line-height: 1.8;">
+<li>Break documents into chunks</li>
+<li>Convert chunks to embeddings (Em)</li>
+<li>Store embeddings in vector database (Vx)</li>
+</ul>
+</div>
 
-1. **Ingestion** (one-time setup):
-   - Convert documents to embeddings (Em)
-   - Store embeddings in vector database (Vx)
-
-2. **Query time** (every request):
-   - User asks question
-   - Convert question to embedding
-   - Search vector database for similar embeddings
-   - Retrieve top matching document chunks
-   - Augment prompt with chunks
-   - LLM generates response
+<div style="background: #dcfce7; padding: 25px; border-radius: 10px;">
+<h4>2. Query time (every request)</h4>
+<ul style="margin-top: 15px; line-height: 1.8;">
+<li>User asks question</li>
+<li>Convert question to embedding</li>
+<li>Search vector DB for similar chunks</li>
+<li>Retrieve top matches</li>
+<li>Augment prompt with chunks</li>
+<li>LLM generates response</li>
+</ul>
+</div>
 
 </div>
 
 <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 18px;">
-<strong>Elements involved:</strong> Em (embeddings) + Vx (vector DB) + Pr (prompts) + Lg (LLM) = Rg (RAG)
+<strong>Composition:</strong> Em (embeddings) + Vx (vector DB) + Pr (prompts) + Lg (LLM) = <strong>Rg (RAG)</strong>
 </div>
 
 Note:
-This is the full picture. You'll build this exact system by Week 8. Today, we're using Custom GPTs as "simple RAG" to understand the concept.
+This is the full technical picture. By Week 8, you'll build this entire system from scratch. Today, we're using Custom GPTs as "training wheels RAG" - OpenAI handles all the technical complexity (embeddings, vector storage, retrieval) behind the scenes. This lets you focus on understanding the CONCEPT and VALUE of RAG before you build the real thing. Next session (Thursday), we'll start learning about embeddings - how text becomes numbers that represent meaning.
 
 ---
 
-## Custom GPT: Simple RAG
+## Demos: RAG in Action
 
 **Custom GPTs are RAG training wheels**
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0;">
+<div style="font-size: 20px; line-height: 1.8; margin: 40px 0;">
 
-<div>
-<h3 style="color: #7c3aed;">What Custom GPTs Do</h3>
-<ul style="font-size: 18px;">
-<li>You upload files (PDFs, docs, etc.)</li>
-<li>OpenAI handles embeddings and vector storage</li>
-<li>When you ask a question, it searches files</li>
-<li>Includes relevant excerpts in prompt</li>
-<li>Generates response based on your docs</li>
-</ul>
-</div>
+**What Custom GPTs Do:**
+- You upload files (PDFs, docs, etc.)
+- OpenAI handles embeddings and vector storage
+- When you ask a question, it searches files
+- Includes relevant excerpts in prompt
+- Generates response based on your docs
 
-<div>
-<h3 style="color: #7c3aed;">Perfect For</h3>
-<ul style="font-size: 18px;">
-<li>Learning the RAG pattern</li>
-<li>Personal knowledge bases</li>
-<li>Quick prototypes</li>
-<li>Non-sensitive information</li>
-</ul>
-</div>
+**Perfect for:** Learning the RAG pattern, personal knowledge bases, quick prototypes
 
 </div>
 
 Note:
 Custom GPTs abstract away the complexity. You don't need to understand embeddings or vector databases yet. Just upload files and it works. Perfect for learning the concept.
 
----
+;;;
 
-## Custom GPT vs. Production RAG
+### Demo 1: RAG in LibreChat
 
-<table style="width: 100%; font-size: 16px; border-collapse: collapse; margin: 30px 0;">
-<thead>
-<tr style="background: #f3f4f6;">
-<th style="padding: 15px; text-align: left; border: 1px solid #e5e7eb;">Feature</th>
-<th style="padding: 15px; text-align: left; border: 1px solid #e5e7eb;">Custom GPT</th>
-<th style="padding: 15px; text-align: left; border: 1px solid #e5e7eb; background: #dcfce7;">Production RAG</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Setup Time</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">15 minutes</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">Hours to days</td>
-</tr>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Data Control</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">Lives on OpenAI servers</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">Your servers</td>
-</tr>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Updates</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">Manual re-upload</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">Auto-sync</td>
-</tr>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Integration</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">None</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">CRM, ERP, databases</td>
-</tr>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Security</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">Trust OpenAI</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">Your standards</td>
-</tr>
-<tr>
-<td style="padding: 15px; border: 1px solid #e5e7eb; font-weight: bold;">Best For</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb;">Learning, personal use</td>
-<td style="padding: 15px; border: 1px solid #e5e7eb; background: #f0fdf4;">Business systems</td>
-</tr>
-</tbody>
-</table>
-
-Note:
-Custom GPTs are great for learning and personal use. Production RAG systems give you full control, real-time updates, system integration, and security. By Week 8, you'll build the production version.
-
----
-
-## Live Demo: Build a Custom GPT
-
-<div style="text-align: center; font-size: 28px; color: #7c3aed; margin: 40px 0;">
-<p><strong>Let me show you how to build one in 15 minutes</strong></p>
+<div style="text-align: center; font-size: 32px; color: #7c3aed; margin: 60px 0;">
+<strong>Live Demo</strong>
 </div>
 
-**Scenario:** Create a GPT that helps with career/job search
-
-**What we'll do:**
-1. Navigate to Custom GPT creation
-2. Configure instructions
-3. Upload resume, portfolio, job descriptions
-4. Test with questions
-5. Show the difference vs. regular ChatGPT
+**Comparing: Regular prompting vs. RAG**
 
 Note:
-LIVE DEMO TIME. Navigate to ChatGPT, create a GPT. Instructions: "You are a career advisor who helps me tailor job applications based on my resume and the specific roles I'm interested in." Upload resume, portfolio, sample job descriptions. Test: "What experience from my background should I highlight for a [specific role]?" Show how it cites specific experiences vs. generic advice.
+DEMO SETUP: Have LibreChat open with product launches RAG already configured. Screen share and walk through this:
+
+**Demo Part 1 - WITHOUT RAG (5 min):**
+1. Open LibreChat in a regular chat (no RAG enabled)
+2. Ask: "Tell me about recent product launches"
+3. Observe: Model gives generic advice or makes things up
+4. Point out: "See? It has no idea what OUR products are. It's guessing."
+
+**Demo Part 2 - WITH RAG (5 min):**
+1. Switch to RAG-enabled chat (or enable RAG in same chat)
+2. Ask same question: "Tell me about recent product launches"
+3. Observe: Model retrieves specific product launch content from uploaded docs
+4. Point out the citations/sources shown
+5. Ask follow-up: "What were the key features of [specific product]?"
+6. Show how it retrieves and cites specific documents
+
+**Key Teaching Points:**
+- WITHOUT RAG: Generic, unhelpful, potentially wrong
+- WITH RAG: Specific, accurate, cites sources
+- This is the difference RAG makes for businesses
+- Your business partners need THIS - AI that knows THEIR content
+
+**Technical Note:** Make sure product launches RAG has several documents indexed (press releases, feature lists, launch announcements) so retrieval is obvious and varied.
+
+;;;
+
+### Demo 2: Build Career Development Coach
+
+<div style="display: grid; grid-template-columns: 1fr 350px; gap: 40px; align-items: center; margin: 40px 0;">
+
+<div>
+<h3 style="font-size: 28px; color: #7c3aed; margin-bottom: 20px;">Build Together: Custom GPT</h3>
+<p style="font-size: 22px; line-height: 1.8;">
+Follow along on your laptop<br><br>
+<strong>Scan QR code or visit:</strong><br>
+chatgpt.com
+</p>
+</div>
+
+<div style="text-align: center;">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://chatgpt.com" alt="ChatGPT QR Code" style="width: 300px; height: 300px; border: 2px solid #e5e7eb; border-radius: 10px;">
+</div>
+
+</div>
+
+Note:
+WORKSHOP TIME (35 minutes total). Students work alongside instructor. This is pair programming style - you do it on screen, they do it on their laptops simultaneously.
+
+**Introduction (5 min):**
+"We're building a Career Development Coach that helps with resumes and job applications. The clever part: ONE GPT handles two scenarios - students with resumes AND students without resumes. It adapts based on what you upload."
+
+**Build Process - Follow Along (25 min):**
+
+**Step 1: Navigate to Custom GPT creation (2 min)**
+- Open ChatGPT Plus
+- Click "Explore GPTs" in sidebar
+- Click "Create" in top right
+- Name: "Career Development Coach"
+
+**Step 2: Configure Instructions (10 min)**
+Paste this system prompt (share via screen or handout):
+
+```
+You are a Career Development Coach specializing in helping students and early-career professionals advance their careers.
+
+Your capabilities:
+1. Resume Building: If the user doesn't have a resume, guide them through creating one using industry best practices (chronological format, action verbs, quantifiable achievements)
+2. Resume Optimization: If the user uploads a resume, analyze it and help tailor it for specific job opportunities
+3. Job Application Strategy: Help users understand job postings, identify relevant skills, and position themselves effectively
+
+When a user first interacts with you:
+- Ask if they have an existing resume
+- If yes: Request upload and proceed with optimization
+- If no: Guide them through building one from scratch
+
+Tone: Supportive, strategic, results-oriented
+Format: Provide clear action items and specific suggestions
+Focus: Measurable outcomes - "Add 3 quantifiable achievements to your experience section" not "make it better"
+```
+
+**Walk through the prompt:**
+- Line by line, explain what each section does
+- Point out the adaptive logic (with/without resume)
+- Emphasize the "measurable outcomes" focus
+
+**Step 3: Upload Knowledge (5 min)**
+- If students have resumes: Upload now
+- If students don't: That's fine! GPT will guide resume creation
+- Point out: "This upload is what enables RAG. Without it, you get generic advice. With it, you get personalized guidance."
+
+**Step 4: Test It (8 min)**
+Have a sample job posting ready (share link or paste). Students test:
+
+Test Question 1: "I want to apply for this role. How should I tailor my resume?" [paste job description]
+- Students WITH uploaded resumes: See personalized advice based on their experience
+- Students WITHOUT resumes: Get guided through what experience would be relevant
+
+Test Question 2: "What skills should I highlight for this position?"
+- Observe how answers differ based on upload presence
+
+**Circulate while students work:**
+- Help troubleshoot upload issues
+- Encourage students to test with/without upload to see difference
+- Ask: "What changed when you uploaded your resume?"
+
+**Student Customization Time (5 min):**
+"Now make it yours:"
+- Tweak the system prompt (add industry focus, change tone, add constraints)
+- Upload additional documents (portfolios, cover letters, writing samples)
+- Test with different job postings
+- Experiment: Remove uploaded file and ask same question - what changes?
+
+;;;
+
+### Demo 3: Testing Different Models
+
+<div style="text-align: center; font-size: 32px; color: #7c3aed; margin: 60px 0;">
+<strong>Live Demo: Same Prompt, Different Models</strong>
+</div>
+
+**How do different models respond to the same system prompt?**
+
+Note:
+DEMO TIME (10 minutes). Show how the same system prompt produces different outputs with different models.
+
+**Setup (2 min):**
+- "We built a Career Coach in Custom GPT (uses GPT-4o)"
+- "Let's test the SAME system prompt with different models in LibreChat"
+- "Same instructions, same context, different model = different personality/style"
+
+**Transfer Process - Live Demo (5 min):**
+
+**Step 1: Copy system prompt from Custom GPT**
+- Open Custom GPT configuration
+- Copy the entire system prompt
+- Show students where it lives in the interface
+
+**Step 2: Create LibreChat preset**
+- Navigate to LibreChat (have it open in another tab)
+- Click presets/agents dropdown
+- Create new preset
+- Name: "Career Development Coach"
+- Paste system prompt into "System Message" field
+- Save preset
+
+**Step 3: Test with Claude Sonnet 4.5 (3 min)**
+- Select Claude model
+- Ask: "I want to apply for a software engineering role. What should I highlight?"
+- Observe response style and structure
+- Compare to GPT-4o response from Custom GPT
+
+**Step 4: Try Gemini or other model (optional, time permitting)**
+- Switch to Gemini
+- Same question
+- Observe differences in tone, detail level, response structure
+
+**Key Teaching Points:**
+- Same system prompt + different models = different response personalities
+- GPT-4o: [observe characteristics]
+- Claude Sonnet: [observe characteristics] - typically more detailed, structured
+- Models have different "personalities" even with identical instructions
+- Choose model based on task needs: speed vs. detail, cost vs. quality
+- System prompts are portable across platforms and models
 
 ---
 
@@ -329,204 +536,30 @@ These are the key insights. RAG is powerful but simple. The quality of your know
 
 ---
 
-## Hands-On: Build Your Own Custom GPT
+## Next Session Preview
 
-**Next 40 minutes - you'll create a Custom GPT for personal use**
+**Thursday: Embeddings & APIs**
 
-**Your task:**
-1. Navigate to ChatGPT and create a new GPT
-2. Configure it as a career/job search advisor
-3. Upload your resume, portfolio, and job descriptions you're interested in
-4. Write instructions (e.g., "Help me tailor applications")
-5. Test it with specific questions
-6. Verify it cites your documents
+<div style="font-size: 22px; line-height: 1.8; margin: 40px 0;">
 
-**Success looks like:** Your GPT answers questions using specific information from your uploaded files
+**Questions we'll answer:**
+- How does "retrieve" actually work in RAG?
+- How does text become numbers that represent meaning?
+- What are embeddings and why do they matter?
+- How do you make API calls to create embeddings?
 
-Note:
-This is individual work, but feel free to help each other with technical issues. The goal is to experience the RAG pattern firsthand. By the end, you should have a working tool you can actually use for job searching.
+</div>
 
----
+<div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
+<strong>Bridge:</strong> Today you used RAG. Thursday you'll learn how it works under the hood.
+</div>
 
-## Troubleshooting Tips
-
-**If your Custom GPT isn't working:**
-
-- **Not retrieving from files?**
-  - Check file formats (PDF, DOCX, TXT work best)
-  - Re-upload files
-  - Make questions more specific to your content
-
-- **Generic responses?**
-  - Improve your instructions
-  - Upload better documents
-  - Ask questions that require specific knowledge
-
-- **Can't access Custom GPT creation?**
-  - Need ChatGPT Plus subscription
-  - See instructor for backup access
-
-Note:
-These are the common issues. Most problems are either file format issues or instructions not being specific enough. I'll circulate to help troubleshoot.
-
----
-
-## What Makes a Good Custom GPT?
-
-**Three keys to success:**
-
-1. **Clear Instructions**
-   - Define the role explicitly
-   - Specify the tone and style
-   - Give examples of good responses
-
-2. **Quality Documents**
-   - Well-organized, accurate content
-   - Specific rather than generic
-   - Up-to-date information
-
-3. **Good Questions**
-   - Specific enough to trigger retrieval
-   - Focused on information in your docs
-   - Test edge cases
-
-Note:
-The quality of your Custom GPT depends on all three. Vague instructions + poor documents + generic questions = mediocre results. Specific instructions + quality docs + targeted questions = powerful tool.
-
----
-
-## Testing Your Custom GPT
-
-**Try these test questions:**
-
-1. **Specific knowledge test:** "What experience from my background relates to [specific skill]?"
-2. **Comparison test:** Ask the same question to regular ChatGPT - compare responses
-3. **Citation test:** "Where in my resume does it mention [specific project]?"
-4. **Application test:** "Draft a cover letter paragraph highlighting my [relevant experience] for [job title]"
-
-<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
-Your GPT should cite specific details from YOUR documents
+<div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 18px;">
+<strong>📝 Session 3 Reflection:</strong> There will be a D2L reflection available at the end of today's class. We'll complete it at the start of Thursday's session.
 </div>
 
 Note:
-These test questions help you verify the GPT is actually using your files. If it gives generic answers, something's wrong. If it cites specific experiences, projects, or details from your documents, it's working.
-
----
-
-## Share: What Did You Learn?
-
-**Quick debrief (10 minutes)**
-
-- What surprised you about building a Custom GPT?
-- How did responses differ from regular ChatGPT?
-- What would you use this for in real work?
-- What challenges did you encounter?
-
-Note:
-Let's hear from 3-4 people. This helps everyone learn from each other's experiences.
-
----
-
-## Business Applications
-
-**How could you use Custom GPTs in a business context?**
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 30px 0; font-size: 18px;">
-
-<div>
-<strong>Sales & Customer Success:</strong>
-<ul>
-<li>RFQ response assistant</li>
-<li>Product specification lookup</li>
-<li>Customer history reference</li>
-<li>Competitive positioning</li>
-</ul>
-</div>
-
-<div>
-<strong>Operations & HR:</strong>
-<ul>
-<li>Policy and procedure guide</li>
-<li>Onboarding assistant</li>
-<li>Training materials helper</li>
-<li>Internal documentation search</li>
-</ul>
-</div>
-
-</div>
-
-<div style="background: #fee2e2; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 18px;">
-<strong>⚠️ Caution:</strong> Don't upload sensitive, confidential, or proprietary information to Custom GPTs (data lives on OpenAI servers)
-</div>
-
-Note:
-These are real use cases businesses are implementing right now. But remember the security limitation - Custom GPTs are for non-sensitive information only. That's why we'll build production RAG systems later.
-
----
-
-## Next Week: Business Partners
-
-**Session 4 (Thursday): Business Partner Discovery**
-
-- Teams announced
-- Meet your business partner (in-class or virtual)
-- Conduct discovery interview
-- Understand their content, audience, goals
-
-**Why today's lesson matters:**
-- You'll eventually build a RAG system for your business partner
-- Custom GPT is the simple version
-- Production RAG (Weeks 6-8) is what you'll deliver
-
-Note:
-Today was about understanding the concept. In a few weeks, you'll build the production version connected to your business partner's actual content and systems.
-
----
-
-## Looking Ahead: The RAG Journey
-
-<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin: 40px 0; font-size: 16px;">
-
-<div style="background: #f3f4f6; padding: 20px; border-radius: 10px; opacity: 0.7;">
-<strong>Week 2 (Today)</strong>
-<p style="margin-top: 10px;">Custom GPT - Simple RAG</p>
-</div>
-
-<div style="background: #dbeafe; padding: 20px; border-radius: 10px;">
-<strong>Week 6</strong>
-<p style="margin-top: 10px;">Configure Qdrant, index business content</p>
-</div>
-
-<div style="background: #dcfce7; padding: 20px; border-radius: 10px;">
-<strong>Week 8</strong>
-<p style="margin-top: 10px;">Full RAG system connected to LibreChat via MCP</p>
-</div>
-
-</div>
-
-<div style="text-align: center; font-size: 22px; color: #7c3aed; margin-top: 30px;">
-You're building toward production-grade AI systems
-</div>
-
-Note:
-This is the progression. Today is your introduction. By Week 8, you'll have built the real thing with vector databases, embeddings, and production integrations.
-
----
-
-## Deliverables Due Before Next Session
-
-**Individual:**
-- ✅ Working Custom GPT for personal use (resume/career helper)
-- ✅ Screenshots or be ready to demo
-- ✅ Reflection: What did you learn about RAG?
-
-**Preparation for Session 4:**
-- Watch "Business Discovery Interview Techniques" (20 min)
-- Read Playbook 00 (Topic Discovery) - preview sections
-- Draft 5 questions to ask your business partner
-
-Note:
-Come ready to meet your business partner. This is where the rubber meets the road - you're about to start working on a real project.
+Today was the "what" and "why" of RAG. Thursday is the "how." You'll learn about embeddings - the technology that makes semantic search possible. And you'll make your first API calls to create embeddings yourself. This is where we start getting technical. Session 5 (Tuesday next week) is when you'll meet your business partners. Remind them there will be a D2L reflection posted after class that they'll complete at the start of Thursday's session - same pattern as today.
 
 ---
 
@@ -536,7 +569,7 @@ Come ready to meet your business partner. This is where the rubber meets the roa
 
 1. **RAG = Retrieve → Augment → Generate**
 2. **Rg (RAG) is a composition element** - combines Em, Vx, Pr, Lg
-3. **Custom GPTs are simple RAG** - great for learning, not for production
+3. **Custom GPTs are simple RAG**
 4. **Quality of knowledge base = quality of responses**
 5. **Generic AI is commodity; connected AI is differentiation**
 
@@ -547,17 +580,48 @@ These are the key takeaways. If you remember nothing else, remember that RAG giv
 
 ---
 
+## Bonus Resource: Career Prompts Library
+
+<div style="display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: center; margin: 40px 0;">
+
+<div>
+<h3 style="font-size: 24px; margin-bottom: 20px;">45+ Career-Focused Prompts</h3>
+<p style="font-size: 20px; line-height: 1.8;">
+✅ Resume optimization<br>
+✅ Cover letter templates<br>
+✅ Interview preparation<br>
+✅ LinkedIn profile writing<br>
+✅ Job search strategy<br>
+✅ Salary negotiation
+</p>
+<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+<strong>Scan QR code or visit:</strong><br>
+github.com/superwebpros/athena-win-resources
+</p>
+</div>
+
+<div style="text-align: center;">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://github.com/superwebpros/athena-win-resources" alt="GitHub Career Prompts QR Code" style="width: 350px; height: 350px; border: 2px solid #e5e7eb; border-radius: 10px;">
+</div>
+
+</div>
+
+Note:
+This is a bonus resource for students to bookmark. 45+ prompts specifically for career development - resume building, cover letters, interview prep, LinkedIn optimization, job search strategy, salary negotiation. They can use these prompts in their Custom GPT or directly with any AI model. Encourage them to scan now and bookmark for future reference. This is from the Athena WIN project - career advancement resources.
+
+---
+
 ## Questions?
 
 **Ask now or reach out:**
 
-- Office hours: [Calendly link]
 - Email: jesse@superwebpros.com
-- Course materials: [Link to resources]
+- Office hours: By appointment
+- LibreChat: msu-ai.superwebpros.com
 
 <div style="margin-top: 40px; font-size: 24px; color: #7c3aed;">
-Next session: Meet your business partner!
+Thursday: Embeddings & APIs
 </div>
 
 Note:
-Excited to see what you build. Next session is a big milestone - you're starting your real project with your real business partner.
+Open floor for questions. Remind them: Custom GPTs are theirs to keep and use. This is a practical tool for their actual job search. Thursday we go technical - embeddings and API calls. Come ready to code (light coding, but still coding).
