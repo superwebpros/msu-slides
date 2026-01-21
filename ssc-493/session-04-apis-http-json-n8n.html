@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Session 4: APIs, HTTP & N8N - SSC 493</title>
+
+	<link rel="stylesheet" href="../dist/reset.css">
+	<link rel="stylesheet" href="../dist/reveal.css">
+	<link rel="stylesheet" href="../dist/theme/white.css" id="theme">
+	<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+	<style>
+		.slido-banner {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: #7c3aed;
+			color: white;
+			text-align: center;
+			padding: 12px 20px;
+			font-size: 18px;
+			font-weight: 500;
+			z-index: 1000;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+		}
+		.slido-banner strong {
+			font-weight: 700;
+		}
+		.reveal {
+			margin-top: 48px;
+		}
+	</style>
+</head>
+<body>
+	<!-- Slido Banner -->
+	<div class="slido-banner">
+		Ask questions anytime • Join at <strong>slido.com #4027 289</strong>
+	</div>
+
+	<div class="reveal">
+		<div class="slides">
+			<!-- Title slide -->
+			<section>
+				<h2>SSC 493: AI Workflows & Organizational Intelligence</h2>
+				<h3>Session 4: APIs, HTTP Requests & Data Structures</h3>
+				<p>Week 2 - January 23, 2026</p>
+				<p style="font-size: 20px; color: #6b7280;">Instructor: Jesse Flores</p>
+			</section>
+
+			<!-- Load markdown content -->
+			<section data-markdown="markdown/session-04-apis-http-json-n8n.md"
+					 data-separator="^\r?\n---\r?\n$"
+					 data-separator-vertical="^\r?\n;;;\r?\n$"
+					 data-separator-notes="^Note:">
+			</section>
+		</div>
+	</div>
+
+	<script src="../dist/reveal.js"></script>
+	<script src="../plugin/markdown/markdown.js"></script>
+	<script src="../plugin/highlight/highlight.js"></script>
+	<script src="../plugin/notes/notes.js"></script>
+
+	<script>
+		Reveal.initialize({
+			hash: true,
+			pdfSeparateFragments: false,
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+</body>
+</html>
