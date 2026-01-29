@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 6: Embeddings & Semantic Search - SSC 493</title>
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/white.css" id="theme">
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title slide -->
+            <section>
+                <h2>SSC 493: AI Workflows & Organizational Intelligence</h2>
+                <h3>Session 6: Embeddings & Semantic Search</h3>
+                <p>Week 3 - January 30, 2026</p>
+            </section>
+
+            <!-- Load markdown content -->
+            <section data-markdown="markdown/session-06-embeddings-semantic-search.md"
+                     data-separator="^\r?\n---\r?\n$"
+                     data-separator-vertical="^\r?\n;;;\r?\n$"
+                     data-separator-notes="^Note:">
+            </section>
+        </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+
+    <script>
+        Reveal.initialize({
+            hash: true,
+            pdfSeparateFragments: false,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
