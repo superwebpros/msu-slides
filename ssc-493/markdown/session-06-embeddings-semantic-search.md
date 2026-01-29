@@ -133,6 +133,27 @@ Add third dimension: carnivore rating (0=herbivore, 5=carnivore). Elephant (0, 5
 
 ;;;
 
+### Cosine Similarity: Measuring Angle
+
+**How we measure "distance" in vector space**
+
+<div style="margin: 20px auto; max-width: 800px; height: 400px;">
+<div id="cosinePlot" style="width: 100%; height: 100%;"></div>
+</div>
+
+<div style="margin-top: 30px; font-size: 18px; line-height: 1.6; background: #f0fdf4; padding: 20px; border-radius: 10px;">
+<strong>Cosine Similarity:</strong> Small angle = HIGH similarity (0.8-1.0)<br>
+Large angle = LOW similarity (0.0-0.3)<br>
+<strong>Range:</strong> 0.0 (unrelated) to 1.0 (identical)
+</div>
+
+Note:
+Cosine similarity measures the angle between vectors. Vectors drawn from origin to each point. Small angle between dog and cat = high similarity (0.85). Large angle between cat and tiger = low similarity (0.25). Range: 1.0 means identical (same direction, 0° angle), 0.0 means completely unrelated (90° angle). This is how RAG finds relevant chunks: it measures cosine similarity between your question vector and all chunk vectors, then retrieves the highest scores.
+
+IMPORTANT CLARIFICATION: The "origin" in this visualization is just a teaching tool to help you see the angle concept. In practice, there's no origin point. Cosine similarity compares two vectors DIRECTLY in 1536D space using the formula: cos(θ) = (A·B) / (||A|| × ||B||). Your query vector Q gets compared to each chunk vector C1, C2, C3, etc. The math measures the angle between them without needing an origin. The model defines a 1536D coordinate system during training - what matters is the relative positions (angles/distances) between vectors in that space, not their absolute position from any origin.
+
+;;;
+
 ### Scaling to 1536 Dimensions
 
 <div style="font-size: 22px; line-height: 1.8; margin: 40px 0;">
@@ -155,25 +176,6 @@ Each dimension = a different aspect of meaning (topic, tone, formality, industry
 
 Note:
 Now scale to 1536 dimensions. We can't visualize it - our brains stop at 3D. But the math is identical: each dimension captures a different aspect of meaning. Could be topic, tone, formality, industry, sentiment, technical vs casual, positive vs negative, abstract vs concrete. The model learns these dimensions during training. When we convert "Michigan State University" to an embedding, it becomes a point in 1536-dimensional space. "Spartans" is nearby. "Pizza recipes" is far away. Distance = similarity, just like dog and cat are close in 2D.
-
----
-
-## Cosine Similarity: Measuring Angle
-
-**How we measure "distance" in vector space**
-
-<div style="margin: 20px auto; max-width: 800px; height: 400px;">
-<div id="cosinePlot" style="width: 100%; height: 100%;"></div>
-</div>
-
-<div style="margin-top: 30px; font-size: 18px; line-height: 1.6; background: #f0fdf4; padding: 20px; border-radius: 10px;">
-<strong>Cosine Similarity:</strong> Small angle = HIGH similarity (0.8-1.0)<br>
-Large angle = LOW similarity (0.0-0.3)<br>
-<strong>Range:</strong> 0.0 (unrelated) to 1.0 (identical)
-</div>
-
-Note:
-Cosine similarity measures the angle between vectors. Vectors drawn from origin to each point. Small angle between dog and cat = high similarity (0.85). Large angle between cat and tiger = low similarity (0.25). Range: 1.0 means identical (same direction, 0° angle), 0.0 means completely unrelated (90° angle). This is how RAG finds relevant chunks: it measures cosine similarity between your question vector and all chunk vectors, then retrieves the highest scores.
 
 ---
 
