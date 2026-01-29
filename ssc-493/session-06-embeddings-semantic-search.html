@@ -33,12 +33,124 @@
     <script src="../plugin/markdown/markdown.js"></script>
     <script src="../plugin/highlight/highlight.js"></script>
     <script src="../plugin/notes/notes.js"></script>
+    <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="../node_modules/plotly.js-dist/plotly.js"></script>
 
     <script>
         Reveal.initialize({
             hash: true,
             pdfSeparateFragments: false,
             plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+
+        // Initialize visualizations after reveal is ready
+        Reveal.on('ready', () => {
+            // 2D Vector Plot
+            const vectorCanvas = document.getElementById('vectorPlot2D');
+            if (vectorCanvas) {
+                new Chart(vectorCanvas, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'cat',
+                            data: [{x: 4, y: 1}],
+                            backgroundColor: '#7c3aed',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }, {
+                            label: 'dog',
+                            data: [{x: 4.5, y: 2}],
+                            backgroundColor: '#0369a1',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }, {
+                            label: 'tiger',
+                            data: [{x: 0.5, y: 4}],
+                            backgroundColor: '#dc2626',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Domestication →',
+                                    font: { size: 16, weight: 'bold' }
+                                },
+                                min: 0,
+                                max: 5,
+                                ticks: { stepSize: 1 }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Size →',
+                                    font: { size: 16, weight: 'bold' }
+                                },
+                                min: 0,
+                                max: 5,
+                                ticks: { stepSize: 1 }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    font: { size: 14 },
+                                    usePointStyle: true
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: (${context.parsed.x}, ${context.parsed.y})`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 3D Vector Plot
+            const vectorDiv3D = document.getElementById('vectorPlot3D');
+            if (vectorDiv3D) {
+                const data = [{
+                    type: 'scatter3d',
+                    mode: 'markers+text',
+                    x: [4, 4.5, 0.5, 0, 0],
+                    y: [1, 2, 4, 5, 3],
+                    z: [4, 4, 5, 1, 5],
+                    text: ['cat', 'dog', 'tiger', 'elephant', 'jaguar'],
+                    textposition: 'top center',
+                    marker: {
+                        size: 12,
+                        color: ['#7c3aed', '#0369a1', '#dc2626', '#a3a3a3', '#f97316'],
+                        opacity: 0.8
+                    }
+                }];
+
+                const layout = {
+                    scene: {
+                        xaxis: { title: 'Domestication →', range: [0, 5] },
+                        yaxis: { title: 'Size →', range: [0, 5] },
+                        zaxis: { title: 'Carnivore →', range: [0, 5] },
+                        camera: {
+                            eye: { x: 1.5, y: 1.5, z: 1.3 }
+                        }
+                    },
+                    margin: { l: 0, r: 0, b: 0, t: 0 },
+                    showlegend: false,
+                    height: 500
+                };
+
+                Plotly.newPlot(vectorDiv3D, data, layout, {responsive: true});
+            }
         });
     </script>
 </body>

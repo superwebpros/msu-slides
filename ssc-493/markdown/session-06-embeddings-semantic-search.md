@@ -97,45 +97,8 @@ In Session 3, we learned WHAT RAG does (retrieve relevant chunks, augment prompt
 
 **Start with something you can visualize: 2D space**
 
-<div style="margin: 40px auto; max-width: 700px;">
-<svg viewBox="0 0 600 500" style="width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 10px; background: white;">
-  <!-- Axes -->
-  <line x1="50" y1="450" x2="550" y2="450" stroke="#374151" stroke-width="2"/>
-  <line x1="50" y1="450" x2="50" y2="50" stroke="#374151" stroke-width="2"/>
-
-  <!-- X-axis label -->
-  <text x="300" y="485" text-anchor="middle" font-size="18" fill="#374151" font-weight="bold">Domestication →</text>
-  <text x="50" y="495" text-anchor="middle" font-size="14" fill="#6b7280">0 (wild)</text>
-  <text x="550" y="495" text-anchor="middle" font-size="14" fill="#6b7280">5 (domestic)</text>
-
-  <!-- Y-axis label -->
-  <text x="25" y="250" text-anchor="middle" font-size="18" fill="#374151" font-weight="bold" transform="rotate(-90, 25, 250)">Size →</text>
-  <text x="40" y="455" text-anchor="end" font-size="14" fill="#6b7280">0</text>
-  <text x="40" y="55" text-anchor="end" font-size="14" fill="#6b7280">5</text>
-
-  <!-- Grid lines (light) -->
-  <line x1="150" y1="450" x2="150" y2="50" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="250" y1="450" x2="250" y2="50" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="350" y1="450" x2="350" y2="50" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="450" y1="450" x2="450" y2="50" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="50" y1="370" x2="550" y2="370" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="50" y1="290" x2="550" y2="290" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="50" y1="210" x2="550" y2="210" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="50" y1="130" x2="550" y2="130" stroke="#e5e7eb" stroke-width="1"/>
-
-  <!-- Points -->
-  <!-- cat (4, 1) = (450, 370) -->
-  <circle cx="450" cy="370" r="8" fill="#7c3aed"/>
-  <text x="450" y="395" text-anchor="middle" font-size="16" fill="#7c3aed" font-weight="bold">cat</text>
-
-  <!-- dog (4.5, 2) = (490, 290) -->
-  <circle cx="490" cy="290" r="8" fill="#0369a1"/>
-  <text x="490" y="275" text-anchor="middle" font-size="16" fill="#0369a1" font-weight="bold">dog</text>
-
-  <!-- tiger (0.5, 4) = (100, 130) -->
-  <circle cx="100" cy="130" r="8" fill="#dc2626"/>
-  <text x="100" y="115" text-anchor="middle" font-size="16" fill="#dc2626" font-weight="bold">tiger</text>
-</svg>
+<div style="margin: 40px auto; max-width: 800px; height: 500px;">
+<canvas id="vectorPlot2D"></canvas>
 </div>
 
 <div style="margin-top: 30px; font-size: 18px; color: #6b7280; text-align: center;">
@@ -151,26 +114,22 @@ Start with 2D space you can visualize. Two meaningful dimensions: domestication 
 
 **Now add: Carnivore rating (0 = herbivore, 5 = carnivore)**
 
-<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+<div style="margin: 20px auto; max-width: 900px; height: 550px;">
+<div id="vectorPlot3D" style="width: 100%; height: 100%;"></div>
+</div>
+
+<div style="margin-top: 20px; font-size: 18px; line-height: 1.6;">
 
 **New animals in 3D space:**
-
 - **elephant** (0, 5, 1) - wild, huge, herbivore
 - **jaguar** (0, 3, 5) - wild, large, carnivore
 
-**Clusters emerge:**
-- Domestic pets: cat, dog (close together)
-- Wild carnivores: tiger, jaguar (close together)
-- Elephant: alone (herbivore)
+**Clusters:** Domestic pets (cat, dog), Wild carnivores (tiger, jaguar), Elephant (alone)
 
-</div>
-
-<div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 18px;">
-<strong>3D → Can't draw easily, but math still works:</strong> Distance = similarity
 </div>
 
 Note:
-Add third dimension: carnivore rating (0=herbivore, 5=carnivore). Elephant (0, 5, 1) - wild, huge, herbivore. Jaguar (0, 3, 5) - wild, large, carnivore. Now clusters form in 3D space: domestic pets (cat, dog) cluster together, wild carnivores (tiger, jaguar) cluster together, elephant is alone (different diet). We can't easily visualize 3D on a slide, but the principle is the same: distance in space = similarity. More dimensions = more aspects of meaning captured.
+Add third dimension: carnivore rating (0=herbivore, 5=carnivore). Elephant (0, 5, 1) - wild, huge, herbivore. Jaguar (0, 3, 5) - wild, large, carnivore. Now clusters form in 3D space: domestic pets (cat, dog) cluster together, wild carnivores (tiger, jaguar) cluster together, elephant is alone (different diet). You can rotate this plot to see the clusters from different angles. The principle is the same: distance in space = similarity. More dimensions = more aspects of meaning captured.
 
 ;;;
 
@@ -203,49 +162,36 @@ Now scale to 1536 dimensions. We can't visualize it - our brains stop at 3D. But
 
 **How we measure "distance" in vector space**
 
-<div style="margin: 40px auto; max-width: 600px;">
-<svg viewBox="0 0 600 400" style="width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 10px; background: white;">
-  <!-- Origin -->
-  <circle cx="50" cy="350" r="5" fill="#374151"/>
-  <text x="50" y="380" text-anchor="middle" font-size="14" fill="#6b7280">origin</text>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; font-size: 18px;">
 
-  <!-- Vector 1: dog -->
-  <defs>
-    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#0369a1" />
-    </marker>
-  </defs>
-  <line x1="50" y1="350" x2="400" y2="100" stroke="#0369a1" stroke-width="3" marker-end="url(#arrowblue)"/>
-  <text x="410" y="100" font-size="18" fill="#0369a1" font-weight="bold">dog</text>
+<div style="background: #dcfce7; padding: 30px; border-radius: 10px;">
+<h3 style="color: #14532d; margin-bottom: 20px;">Small Angle</h3>
+<p style="margin-bottom: 15px;">
+<strong>dog ← → cat</strong><br>
+Vectors point in similar directions
+</p>
+<p style="font-size: 24px; font-weight: bold; color: #16a34a;">
+Similarity: 0.85
+</p>
+<p style="margin-top: 15px; color: #6b7280; font-size: 16px;">
+Both domestic animals → close in vector space
+</p>
+</div>
 
-  <!-- Vector 2: cat -->
-  <defs>
-    <marker id="arrowpurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" />
-    </marker>
-  </defs>
-  <line x1="50" y1="350" x2="450" y2="180" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrowpurple)"/>
-  <text x="460" y="185" font-size="18" fill="#7c3aed" font-weight="bold">cat</text>
+<div style="background: #fee2e2; padding: 30px; border-radius: 10px;">
+<h3 style="color: #991b1b; margin-bottom: 20px;">Large Angle</h3>
+<p style="margin-bottom: 15px;">
+<strong>cat ← → tiger</strong><br>
+Vectors point in different directions
+</p>
+<p style="font-size: 24px; font-weight: bold; color: #dc2626;">
+Similarity: 0.25
+</p>
+<p style="margin-top: 15px; color: #6b7280; font-size: 16px;">
+Domestic vs wild → far apart in vector space
+</p>
+</div>
 
-  <!-- Angle arc (small angle) -->
-  <path d="M 100,350 A 60,60 0 0,0 85,310" fill="none" stroke="#16a34a" stroke-width="2"/>
-  <text x="120" y="320" font-size="16" fill="#16a34a" font-weight="bold">small angle</text>
-  <text x="120" y="340" font-size="14" fill="#16a34a">similarity: 0.85</text>
-
-  <!-- Vector 3: tiger -->
-  <defs>
-    <marker id="arrowred" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
-    </marker>
-  </defs>
-  <line x1="50" y1="350" x2="150" y2="50" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowred)"/>
-  <text x="160" y="50" font-size="18" fill="#dc2626" font-weight="bold">tiger</text>
-
-  <!-- Angle arc (large angle from cat to tiger) -->
-  <path d="M 130,320 A 100,100 0 0,0 90,250" fill="none" stroke="#dc2626" stroke-width="2"/>
-  <text x="200" y="260" font-size="16" fill="#dc2626" font-weight="bold">large angle</text>
-  <text x="200" y="280" font-size="14" fill="#dc2626">similarity: 0.25</text>
-</svg>
 </div>
 
 <div style="margin-top: 30px; font-size: 18px; line-height: 1.6; background: #f0fdf4; padding: 20px; border-radius: 10px;">
