@@ -162,36 +162,8 @@ Now scale to 1536 dimensions. We can't visualize it - our brains stop at 3D. But
 
 **How we measure "distance" in vector space**
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; font-size: 18px;">
-
-<div style="background: #dcfce7; padding: 30px; border-radius: 10px;">
-<h3 style="color: #14532d; margin-bottom: 20px;">Small Angle</h3>
-<p style="margin-bottom: 15px;">
-<strong>dog ← → cat</strong><br>
-Vectors point in similar directions
-</p>
-<p style="font-size: 24px; font-weight: bold; color: #16a34a;">
-Similarity: 0.85
-</p>
-<p style="margin-top: 15px; color: #6b7280; font-size: 16px;">
-Both domestic animals → close in vector space
-</p>
-</div>
-
-<div style="background: #fee2e2; padding: 30px; border-radius: 10px;">
-<h3 style="color: #991b1b; margin-bottom: 20px;">Large Angle</h3>
-<p style="margin-bottom: 15px;">
-<strong>cat ← → tiger</strong><br>
-Vectors point in different directions
-</p>
-<p style="font-size: 24px; font-weight: bold; color: #dc2626;">
-Similarity: 0.25
-</p>
-<p style="margin-top: 15px; color: #6b7280; font-size: 16px;">
-Domestic vs wild → far apart in vector space
-</p>
-</div>
-
+<div style="margin: 40px auto; max-width: 900px; height: 550px;">
+<div id="cosinePlot" style="width: 100%; height: 100%;"></div>
 </div>
 
 <div style="margin-top: 30px; font-size: 18px; line-height: 1.6; background: #f0fdf4; padding: 20px; border-radius: 10px;">
@@ -201,7 +173,7 @@ Large angle = LOW similarity (0.0-0.3)<br>
 </div>
 
 Note:
-Cosine similarity measures the angle between vectors. Draw vectors from origin. Small angle between dog and cat = high similarity (0.85). Large angle between cat and tiger = low similarity (0.25). Range: 1.0 means identical (same direction, 0° angle), 0.0 means completely unrelated (90° angle). This is how RAG finds relevant chunks: it measures cosine similarity between your question vector and all chunk vectors, then retrieves the highest scores.
+Cosine similarity measures the angle between vectors. Vectors drawn from origin to each point. Small angle between dog and cat = high similarity (0.85). Large angle between cat and tiger = low similarity (0.25). Range: 1.0 means identical (same direction, 0° angle), 0.0 means completely unrelated (90° angle). This is how RAG finds relevant chunks: it measures cosine similarity between your question vector and all chunk vectors, then retrieves the highest scores.
 
 ---
 

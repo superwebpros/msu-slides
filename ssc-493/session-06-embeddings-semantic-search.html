@@ -151,6 +151,121 @@
 
                 Plotly.newPlot(vectorDiv3D, data, layout, {responsive: true});
             }
+
+            // Cosine Similarity Plot with vectors and angles
+            const cosineDiv = document.getElementById('cosinePlot');
+            if (cosineDiv) {
+                // Define vectors (using same coordinates from 2D plot)
+                const vectors = {
+                    cat: { x: 4, y: 1, color: '#7c3aed', name: 'cat' },
+                    dog: { x: 4.5, y: 2, color: '#0369a1', name: 'dog' },
+                    tiger: { x: 0.5, y: 4, color: '#dc2626', name: 'tiger' }
+                };
+
+                // Create arrow traces (lines from origin to each point)
+                const arrowTraces = Object.values(vectors).map(v => ({
+                    type: 'scatter',
+                    mode: 'lines+markers+text',
+                    x: [0, v.x],
+                    y: [0, v.y],
+                    line: { color: v.color, width: 4 },
+                    marker: {
+                        size: [0, 14],
+                        color: v.color,
+                        symbol: ['circle', 'arrow'],
+                        angleref: 'previous'
+                    },
+                    text: ['', v.name],
+                    textposition: 'top center',
+                    textfont: { size: 16, color: v.color, family: 'Arial Black' },
+                    showlegend: false,
+                    hoverinfo: 'text',
+                    hovertext: `${v.name}: (${v.x}, ${v.y})`
+                }));
+
+                // Origin point
+                const originTrace = {
+                    type: 'scatter',
+                    mode: 'markers+text',
+                    x: [0],
+                    y: [0],
+                    marker: { size: 10, color: '#374151' },
+                    text: ['origin'],
+                    textposition: 'bottom center',
+                    textfont: { size: 12, color: '#6b7280' },
+                    showlegend: false,
+                    hoverinfo: 'skip'
+                };
+
+                // Calculate angles for arcs
+                const dogAngle = Math.atan2(vectors.dog.y, vectors.dog.x) * 180 / Math.PI;
+                const catAngle = Math.atan2(vectors.cat.y, vectors.cat.x) * 180 / Math.PI;
+                const tigerAngle = Math.atan2(vectors.tiger.y, vectors.tiger.x) * 180 / Math.PI;
+
+                const layout = {
+                    xaxis: {
+                        title: 'Domestication →',
+                        range: [-0.5, 5.5],
+                        zeroline: true,
+                        zerolinewidth: 2,
+                        zerolinecolor: '#d1d5db'
+                    },
+                    yaxis: {
+                        title: 'Size →',
+                        range: [-0.5, 4.5],
+                        zeroline: true,
+                        zerolinewidth: 2,
+                        zerolinecolor: '#d1d5db'
+                    },
+                    shapes: [
+                        // Arc between dog and cat (small angle)
+                        {
+                            type: 'path',
+                            path: `M 0.8,0 A 0.8,0.8 0 0,1 ${0.8*Math.cos(catAngle*Math.PI/180)},${0.8*Math.sin(catAngle*Math.PI/180)}`,
+                            line: { color: '#16a34a', width: 3 }
+                        },
+                        // Arc between cat and tiger (large angle)
+                        {
+                            type: 'path',
+                            path: `M ${1.2*Math.cos(catAngle*Math.PI/180)},${1.2*Math.sin(catAngle*Math.PI/180)} A 1.2,1.2 0 0,1 ${1.2*Math.cos(tigerAngle*Math.PI/180)},${1.2*Math.sin(tigerAngle*Math.PI/180)}`,
+                            line: { color: '#dc2626', width: 3 }
+                        }
+                    ],
+                    annotations: [
+                        // Small angle annotation (dog-cat)
+                        {
+                            x: 1.2,
+                            y: 0.5,
+                            text: 'Small angle<br>Similarity: 0.85',
+                            showarrow: false,
+                            font: { size: 14, color: '#16a34a', family: 'Arial' },
+                            bgcolor: 'rgba(220, 252, 231, 0.9)',
+                            bordercolor: '#16a34a',
+                            borderwidth: 2,
+                            borderpad: 8
+                        },
+                        // Large angle annotation (cat-tiger)
+                        {
+                            x: 0.3,
+                            y: 2.5,
+                            text: 'Large angle<br>Similarity: 0.25',
+                            showarrow: false,
+                            font: { size: 14, color: '#dc2626', family: 'Arial' },
+                            bgcolor: 'rgba(254, 226, 226, 0.9)',
+                            bordercolor: '#dc2626',
+                            borderwidth: 2,
+                            borderpad: 8
+                        }
+                    ],
+                    margin: { l: 60, r: 20, b: 60, t: 20 },
+                    height: 550,
+                    plot_bgcolor: 'white',
+                    paper_bgcolor: 'white'
+                };
+
+                const allTraces = [...arrowTraces, originTrace];
+                Plotly.newPlot(cosineDiv, allTraces, layout, {responsive: true});
+            }
         });
     </script>
 </body>
