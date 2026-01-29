@@ -137,9 +137,33 @@
 
                 const layout = {
                     scene: {
-                        xaxis: { title: 'Domestication →', range: [0, 5] },
-                        yaxis: { title: 'Size →', range: [0, 5] },
-                        zaxis: { title: 'Carnivore →', range: [0, 5] },
+                        xaxis: {
+                            title: {
+                                text: 'Domestication →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Size →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
+                        zaxis: {
+                            title: {
+                                text: 'Carnivore →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
                         camera: {
                             eye: { x: 1.5, y: 1.5, z: 1.3 }
                         }

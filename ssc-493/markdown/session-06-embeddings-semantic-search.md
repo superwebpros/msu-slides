@@ -11,16 +11,10 @@ Today we're covering Em (Embeddings) - the second primitive element. This is fou
 
 <div style="font-size: 22px; line-height: 2; margin: 40px 0;">
 
-**Show of hands:**
+You need to extract content from your business' website and store it in a database. You want to do it all via API (manually is for chumps!). What two HTTP requests would you use to make this happen?
 
-✋ Completed all 8 N8N flows from Session 4?<br>
-✋ Sent thank you note to business partner?<br>
-✋ Have access to partner content/website?
+[https://app.sli.do/event/hGG2F8R66CAABc9QAUgLu5](https://app.sli.do/event/hGG2F8R66CAABc9QAUgLu5)
 
-</div>
-
-<div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 18px;">
-<strong>If missing access:</strong> Email your partner today with me CC'd
 </div>
 
 Note:
@@ -35,7 +29,7 @@ Quick checks before we dive in. N8N CRUD flows should be complete - that's prere
 | | Reactive | Retrieval | Orchestration | Validation | Models |
 | --- | --- | --- | --- | --- | --- |
 | **Primitives** | Prompts (Pr) | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Embeddings (Em)</span> | | | LLMs (Lg) |
-| **Compositions** | Function Calling | Vector DBs (Vx) | RAG (Rg) | Guardrails | Multi-modal |
+| **Compositions** | Function Calling | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Vector DBs (Vx)</span> | RAG (Rg) | Guardrails | Multi-modal |
 | **Deployment** | Agents (Ag) | Fine-tuning | Frameworks | Red-teaming | Small Models |
 | **Emerging** | Multi-agent | Synthetic Data | | Interpretability | Thinking Models |
 
@@ -54,7 +48,7 @@ Embeddings are the second primitive element in the AI Periodic Table. Row 1 (pri
 
 <div style="font-size: 22px; line-height: 2; margin: 40px 0;">
 
-1. What is a vector? (2D → 3D → 1536D)
+1. What is a vector?
 2. Cosine similarity explained
 3. Reading API documentation
 4. **First real API call to OpenAI**
@@ -76,7 +70,7 @@ Here's the roadmap. We start with spatial intuition (2D vectors with meaningful 
 
 <div style="font-size: 22px; line-height: 1.8; margin: 40px 0;">
 
-**You asked:**
+**We asked:**
 
 > "How does RAG know which chunks are relevant?"
 
