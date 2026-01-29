@@ -106,7 +106,7 @@ Start with 2D space you can visualize. Two meaningful dimensions: domestication 
 
 ### Adding a Third Dimension
 
-**Now add: Carnivore rating (0 = herbivore, 5 = carnivore)**
+**Now add: Carnivore rating (0 = herbivore)**
 
 <div style="margin: 20px auto; max-width: 900px; height: 550px;">
 <div id="vectorPlot3D" style="width: 100%; height: 100%;"></div>
@@ -183,12 +183,8 @@ Now scale to 1536 dimensions. We can't visualize it - our brains stop at 3D. But
 <h3 style="font-size: 24px; margin-bottom: 20px;">OpenAI Embeddings API</h3>
 <p style="font-size: 20px; line-height: 1.8;">
 <strong>Endpoint:</strong><br>
-POST https://api.openai.com/v1/embeddings<br><br>
-<strong>Authentication:</strong><br>
-Bearer token (API key)<br><br>
-<strong>Body:</strong><br>
-{ "input": "your text", "model": "text-embedding-3-small" }
-</p>
+<a href="https://api.openai.com/v1/embeddings">https://api.openai.com/v1/embeddings</a><br>
+<em>Observe URL structure - what is it communicating?</em>
 </div>
 
 <div style="text-align: center;">
@@ -198,9 +194,6 @@ Bearer token (API key)<br><br>
 
 </div>
 
-<div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 18px;">
-<strong>No more MockAPI.</strong> This is production - real costs, real responses.
-</div>
 
 Note:
 Time for your first real API call. The endpoint is POST https://api.openai.com/v1/embeddings. You'll authenticate with a Bearer token (API key). Request body has two fields: "input" (your text) and "model" (which embedding model to use). Response is JSON with an array of 1536 numbers - that's your embedding vector. Scan the QR code to read the full API documentation. This is production - real costs (tiny, but real), real responses from OpenAI servers.
@@ -266,17 +259,17 @@ LIVE DEMO TIME. Scan the QR code to access the shared Google Drive folder with t
 
 <div style="font-size: 18px; margin: 30px 0;">
 
-| Model | Dimensions | Cost/1M tokens | Year | Notes |
-|-------|------------|----------------|------|-------|
-| **text-embedding-ada-002** | 1536 | $0.10 | 2022 | Poor calibration - everything scores high |
-| **text-embedding-3-small** | 1536 | $0.02 | 2024 | Good calibration - industry standard |
-| **text-embedding-3-large** | 3072 | $0.13 | 2024 | Best discrimination - more nuance |
+| Model | Dimensions | Cost/1M tokens | Year |
+|-------|------------|----------------|------|
+| **text-embedding-ada-002** | 1536 | $0.10 | 2022 |
+| **text-embedding-3-small** | 1536 | $0.02 | 2024 |
+| **text-embedding-3-large** | 3072 | $0.13 | 2024 |
 
 </div>
 
 <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 18px;">
 <strong>Same dimensions ≠ same quality</strong><br>
-ada-002 and 3-small both have 1536D, but 3-small performs much better (newer training)
+ada-002 and 3-small both have 1536D, but 3-small performs differently (newer training)
 </div>
 
 Note:
@@ -345,8 +338,8 @@ Let's do one together. Open the N8N workflow. Find the "Set Query & Candidate" n
 
 1. Which model gave the highest scores overall?
 2. Which model best filtered out "pizza" as unrelated?
-3. Can you compare 3-small's 0.68 to ada-002's 0.91?
-4. What does it mean when 3-large gives 0.015 vs 3-small gives 0.07 for pizza?
+3. What do you think the numbers mean within models?
+4. What do you think the numbers mean *across* models?
 
 </div>
 
@@ -436,12 +429,8 @@ Now connect this to RAG from Session 3. When you ask "What are your return polic
 - Vx (Vector Databases) - Qdrant setup
 - Document chunking strategies
 - Indexing your business partner's content
-- First semantic audit of partner website
+- **First Milestone: semantic audit of partner website**
 
-</div>
-
-<div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
-<strong>You'll index real business content next session</strong> - make sure you have access!
 </div>
 
 Note:
@@ -452,21 +441,11 @@ Next session: vector databases (Qdrant) and document chunking. You'll learn diff
 ### Before Next Session
 
 <div style="background: #fee2e2; padding: 25px; border-radius: 10px; margin: 30px 0; font-size: 20px;">
-<strong>Critical: Access to partner content</strong><br><br>
-Email your business partner if you don't have website/content access yet. CC me on the email.
+<strong>Create a spreadsheet of your partner's website's URLs</strong><br><br>
+    Hint: Work with AI to figure out how what sitemap.xml is, how to access it, and how to extract a list of URLs you can put into a Google Sheet.
 </div>
 
-<div style="font-size: 20px; line-height: 1.8; margin: 40px 0;">
-
-**Deliverables:**
-- Completed Google Sheet (submit link)
-- Post-class reading: OpenAI Embeddings API docs (linked in D2L)
-
-**Team work:**
-- Confirm access to partner website and content
-- Schedule team meeting to prep for Session 7 semantic audit
-
-</div>
+> This should not require _access_ to the website.
 
 Note:
 Before next session: CRITICAL - you must have access to your business partner's content. If you don't have it yet, email them today with me CC'd. Deliverables: submit your completed Google Sheet with all similarity scores and observations. Read the OpenAI Embeddings API documentation (link in D2L) to reinforce what we covered. Team work: confirm content access and schedule a team meeting to prep for the semantic audit in Session 7.
