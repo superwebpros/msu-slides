@@ -162,7 +162,7 @@ Now scale to 1536 dimensions. We can't visualize it - our brains stop at 3D. But
 
 **How we measure "distance" in vector space**
 
-<div style="margin: 40px auto; max-width: 900px; height: 550px;">
+<div style="margin: 20px auto; max-width: 800px; height: 400px;">
 <div id="cosinePlot" style="width: 100%; height: 100%;"></div>
 </div>
 
