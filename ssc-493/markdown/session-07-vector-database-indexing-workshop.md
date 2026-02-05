@@ -1,18 +1,3 @@
----
-title: "Session 7: Vector Database Indexing Workshop"
-course: "ssc-493"
-week: 4
-session: 7
-date: "2026-02-03"
-duration: 80
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md#Week 4 Session 7"
-published_slide_url: "https://msu-slides.superwebpros.com/ssc-493/session-07-vector-database-indexing-workshop.html"
-learning_objectives:
-  - Build vector database indexing infrastructure
-  - Create Qdrant collections with embeddings
-  - Index partner content with metadata
----
-
 # Session 7: Vector Database Indexing Workshop
 
 ## SSC 493: AI Workflows & Organizational Intelligence
