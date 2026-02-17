@@ -7,8 +7,8 @@
 1. Download them from D2L
 2. Compare against your own workflows
 3. Make sure your Baserow tables look like mine:
-   - `raw_topics` — populated with topics
-   - `themes` — 10-15 consolidated themes
+   - `Topics` — populated with topics
+   - `Content Themes` — 10-15 consolidated themes
 
 </div>
 
@@ -22,6 +22,29 @@ Give students 5-10 minutes to check their work against yours. If anyone is behin
 
 ---
 
+## Schedule a Team Retrospective
+
+<div style="font-size: 22px; line-height: 2; margin: 40px 0; text-align: center;">
+
+**I want to meet with each group individually**
+
+Book a 15-minute slot on my calendar:
+
+**[calendly.com/jesseflores/office-hours](https://calendly.com/jesseflores/office-hours)**
+
+Also posted in D2L
+
+</div>
+
+<div style="background: #dbeafe; padding: 20px; border-radius: 10px; margin: 30px 0; font-size: 19px; text-align: center;">
+<strong>One booking per team.</strong> Coordinate with your group and pick a time.
+</div>
+
+Note:
+We're at the midpoint of the semester and I want to check in with each group. This is a retrospective — what's working, what's not, how your team dynamics are, how the partner relationship is going. Not a grading conversation — a support conversation. Have them book before they leave today if possible. Link is also in D2L.
+
+---
+
 ## Today's Focus: Workflow 3
 
 <div style="font-size: 20px; margin: 20px 0;">
@@ -32,7 +55,7 @@ Give students 5-10 minutes to check their work against yours. If anyone is behin
  ┌─────────────┐
  │ Workflow 1   │  ✅ Done (or imported)
  └──────┬──────┘
- raw_topics      ✅ Done
+ Topics          ✅ Done
        │
  ┌─────────────┐
  │ Workflow 2   │  ✅ Done (or imported)
@@ -42,7 +65,7 @@ Give students 5-10 minutes to check their work against yours. If anyone is behin
  ┌─────────────┐
  │ Workflow 3   │  ← TODAY
  └──────┬──────┘
- theme_coverage  → Powers your partner report
+ Theme Analysis  → Powers your partner report
 ```
 
 </div>
@@ -81,8 +104,12 @@ You stored **chunks**.
 
 </div>
 
+<div style="background: #f3e8ff; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+<strong>Ask Groq or Sonnet:</strong> "Why do we chunk documents before creating embeddings?"
+</div>
+
 Note:
-"Remember when I told you to 'set chunking to X' during Session 8? We never really talked about WHY we chunk. Let's fix that." Embedding models have a maximum input size. More importantly, a 2,000-word page covers many topics — if you embed the whole thing, the vector is a blurry average of everything on the page. Chunking breaks it into focused pieces so each vector represents a specific section of content. Better chunks = better search results.
+"Remember when I told you to 'set chunking to X' during Session 8? We never really talked about WHY we chunk. Let's fix that." Give them 2 minutes to ask an AI why chunking matters — then discuss as a class. Embedding models have a maximum input size. More importantly, a 2,000-word page covers many topics — if you embed the whole thing, the vector is a blurry average of everything on the page. Chunking breaks it into focused pieces so each vector represents a specific section of content. Better chunks = better search results.
 
 ---
 
@@ -174,18 +201,22 @@ The groups endpoint is the key piece of Workflow 3. It does the same vector simi
 
 <div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
 
-**For each theme in your `themes` table:**
+**For each theme in your `Content Themes` table:**
 
 1. Combine theme name + description into text
 2. Send to OpenAI → get back 1,536-number embedding
 3. Send embedding to Qdrant groups endpoint → get page matches with scores
-4. Store each match in `theme_coverage` table
+4. Store each match in `Theme Analysis` table
 5. Loop to next theme
 
 </div>
 
+<div style="background: #f3e8ff; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+<strong>Ask AI:</strong> "Why do we have to embed before we query Qdrant?"
+</div>
+
 Note:
-Same loop pattern as Workflow 1 — process one theme at a time. The new pieces are: OpenAI Embeddings API call (HTTP Request) and the Qdrant grouped search (HTTP Request). The response from Qdrant is nested (groups → hits), so we need Split Out to unpack it. Let me show you the actual HTTP requests.
+Same loop pattern as Workflow 1 — process one theme at a time. The new pieces are: OpenAI Embeddings API call (HTTP Request) and the Qdrant grouped search (HTTP Request). The response from Qdrant is nested (groups → hits), so we need Split Out to unpack it. Give them a minute to ask AI — the answer reinforces that Qdrant stores vectors, not text, so you have to convert your search query into the same vector space before you can compare. Let me show you the actual HTTP requests.
 
 ---
 
@@ -308,7 +339,7 @@ Frame as patterns and relative strengths, not absolute judgments. The scores are
 **You'll need:**
 - Your Qdrant collection name (from Session 8)
 - Your OpenAI API key
-- Your `themes` table populated
+- Your `Content Themes` table populated
 
 </div>
 
@@ -331,20 +362,14 @@ Suggest: build without the loop first. Hard-code one theme, get OpenAI + Qdrant 
 
 <div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
 
-**1. Finish Workflow 3** — `theme_coverage` table fully populated
+**1. Finish Workflow 3** — `Theme Analysis` table fully populated
 
-**2. Research task:** Read the Qdrant docs on the groups endpoint, then ask an AI:
-
-> "Why does the Qdrant API have a separate `/points/query/groups` endpoint instead of just using `/points/query`? When would you need grouped results vs regular results?"
-
-Bring your answer to Thursday's class.
-
-**3. Spot-check your data** — pick 2-3 high-scoring results, read the actual page. Does the score feel right?
+**2. Spot-check your data** — pick 2-3 high-scoring results, read the actual page. Does the score feel right? Come Thursday with an opinion on whether your scores make sense.
 
 </div>
 
 Note:
-The research task serves two purposes: (1) reinforces why we use groups instead of regular search — they'll explain chunking back to themselves, and (2) practices using AI to understand technical documentation, which is a skill they'll use constantly. The spot-check builds intuition about what scores mean before they have to present them to partners.
+The spot-check is important. It builds intuition about what scores mean before they have to present them to partners. They should be able to say "yeah, this 0.72 feels right — that page really is about this theme" or "this 0.6 seems high, the page barely mentions it." That kind of calibration is what makes the partner report credible. Thursday we'll be interpreting results and drafting the report — they need to walk in with a feel for their data, not just numbers in a table.
 
 Qdrant groups docs: https://qdrant.tech/documentation/concepts/search/#grouped-search
 

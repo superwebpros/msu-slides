@@ -82,10 +82,10 @@ Transition slide. Acknowledge the work they've done — indexing content is real
 
 | Table | What It Holds | How It's Made |
 |-------|--------------|---------------|
-| `sitemap` | Your partner's pages | ✅ You have this |
-| `raw_topics` | Topics from each page | Workflow 1 |
-| `themes` | Grouped/clustered themes | Workflow 2 |
-| `theme_coverage` | Which pages cover which themes | Workflow 3 |
+| `Sitemap` | Your partner's pages | ✅ You have this |
+| `Topics` | Topics from each page | Workflow 1 |
+| `Content Themes` | Grouped/clustered themes | Workflow 2 |
+| `Theme Analysis` | Which pages cover which themes | Workflow 3 |
 
 </div>
 
@@ -110,7 +110,7 @@ TABLE 1 - sitemap (they already have this):
 - URL, Page Title, Page Description, Page Content
 - Point out: ~10-20 rows depending on partner
 
-TABLE 2 - raw_topics (show the "mess"):
+TABLE 2 - Topics (show the "mess"):
 - "This is what Workflow 1 creates"
 - Scroll through, point out patterns: "AI, Artificial Intelligence, AI Systems, Machine Learning, ML"
 - "All related but granular and repetitive"
@@ -122,7 +122,7 @@ TABLE 3 - themes (show the "clarity"):
 - "See how it grouped AI, Artificial Intelligence, ML → 'AI & Machine Learning'"
 - "Took 30+ raw topics, consolidated into ~10 themes with descriptions"
 
-TABLE 4 - theme_coverage (show the "insights"):
+TABLE 4 - Theme Analysis (show the "insights"):
 - "This is what Workflow 3 creates"
 - "For each theme, which pages talk about it? How relevant?"
 - Key columns: Theme name, Source ID, Relevance Score (0-1)
@@ -138,7 +138,7 @@ KEY QUESTION: "How do we get from what YOU have (Table 1) to what I'm showing yo
 
 ```
  ┌─────────────────────────────────┐
- │  theme_coverage                 │
+ │  Theme Analysis                 │
  │  "Which pages cover each theme" │  ← Workflow 3
  └────────────────┬────────────────┘
                   │
@@ -148,7 +148,7 @@ KEY QUESTION: "How do we get from what YOU have (Table 1) to what I'm showing yo
  └────────────────┬────────────────┘
                   │
  ┌────────────────┴────────────────┐
- │  raw_topics                     │
+ │  Topics                         │
  │  "What topics exist?"           │  ← Workflow 1
  └────────────────┬────────────────┘
                   │
@@ -383,13 +383,13 @@ Summary slide. These are the building blocks. Everything in Workflows 1-3 is bui
 1. Get page content from Baserow
 2. Ask LLM: "What 3 topics does this page cover?"
 3. LLM returns: `["AI Ethics", "Healthcare AI", "Data Privacy"]`
-4. Store each topic as a row in `raw_topics`
+4. Store each topic as a row in `Topics`
 5. Move to next page, repeat
 
 </div>
 
 Note:
-Pseudo-code walkthrough. Don't show N8N yet — just the logic. "What happens if we don't loop? Only get topics from one page." This is the Split In Batches node — processes items one at a time, loops back. The LLM (Haiku — fast and cheap) returns structured JSON via Information Extractor. Each topic becomes a separate Baserow row using Split Out node. 10 pages × 3 topics = ~30 rows in raw_topics. Uses: Loop, Information Extractor, Split Out.
+Pseudo-code walkthrough. Don't show N8N yet — just the logic. "What happens if we don't loop? Only get topics from one page." This is the Split In Batches node — processes items one at a time, loops back. The LLM (Haiku — fast and cheap) returns structured JSON via Information Extractor. Each topic becomes a separate Baserow row using Split Out node. 10 pages × 3 topics = ~30 rows in Topics. Uses: Loop, Information Extractor, Split Out.
 
 ---
 
@@ -399,11 +399,11 @@ Pseudo-code walkthrough. Don't show N8N yet — just the logic. "What happens if
 
 **Take ALL raw topics at once:**
 
-1. Get all topics from `raw_topics` table
+1. Get all topics from `Topics` table
 2. Aggregate into one list: `["AI Ethics", "Healthcare AI", "Ethics in AI", "Data Privacy", ...]`
 3. Ask LLM: "Group these 30 topics into ~10 themes"
 4. LLM returns themed clusters with descriptions
-5. Store each theme in `themes` table
+5. Store each theme in `Content Themes` table
 
 </div>
 
@@ -422,7 +422,7 @@ Note:
 2. Convert to embedding (vector)
 3. Search Qdrant: "Find pages similar to this theme"
 4. Qdrant returns pages with similarity scores (0-1)
-5. Store mappings in `theme_coverage`
+5. Store mappings in `Theme Analysis`
 6. Move to next theme, repeat
 
 </div>
@@ -474,18 +474,18 @@ Synthesis slide. "Notice the pattern? This is ETL — the same pattern used in e
 
 **Build Workflows 1 & 2** (Due Thursday)
 
-- **Workflow 1:** Sitemap → Extract topics → `raw_topics` table
-- **Workflow 2:** Raw topics → Cluster themes → `themes` table
+- **Workflow 1:** Sitemap → Extract topics → `Topics` table
+- **Workflow 2:** Topics → Cluster themes → `Content Themes` table
 
 **Success criteria:**
-- ✅ `raw_topics` table populated (~3 × number of pages)
-- ✅ `themes` table has 10-15 entries with descriptions
+- ✅ `Topics` table populated (~3 × number of pages)
+- ✅ `Content Themes` table has 10-15 entries with descriptions
 - ✅ Both workflows run without errors
 
 </div>
 
 Note:
-Resources will be provided: workflow JSON for reference, sticky notes explaining each node, Baserow table IDs. Test after each step — don't build everything at once. After Workflow 1: open raw_topics table, verify rows. After Workflow 2: open themes table, verify themes make sense. Use Slack for questions. Start today — don't wait until Wednesday night.
+Resources will be provided: workflow JSON for reference, sticky notes explaining each node, Baserow table IDs. Test after each step — don't build everything at once. After Workflow 1: open Topics table, verify rows. After Workflow 2: open Content Themes table, verify themes make sense. Use Slack for questions. Start today — don't wait until Wednesday night.
 
 ALSO CRITICAL: Schedule business partner meeting. Email your partner to schedule a content review meeting for week of Feb 23 or March 2. Purpose: present your semantic audit findings. Duration: 30 minutes. This is your deadline — work backwards from it.
 

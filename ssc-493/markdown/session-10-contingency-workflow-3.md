@@ -15,13 +15,13 @@ Contingency slides. Only use these if teams finish Workflows 1-2 during class an
 
 <div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
 
-**For each theme in your `themes` table:**
+**For each theme in your `Content Themes` table:**
 
 1. Take theme name + description
 2. Convert that text into an embedding (vector)
 3. Search Qdrant: "Which pages are most similar to this theme?"
 4. Qdrant returns pages ranked by similarity (0–1 score)
-5. Store each match in `theme_coverage`
+5. Store each match in `Theme Analysis`
 
 </div>
 
@@ -40,13 +40,13 @@ Note:
 
 | Node | Purpose |
 |------|---------|
-| **Baserow — Get All** | Pull all themes from `themes` table |
+| **Baserow — Get All** | Pull all themes from `Content Themes` table |
 | **Loop (Split In Batches)** | Process one theme at a time |
 | **Edit Fields** | Combine theme name + description into search text |
 | **OpenAI Embeddings** | Convert search text → 1536-dim vector |
 | **HTTP Request** | Send vector to Qdrant search endpoint |
 | **Split Out** | Unpack Qdrant results (multiple matches per theme) |
-| **Baserow — Create Row** | Store each match in `theme_coverage` |
+| **Baserow — Create Row** | Store each match in `Theme Analysis` |
 
 </div>
 
@@ -128,7 +128,7 @@ These are approximate. The actual thresholds depend on the content and embedding
 You'll need:
 - Your Qdrant collection name from Session 8
 - Your OpenAI API key
-- Your `themes` table populated
+- Your `Content Themes` table populated
 
 </div>
 

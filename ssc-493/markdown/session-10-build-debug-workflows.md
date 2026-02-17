@@ -45,7 +45,7 @@ Thin deck today. Most of class is work time. Only one team (Medilodge) got close
  │ Workflow 1   │  Extract 3 topics per page
  └──────┬──────┘
         ▼
- raw_topics
+ Topics
         │
         ▼
  ┌─────────────┐
@@ -59,7 +59,7 @@ Thin deck today. Most of class is work time. Only one team (Medilodge) got close
  │ Workflow 3   │  Similarity search (next week)
  └──────┬──────┘
         ▼
- theme_coverage → Insights for your partner
+ Theme Analysis → Insights for your partner
 ```
 
 </div>
@@ -84,11 +84,11 @@ Show each table in sequence:
 
 TABLE 1 - sitemap: "You all have this. URLs, titles, content from your partner's site."
 
-TABLE 2 - raw_topics: "This is what Workflow 1 produces. See the mess? AI, Artificial Intelligence, AI Systems — all related but granular. That's intentional. 10 pages × 3 topics = ~30 rows."
+TABLE 2 - Topics: "This is what Workflow 1 produces. See the mess? AI, Artificial Intelligence, AI Systems — all related but granular. That's intentional. 10 pages × 3 topics = ~30 rows."
 
 TABLE 3 - themes: "Workflow 2 takes that mess and clusters it. 30+ raw topics become ~10 clean themes with descriptions. 'AI & Machine Learning' instead of 5 separate variations."
 
-TABLE 4 - theme_coverage: "Workflow 3 maps themes to pages with relevance scores. This is what powers your partner report — 'Here's what you cover well, here are gaps.'"
+TABLE 4 - Theme Analysis: "Workflow 3 maps themes to pages with relevance scores. This is what powers your partner report — 'Here's what you cover well, here are gaps.'"
 
 "Medilodge is closest to this. Let's see where they are."
 
@@ -102,7 +102,7 @@ Note:
 Have Medilodge screenshare via Zoom. Questions to ask:
 - "Show us your Baserow tables — what do you have so far?"
 - "Walk us through your Workflow 1 — what does each node do?"
-- "What's in your raw_topics table? How many rows?"
+- "What's in your Topics table? How many rows?"
 - "What worked? What tripped you up?"
 
 After Medilodge presents, ask the class:
@@ -128,7 +128,7 @@ This is peer learning — Medilodge's progress helps everyone see what 'done' lo
 <ul style="line-height: 1.8;">
 <li>Loop through sitemap pages</li>
 <li>Information Extractor → 3 topics</li>
-<li>Split Out → store in raw_topics</li>
+<li>Split Out → store in Topics</li>
 </ul>
 </div>
 
@@ -189,8 +189,8 @@ This is the hard gate for today. No one leaves without sending this email. The p
 
 **Come to class with Workflows 1 & 2 done**
 
-- `raw_topics` table populated
-- `themes` table with ~10 entries
+- `Topics` table populated
+- `Content Themes` table with ~10 entries
 
 **Tuesday we'll tackle:**
 - Workflow 3 (similarity search)
