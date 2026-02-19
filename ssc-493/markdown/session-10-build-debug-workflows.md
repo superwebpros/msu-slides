@@ -52,7 +52,7 @@ Thin deck today. Most of class is work time. Only one team (Medilodge) got close
  │ Workflow 2   │  Cluster into ~10 themes
  └──────┬──────┘
         ▼
- themes
+ Content Themes
         │
         ▼
  ┌─────────────┐

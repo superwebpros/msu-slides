@@ -60,7 +60,7 @@ We're at the midpoint of the semester and I want to check in with each group. Th
  ┌─────────────┐
  │ Workflow 2   │  ✅ Done (or imported)
  └──────┬──────┘
- themes          ✅ Done
+ Content Themes  ✅ Done
        │
  ┌─────────────┐
  │ Workflow 3   │  ← TODAY

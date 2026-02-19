@@ -143,7 +143,7 @@ KEY QUESTION: "How do we get from what YOU have (Table 1) to what I'm showing yo
  └────────────────┬────────────────┘
                   │
  ┌────────────────┴────────────────┐
- │  themes                         │
+ │  Content Themes                 │
  │  "What are the main themes?"    │  ← Workflow 2
  └────────────────┬────────────────┘
                   │
