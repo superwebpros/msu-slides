@@ -45,6 +45,37 @@ Note:
 
 ---
 
+## Quick Fix: Check Your Embeddings
+
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+Some of you embedded **only the theme name** when searching Qdrant.
+
+You should be embedding **theme name + description**.
+
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; font-size: 17px;">
+
+<div style="background: #fee2e2; padding: 15px; border-radius: 10px;">
+<strong>Too vague:</strong><br>
+<code>"AI Ethics"</code><br>
+<span style="color: #666;">2 words → blurry vector → weak matches</span>
+</div>
+
+<div style="background: #dcfce7; padding: 15px; border-radius: 10px;">
+<strong>Much better:</strong><br>
+<code>"AI Ethics & Governance. Ethical considerations and responsible AI practices including bias, fairness, and transparency"</code><br>
+<span style="color: #666;">Rich text → precise vector → accurate matches</span>
+</div>
+
+</div>
+
+Note:
+Same principle as chunking: more specific text = more accurate embedding = better search results. "AI Ethics" as 2 words gives the embedding model almost nothing to work with — the vector points in a vague direction. Adding the description gives it real semantic content to encode. If your scores seem off or everything looks the same, this might be why. Check your Edit Fields node in WF3 — it should combine theme name AND description before sending to OpenAI. If you only used the name, re-run with both and compare the difference.
+
+---
+
 ## This Is an AI Class
 
 <div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
