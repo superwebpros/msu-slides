@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" width="1100" height="500">
+  <style>
+    text { font-family: 'Segoe UI', Arial, sans-serif; }
+    .title { font-size: 26px; font-weight: bold; }
+    .label { font-size: 18px; font-weight: 600; }
+    .prompt { font-size: 14px; fill: #495057; font-style: italic; }
+    .response { font-size: 20px; font-weight: bold; }
+    .sublabel { font-size: 13px; fill: #868e96; }
+  </style>
+
+  <!-- LEFT SIDE: Without Tools -->
+  <text x="215" y="40" text-anchor="middle" class="title" fill="#e03131">Without Tools</text>
+
+  <!-- User circle -->
+  <ellipse cx="80" cy="170" rx="50" ry="40" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+  <text x="80" y="176" text-anchor="middle" class="label" fill="#1e1e1e">User</text>
+
+  <!-- Prompt text above arrow -->
+  <text x="225" y="130" text-anchor="middle" class="prompt">"Update my database"</text>
+
+  <!-- Arrow User → LLM -->
+  <line x1="130" y1="170" x2="270" y2="170" stroke="#1e1e1e" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- LLM box (red) -->
+  <rect x="275" y="130" width="160" height="80" rx="8" fill="#ffc9c9" stroke="#e03131" stroke-width="2"/>
+  <text x="355" y="176" text-anchor="middle" class="label" fill="#1e1e1e">LLM</text>
+
+  <!-- Response -->
+  <text x="355" y="260" text-anchor="middle" class="response" fill="#e03131">✗ I can't do that.</text>
+
+  <!-- VS divider -->
+  <line x1="520" y1="60" x2="520" y2="440" stroke="#dee2e6" stroke-width="2" stroke-dasharray="8,6"/>
+  <text x="520" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#868e96">VS</text>
+
+  <!-- RIGHT SIDE: With MCP Tools -->
+  <text x="790" y="40" text-anchor="middle" class="title" fill="#2f9e44">With MCP Tools</text>
+
+  <!-- User circle -->
+  <ellipse cx="610" cy="170" rx="50" ry="40" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+  <text x="610" y="176" text-anchor="middle" class="label" fill="#1e1e1e">User</text>
+
+  <!-- Prompt text above arrow -->
+  <text x="755" y="130" text-anchor="middle" class="prompt">"Update my database"</text>
+
+  <!-- Arrow User → LLM -->
+  <line x1="660" y1="170" x2="800" y2="170" stroke="#1e1e1e" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- LLM box (green) -->
+  <rect x="805" y="130" width="160" height="80" rx="8" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+  <text x="885" y="176" text-anchor="middle" class="label" fill="#1e1e1e">LLM</text>
+
+  <!-- Arrow LLM → Tool -->
+  <line x1="885" y1="210" x2="885" y2="280" stroke="#1e1e1e" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Tool box (orange) -->
+  <rect x="835" y="285" width="100" height="55" rx="8" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+  <text x="885" y="318" text-anchor="middle" class="label" fill="#1e1e1e">Tool</text>
+  <text x="945" y="318" text-anchor="start" class="sublabel">MCP Server</text>
+
+  <!-- Response -->
+  <text x="700" y="260" text-anchor="middle" class="response" fill="#2f9e44">✓ Done!</text>
+
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1e1e1e"/>
+    </marker>
+  </defs>
+</svg>

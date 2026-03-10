@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="900" height="450">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#868e96" />
+    </marker>
+    <style>
+      text { font-family: 'Segoe UI', Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- White background -->
+  <rect width="900" height="450" fill="#ffffff" />
+
+  <!-- Section title -->
+  <text x="450" y="30" text-anchor="middle" font-size="20" fill="#495057" font-weight="600">n8n Workflow: MCP Server Tools</text>
+
+  <!-- ===== LEFT GROUP: MCP Server Trigger + 3 Baserow tools ===== -->
+
+  <!-- MCP Server Trigger (gray) -->
+  <rect x="145" y="65" width="210" height="44" rx="6" fill="#dee2e6" stroke="#495057" stroke-width="1.5" />
+  <text x="250" y="92" text-anchor="middle" font-size="14" fill="#495057" font-weight="600">n8n MCP Server Trigger</text>
+
+  <!-- Arrows from trigger to three tools -->
+  <!-- Left arrow -->
+  <line x1="210" y1="109" x2="110" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowhead)" />
+  <!-- Center arrow -->
+  <line x1="250" y1="109" x2="250" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowhead)" />
+  <!-- Right arrow -->
+  <line x1="290" y1="109" x2="390" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+  <!-- Baserow GET Themes (blue) -->
+  <rect x="20" y="175" width="180" height="44" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5" />
+  <text x="110" y="202" text-anchor="middle" font-size="14" fill="#1971c2" font-weight="600">Baserow GET Themes</text>
+
+  <!-- Baserow GET Pillars (blue) -->
+  <rect x="160" y="175" width="180" height="44" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5" />
+  <text x="250" y="202" text-anchor="middle" font-size="14" fill="#1971c2" font-weight="600">Baserow GET Pillars</text>
+
+  <!-- Baserow CREATE Pillar (blue) -->
+  <rect x="300" y="175" width="200" height="44" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5" />
+  <text x="400" y="202" text-anchor="middle" font-size="14" fill="#1971c2" font-weight="600">Baserow CREATE Pillar</text>
+
+  <!-- ===== RIGHT GROUP: MCP Server 2 + Qdrant + OpenAI ===== -->
+
+  <!-- MCP Server 2 (gray) -->
+  <rect x="595" y="65" width="210" height="44" rx="6" fill="#dee2e6" stroke="#495057" stroke-width="1.5" />
+  <text x="700" y="92" text-anchor="middle" font-size="14" fill="#495057" font-weight="600">n8n MCP Server 2</text>
+
+  <!-- Arrow from MCP Server 2 to SEARCH Qdrant -->
+  <line x1="700" y1="109" x2="700" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+  <!-- SEARCH Qdrant (green) -->
+  <rect x="610" y="175" width="180" height="44" rx="6" fill="#b2f2bb" stroke="#2f9e44" stroke-width="1.5" />
+  <text x="700" y="202" text-anchor="middle" font-size="14" fill="#2f9e44" font-weight="600">SEARCH Qdrant</text>
+
+  <!-- Arrow from SEARCH Qdrant to OpenAI Embedding -->
+  <line x1="700" y1="219" x2="700" y2="270" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+  <!-- OpenAI Embedding (purple) -->
+  <rect x="610" y="275" width="180" height="44" rx="6" fill="#e599f7" stroke="#9c36b5" stroke-width="1.5" />
+  <text x="700" y="302" text-anchor="middle" font-size="14" fill="#9c36b5" font-weight="600">OpenAI Embedding</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="430" text-anchor="middle" font-size="12" fill="#868e96" font-style="italic">Copy the production URL from each trigger</text>
+</svg>

@@ -15,25 +15,34 @@ Energy check. Keep it light — 2 minutes max. Then pivot to the semester map.
 
 ## Where We Are
 
-<div style="font-size: 18px; margin: 20px 0;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; font-size: 19px;">
 
-```
- Weeks 1-7: ANALYSIS             Weeks 8-14: PRODUCTION
+<div>
+<h4 style="color: #0369a1; margin-bottom: 15px;">Weeks 1–7: ANALYSIS</h4>
+<ul style="line-height: 2;">
+<li>Prompts, LLMs, RAG basics</li>
+<li>Embeddings, vector DBs</li>
+<li>ETL pipelines, Baserow</li>
+<li>Semantic audit, partner report</li>
+</ul>
+<p style="margin-top: 15px; color: #666;">You audited <strong>what they have</strong></p>
+</div>
 
- Prompts, LLMs, RAG basics       MCP servers, function calling
- Embeddings, vector DBs          Voice matching, multi-agent
- ETL pipelines, Baserow          Content generation pipelines
- Semantic audit, partner report   Visual content, video
-
- You figured out WHAT to say      Now you figure out HOW to say it
-
-                    TODAY ← You are here
-```
+<div>
+<h4 style="color: #16a34a; margin-bottom: 15px;">Weeks 8–14: PRODUCTION</h4>
+<ul style="line-height: 2;">
+<li>MCP servers, function calling</li>
+<li>Voice matching, multi-agent</li>
+<li>Content generation pipelines</li>
+<li>Visual content, video</li>
+</ul>
+<p style="margin-top: 15px; color: #666;">Now you help them <strong>take it to the next level</strong></p>
+</div>
 
 </div>
 
-<div style="background: #dbeafe; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
-15 of 28 sessions done. Everything you built is your foundation. Now we <strong>use</strong> it.
+<div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 20px; text-align: center;">
+← <strong>TODAY: The pivot point</strong> →
 </div>
 
 Note:
@@ -101,21 +110,75 @@ Frame the session: "Here's what's happening today. You're going to build somethi
 
 ---
 
-## What's an MCP Server?
+## Today's Periodic Table Focus
 
-<div style="font-size: 19px; margin: 20px 0;">
+<div style="font-size: 20px; margin: 20px 0; text-align: center;">
 
-```
-WITHOUT MCP:
-  You → LibreChat → "I don't know about your business"
+**New element today:** Function Calling (Fc)
 
-WITH MCP:
-  You → LibreChat → [calls MCP server] → Baserow (your audit data)
-                                        → Qdrant (partner content)
-                                        → Web search (competitor research)
-                   ← [returns grounded answer]
-```
+</div>
 
+<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-width: 700px; margin: 30px auto; font-size: 14px; text-align: center;">
+
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Pr</strong><br>Prompts</div>
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Lg</strong><br>LLMs</div>
+<div style="background: #fef3c7; padding: 10px; border-radius: 8px; border: 3px solid #f59e0b;"><strong>Fc</strong><br>Function<br>Calling</div>
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Vx</strong><br>Vector DBs</div>
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Rg</strong><br>RAG</div>
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Fw</strong><br>Frameworks</div>
+<div style="background: #dbeafe; padding: 10px; border-radius: 8px; border: 2px solid #1971c2;"><strong>Th</strong><br>Themes</div>
+
+</div>
+
+<div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+Fc is the bridge — it lets the LLM <strong>take action</strong>, not just generate text
+</div>
+
+Note:
+Pull up the Miro periodic table. Highlight the elements in play today: Pr (we're still prompting), Lg (LLM is still the brain), Fc (NEW — function calling is the mechanism that makes MCP work), Vx (Qdrant), Rg (RAG pipeline), Fw (N8N framework), Th (content themes from audit). The big addition is Fc — function calling. Until now, the AI could only READ and GENERATE. With function calling, it can DO things — call APIs, write to databases, search external systems. "This is the difference between an assistant that talks and an assistant that acts."
+
+---
+
+## What Are Content Pillars?
+
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
+
+A **content pillar** is a longform, dense, cornerstone piece of content around a single topic.
+
+- Thoroughly researched with real sources
+- Covers the topic in depth — not a quick blog post
+- Becomes the **foundation** for everything else you produce
+
+</div>
+
+<div style="background: #f3e8ff; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+Think of it as the <strong>master document</strong> — the one piece you research deeply so you never have to start from scratch again
+</div>
+
+Note:
+Explain the concept before they build anything. A content pillar is NOT a blog post. It's a comprehensive, well-sourced document that covers a topic in depth. The reason we invest time in this is because it becomes the raw material for EVERYTHING else. Without a pillar, every piece of content you create starts from zero. With a pillar, you've already done the research — now you're just reformatting it for different platforms and audiences. "Think about it this way: would you rather research the same topic 12 times for 12 different posts, or research it once and repurpose it 12 ways?"
+
+---
+
+## The Content Pillar Strategy
+
+<div style="text-align: center; margin: 20px 0;">
+<img src="assets/pillar-content-spinoffs.svg" alt="Pillar Content breaks into multiple formats" style="max-width: 90%; height: auto;">
+</div>
+
+<div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+This is the production pipeline for the rest of the semester
+</div>
+
+Note:
+Walk through the diagram. One pillar becomes dozens of pieces across every platform. A 2,000-word pillar on "Assisted Living Activity Programs" becomes: a Reel showing a day in the life, an Instagram carousel with 5 key stats, a LinkedIn post for industry professionals, a podcast episode diving deeper, a blog post summarizing the highlights, a YouTube script for a walkthrough video. The math: if each team produces 30 pillars and each pillar generates even 5 pieces of derivative content, that's 150 pieces of content. THAT is what your partner needs. This is the production pipeline for the rest of the semester — today you build the foundation.
+
+---
+
+## Why Tools Change Everything
+
+<div style="text-align: center; margin: 20px 0;">
+<img src="assets/mcp-without-vs-with.svg" alt="Without Tools vs With MCP Tools" style="max-width: 90%; height: auto;">
 </div>
 
 <div style="background: #f3e8ff; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
@@ -124,84 +187,42 @@ A standard way for AI to talk to external tools
 </div>
 
 Note:
-Draw this on the whiteboard. Key points:
-
-- MCP = Model Context Protocol. Standard way for AI to call external tools.
-- FUNCTION CALLING is the mechanism. The AI decides "I need data from Baserow" and calls a function to get it. This is the Fc element on the periodic table — first new element since Session 9.
-- Why this matters: AI without data access = generic advice. AI with data access = grounded, specific, actionable. "This is the difference between an AI that gives you blog post ideas from the internet and an AI that gives you blog post ideas based on YOUR partner's actual content gaps."
-- N8N is the host. N8N runs the MCP server. LibreChat connects to it. When LibreChat needs data, it calls the N8N workflow.
-- You've already done the hard part. Baserow tables exist. Qdrant collection exists. Today you're just wiring them up.
+Walk through the diagram. LEFT: Without tools, the AI can only generate text. Ask it to update a database? "I can't do that." It has no hands, no connection to the outside world. RIGHT: With MCP tools, the AI can call functions. It decides "I need to update a database," calls a tool via the MCP server, the tool executes the action, and the AI reports back "Done!" This is function calling (Fc) in action — the AI decides WHEN to call a tool and WHAT to pass it. The key insight: MCP is NOT the same as RAG. RAG retrieves context to help the AI answer better. MCP gives the AI the ability to take actions — read, write, search, create. Today you're giving your LibreChat both: RAG (Qdrant search) AND tool use (Baserow read/write).
 
 ---
 
 ## The Architecture
 
-<div style="font-size: 18px; margin: 20px 0;">
-
-```
-┌─────────────┐
-│  LibreChat   │  ← You talk to this
-└──────┬──────┘
-       │ MCP calls
-       ▼
-┌─────────────┐
-│   N8N        │  ← Hosts the MCP server
-│  (workflow)  │
-└──┬───────┬──┘
-   │       │
-   ▼       ▼
-┌──────┐ ┌──────┐
-│Baserow│ │Qdrant│  ← Your data sources
-└──────┘ └──────┘
-```
-
-</div>
-
-<div style="font-size: 20px; margin: 20px 0; text-align: center;">
-
-**Two triggers in one workflow:**
-
-1. "Search Baserow" — read your audit tables, write to content pillars
-2. "Search Customer Content" — semantic search over partner content
-
+<div style="text-align: center; margin: 20px 0;">
+<img src="assets/mcp-librechat-connect.svg" alt="LibreChat connected to MCP Servers" style="max-width: 90%; height: auto;">
 </div>
 
 Note:
-This is the technical architecture. N8N hosts a workflow with two MCP trigger nodes. Each trigger exposes different tools to LibreChat. Trigger 1 gives LibreChat the ability to read Baserow (themes, sitemap, theme analysis) and write to a new content_pillars table. Trigger 2 gives LibreChat the ability to search Qdrant with embeddings. LibreChat also has built-in web search — so three data sources total.
+Walk through the diagram. LibreChat connects to two MCP server triggers hosted in n8n. Trigger 1 gives LibreChat access to Baserow — GET Themes, GET Pillars, and CREATE Pillar. Trigger 2 gives it access to Qdrant semantic search. LibreChat also has built-in web search — so three data sources total. The key: LibreChat decides WHEN to call each tool based on your prompt. You don't have to tell it which tool to use — it figures it out.
 
 ---
 
-## Live Demo: Building the MCP Workflow
+## Full Example
 
-<div style="font-size: 28px; line-height: 2; margin: 80px 0; text-align: center;">
+<div style="font-size: 18px; line-height: 1.6; margin: 20px 0;">
 
-**Screenshare: N8N → LibreChat**
+**The end-to-end flow:**
+
+1. Build MCP workflow in n8n with two triggers
+2. Activate the workflow → copy the production URLs
+3. Add both MCP server URLs to LibreChat
+4. Ask LibreChat: *"What themes did we find in our audit?"*
+5. Ask: *"Search our partner's content about [theme]"*
+6. Ask: *"Based on gaps, suggest 5 pillar topics and store them"*
 
 </div>
 
+<div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+LibreChat decides <strong>which tool to call</strong> based on your prompt
+</div>
+
 Note:
-BUILD THIS LIVE. Go node by node:
-
-TRIGGER 1 — "Search Baserow":
-1. Add MCP Server Trigger node → name it "Search Baserow"
-2. Connect "Get many rows in Baserow" tool node → configure with your demo table IDs
-3. Connect "Create a row in Baserow" tool node → configure for content_pillars table
-4. "This trigger gives LibreChat two abilities: READ your audit tables and WRITE to content pillars."
-
-TRIGGER 2 — "Search Customer Content":
-1. Add second MCP Server Trigger node → name it "Search Customer Content"
-2. Connect "Qdrant Vector Store" tool node (retrieve mode) → your demo collection name
-3. Connect "Embeddings OpenAI" node → text-embedding-3-small
-4. "This trigger lets LibreChat search your partner's content semantically."
-
-Activate the workflow.
-
-THEN SWITCH TO LIBRECHAT:
-1. "What are the main themes from my Baserow audit data?" → Watch it call Baserow
-2. "Search my partner's content for anything about [topic]" → Watch it call Qdrant
-3. "Based on gaps in my audit and what my partner covers, suggest 5 pillar topics" → Watch it use BOTH
-
-THE AHA MOMENT: "See that? It just read your Baserow data, searched your partner's content, and synthesized both into recommendations. This is function calling in action."
+Walk through the flow top to bottom. Don't demo this live — show the roadmap and let them figure it out. The assignment has step-by-step instructions. Key points: they build the n8n workflow, activate it, copy the production URL, paste it into LibreChat's MCP config. Then they can talk to LibreChat and it will call the right tool automatically. "You don't tell it which tool to use. You just ask a question and it figures out whether it needs Baserow, Qdrant, or the web."
 
 ---
 
@@ -221,10 +242,6 @@ THE AHA MOMENT: "See that? It just read your Baserow data, searched your partner
 
 </div>
 
-<div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
-5 minutes. Create this table now.
-</div>
-
 Note:
 Everyone creates this table in their team Baserow database. The MCP server will write to it — LibreChat will store generated topics directly here. The Approved checkbox is the human QC step — they'll review topics and check the ones they want to keep. Audio URL and Transcript fields are for Thursday's NotebookLM work.
 
@@ -232,93 +249,61 @@ Everyone creates this table in their team Baserow database. The MCP server will 
 
 ## Step 2: Build Your MCP Workflow
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; font-size: 18px;">
-
-<div>
-<h4 style="color: #0369a1; margin-bottom: 10px;">Trigger 1: Search Baserow</h4>
-<ul style="line-height: 1.8;">
-<li>MCP Server Trigger</li>
-<li>"Get many rows" → your table IDs</li>
-<li>"Create a row" → Content Pillars table</li>
-</ul>
-</div>
-
-<div>
-<h4 style="color: #0369a1; margin-bottom: 10px;">Trigger 2: Search Customer Content</h4>
-<ul style="line-height: 1.8;">
-<li>MCP Server Trigger</li>
-<li>Qdrant Vector Store (retrieve)</li>
-<li>Embeddings OpenAI</li>
-</ul>
-</div>
-
-</div>
-
-<div style="background: #fee2e2; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
-<strong>Activate the workflow!</strong> It won't appear in LibreChat until it's active.
+<div style="text-align: center; margin: 20px 0;">
+<img src="assets/mcp-create-tools.svg" alt="n8n MCP Server Tools" style="max-width: 90%; height: auto;">
 </div>
 
 Note:
-15 minutes. Students replicate the demo with their own credentials. You'll need to know your Baserow table IDs (themes, theme analysis, sitemap, and the new content_pillars) and your Qdrant collection name.
+Students build this in n8n with their own credentials. Two MCP Server Trigger nodes. Trigger 1 connects to three Baserow tool nodes (GET Themes, GET Pillars, CREATE Pillar). Trigger 2 connects to a Qdrant Vector Store tool node with an OpenAI Embedding node. They'll need their Baserow table IDs and Qdrant collection name.
 
 Common issues:
 - Can't find table IDs → URL bar in Baserow or API docs page
 - MCP tools don't appear in LibreChat → Is the workflow active? May need to refresh LibreChat
 - Qdrant search returns nothing → Verify collection name matches exactly
 
-Circulate and ask: "What table IDs are you using? Did you double-check them?" "Is your Qdrant collection name correct?" "Did you activate the workflow?"
-
 ---
 
-## Step 3: Test It
+## Step 3: Connect LibreChat
 
-<div style="font-size: 22px; line-height: 2; margin: 30px 0; text-align: center;">
-
-**Open LibreChat. Verify both tools work:**
-
-1. "What themes did we identify in our audit?"
-2. "Search our partner's content about [your strongest theme]"
-
-</div>
-
-<div style="background: #dbeafe; padding: 20px; border-radius: 10px; margin: 30px 0; font-size: 19px; text-align: center;">
-<strong>Don't move on until both tools work.</strong> Flag me if you're stuck.
+<div style="text-align: center; margin: 20px 0;">
+<img src="assets/mcp-librechat-connect.svg" alt="Connect LibreChat to MCP Servers" style="max-width: 90%; height: auto;">
 </div>
 
 Note:
-10 minutes. Hard gate — both tools must work before they start generating topics. If Baserow returns data and Qdrant returns content, they're good. If not, troubleshoot now.
+Copy the production URLs from each n8n MCP trigger and paste them into LibreChat's MCP server configuration. Test both: ask LibreChat about your themes (should call Baserow) and search partner content (should call Qdrant). Both tools must work before they start generating topics.
 
 ---
 
-## Step 4: Generate 30 Pillar Topics
+## Step 4: Generate 30+ Pillar Topics
 
-<div style="font-size: 18px; line-height: 1.6; margin: 20px 0;">
+<div style="font-size: 20px; line-height: 1.8; margin: 30px 0;">
 
-**Start with this prompt in LibreChat:**
+Use LibreChat with your MCP tools to:
 
-> "I'm building a content strategy for [partner name]. Use my Baserow audit data to see our themes and gaps. Search my partner's content to understand what they cover. Search the web for what competitors publish. Generate 30 content pillar topics with a name, description, and 3-5 source URLs. Store each in my Content Pillars table."
+1. Review your themes and audit data
+2. Research competitors via web search
+3. Identify content gaps
+4. Generate and store pillar topics in Baserow
 
 </div>
 
-<div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
-If the first batch feels generic: <strong>"Look at my audit data again — what specific gaps did we identify?"</strong>
+<div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
+<strong>Review every topic.</strong> Does it match what you and your partner know about the business?<br>
+The AI doesn't know your partner — you do.
 </div>
 
 Note:
-10 minutes in class, finish as homework. The AI will use all three data sources — Baserow, Qdrant, and web search. Let it work. May take a few rounds of conversation. If topics feel generic, push it: "These are too broad. Look at my audit data again — what specific gaps did we identify? Give me topics that fill THOSE gaps." Students may not get all 30 during class — that's expected. Get the workflow working and first batch generated, finish the rest tonight.
+This is where they start working. The AI will use all three data sources — Baserow, Qdrant, and web search. Let it work. May take a few rounds of conversation. If topics feel generic, push it: "These are too broad. Look at my audit data again — what specific gaps did we identify? Give me topics that fill THOSE gaps." They should aim for 30+ topics but the quality matters more than quantity.
 
 ---
 
-## Homework: Due Thursday
+## Let's Get to Work
 
-<div style="font-size: 19px; line-height: 1.6; margin: 20px 0;">
+<div style="font-size: 22px; line-height: 2; margin: 40px 0; text-align: center;">
 
-1. **Finish generating 30 pillar topics** in Content Pillars table
-2. **Review for relevance** — check the "Approved" box for keepers
-3. **Verify 3-5 sources per topic** — AI sometimes hallucinates URLs
-4. **Ingest approved sources into NotebookLM** — group related pillars into notebooks
-5. **Generate audio overviews** in NotebookLM for each notebook
-6. **Come Thursday ready to download audio files**
+**Assignment is in D2L — download it now.**
+
+Minimum for Thursday: **5 approved content pillars** in Baserow
 
 </div>
 
@@ -328,9 +313,7 @@ YOU know your business partner. The AI doesn't.
 </div>
 
 Note:
-Walk through each item. The Approved checkbox is the key human-in-the-loop step. They need to actually read each topic and decide: "Does this matter for my partner?" URL verification is also critical — LLMs hallucinate URLs. Click them. If they're dead, replace them or remove the topic.
-
-NotebookLM: group 3-5 related pillars into one notebook. Upload the source URLs. Generate the audio overview. Thursday we'll work with those audio files — downloading, transcribing, and using the transcripts in the content pipeline.
+They should download the assignment from D2L now and start working. Circulate and help with setup issues. The assignment walks through everything step by step. The minimum bar for Thursday is 5 approved content pillars with verified sources. More is better, but 5 solid ones beats 30 garbage ones.
 
 ---
 
@@ -338,17 +321,18 @@ NotebookLM: group 3-5 related pillars into one notebook. Upload the source URLs.
 
 <div style="font-size: 22px; line-height: 2; margin: 40px 0;">
 
-**Thursday: Voice matching with few-shot prompting**
+**Thursday: Intro to Multimodal AI**
 
-- Use your RAG-powered LibreChat to pull partner content
-- Extract your partner's writing voice and style
-- Generate content that sounds like them, not ChatGPT
+- Starting with [NotebookLM](https://notebooklm.google.com/)
+- Bring at least 5 approved content pillars
+- We'll turn your research into audio content
 
 </div>
 
-<div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0; font-size: 18px; text-align: center;">
-Come with 30 approved topics, verified sources, and NotebookLM audio ready
+<div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 19px; text-align: center;">
+<strong>Before Thursday:</strong> Make sure you have a Google account set up.<br>
+MSU provides free access. Go to <a href="https://notebooklm.google.com/">notebooklm.google.com</a> and verify you can log in.
 </div>
 
 Note:
-Thursday builds directly on today. The MCP connection they just built powers voice matching — LibreChat searches partner content via Qdrant, extracts writing style, and generates content that matches. By Thursday's end, they'll have content that sounds like their partner. The progression: today = what to write about, Thursday = how to write it.
+Thursday is the intro to multimodal AI — moving beyond text. NotebookLM is the starting point: it takes source material and generates audio overviews, summaries, and study guides. They'll feed their approved content pillars and sources into NotebookLM. Make sure everyone knows they need a Google account — MSU provides free Google Workspace accounts. They should go to notebooklm.google.com BEFORE Thursday and make sure they can log in. Don't wait until class to discover login issues.
