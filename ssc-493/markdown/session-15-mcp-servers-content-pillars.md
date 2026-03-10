@@ -307,13 +307,13 @@ Minimum for Thursday: **5 approved content pillars** in Baserow
 
 </div>
 
-<div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 19px; text-align: center;">
-<strong>The human QC step is critical.</strong> Don't just accept whatever the AI generated.<br>
-YOU know your business partner. The AI doesn't.
+<div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin: 20px 0; font-size: 18px;">
+<strong>Next client deliverable:</strong> Your complete content pillars list, exported from Baserow to a Google Sheet and shared with your partner for review.<br>
+<strong>Deadline: Tuesday, March 17.</strong> I'm reaching out to all partners Thursday to update them on what's coming.
 </div>
 
 Note:
-They should download the assignment from D2L now and start working. Circulate and help with setup issues. The assignment walks through everything step by step. The minimum bar for Thursday is 5 approved content pillars with verified sources. More is better, but 5 solid ones beats 30 garbage ones.
+They should download the assignment from D2L now and start working. Circulate and help with setup issues. The assignment walks through everything step by step. The minimum bar for Thursday is 5 approved content pillars with verified sources. More is better, but 5 solid ones beats 30 garbage ones. The bigger picture: by next Tuesday, the complete list of content pillars needs to be exported from Baserow into a Google Sheet and shared with their partner for review. This is the next client-facing deliverable. "I'm calling all your partners on Thursday to give them a status update and let them know what's coming. By Tuesday, they should have your content pillar list in their inbox. This is the roadmap for everything you'll produce for them the rest of the semester."
 
 ---
 
