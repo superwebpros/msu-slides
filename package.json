@@ -65,7 +65,12 @@
     },
     "gulp-header-comment": {
       "moment": "2.30.1"
-    }
+    },
+    "flatted": "^3.4.2",
+    "serialize-javascript": "^7.0.5",
+    "tmp": "^0.2.5",
+    "@tootallnate/once": "^3.0.1",
+    "tar": "^7.5.11"
   },
   "browserslist": "> 2%, not dead",
   "eslintConfig": {

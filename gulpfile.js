@@ -3,7 +3,9 @@ const pkg = require('./package.json')
 const glob = require('glob')
 const yargs = require('yargs')
 const through = require('through2');
-const qunit = require('node-qunit-puppeteer')
+// Lazy-loaded in qunit task to avoid loading puppeteer's yargs
+// dependency at startup (breaks gulp serve on Node 22+)
+let qunit;
 
 const {rollup} = require('rollup')
 const terser = require('@rollup/plugin-terser')
@@ -199,6 +201,8 @@ gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
 gulp.task('css', gulp.parallel('css-themes', 'css-core'))
 
 gulp.task('qunit', () => {
+
+    if (!qunit) qunit = require('node-qunit-puppeteer');
 
     let serverConfig = {
         root,
