@@ -21,12 +21,13 @@ Welcome to SSC 490. Today we set up the frameworks we'll use for the next fiftee
 <li>Which AI tools have you used?</li>
 </ol>
 <p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
-Scan the QR code or visit:<br>
-<strong>slido.com #4027 289</strong>
+Scan the QR code, or go to <strong>slido.com</strong> and enter<br>
+<strong style="font-size: 24px; color: #1d4ed8;">#4017 568</strong>
 </p>
 </div>
 <div style="text-align: center;">
-<img src="assets/slido-1.png" alt="Slido QR Code" style="width: 320px; height: 320px;">
+<img src="assets/slido-s01.png" alt="Slido QR Code" style="width: 320px; height: 320px;">
+<div style="font-size: 13px; color: #9ca3af; margin-top: 8px; word-break: break-all;">app.sli.do/event/4h2Xu9BHz6SCGfPAtRbafo</div>
 </div>
 </div>
 
