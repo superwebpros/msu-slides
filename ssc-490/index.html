@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SSC 490: AI Workflows & Organizational Intelligence</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+			line-height: 1.6;
+			color: #333;
+			background: #f5f5f5;
+			padding: 2rem;
+		}
+
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+			background: white;
+			padding: 3rem;
+			border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		}
+
+		.breadcrumb {
+			color: #7f8c8d;
+			font-size: 0.9rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.breadcrumb a {
+			color: #3498db;
+			text-decoration: none;
+		}
+
+		.breadcrumb a:hover {
+			text-decoration: underline;
+		}
+
+		h1 {
+			color: #2c3e50;
+			margin-bottom: 0.5rem;
+			font-size: 2.5rem;
+		}
+
+		.course-meta {
+			color: #7f8c8d;
+			margin-bottom: 2rem;
+			font-size: 1.1rem;
+		}
+
+		.course-description {
+			color: #555;
+			margin-bottom: 2rem;
+			line-height: 1.8;
+			font-size: 1.05rem;
+		}
+
+		h2 {
+			color: #34495e;
+			margin-top: 2.5rem;
+			margin-bottom: 1.5rem;
+			font-size: 1.8rem;
+			border-bottom: 2px solid #18bc9c;
+			padding-bottom: 0.5rem;
+		}
+
+		.week-section {
+			margin-bottom: 2rem;
+		}
+
+		.week-header {
+			background: #ecf0f1;
+			padding: 1rem 1.5rem;
+			border-radius: 6px;
+			margin-bottom: 1rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.week-title {
+			font-weight: 600;
+			color: #2c3e50;
+			font-size: 1.2rem;
+		}
+
+		.week-dates {
+			color: #7f8c8d;
+			font-size: 0.95rem;
+		}
+
+		.sessions-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.session-card {
+			background: #f8f9fa;
+			border: 1px solid #dee2e6;
+			border-radius: 6px;
+			padding: 1.25rem;
+			transition: all 0.2s ease;
+		}
+
+		.session-card:hover {
+			border-color: #18bc9c;
+			box-shadow: 0 2px 8px rgba(24, 188, 156, 0.1);
+		}
+
+		.session-number {
+			color: #18bc9c;
+			font-weight: 600;
+			font-size: 0.9rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.session-title {
+			color: #2c3e50;
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 0.75rem;
+		}
+
+		.session-link {
+			display: inline-block;
+			padding: 0.5rem 1.25rem;
+			background: #18bc9c;
+			color: white;
+			text-decoration: none;
+			border-radius: 4px;
+			font-size: 0.95rem;
+			transition: background 0.2s ease;
+		}
+
+		.session-link:hover {
+			background: #15a589;
+		}
+
+		.session-link.disabled {
+			background: #bdc3c7;
+			cursor: not-allowed;
+			pointer-events: none;
+		}
+
+		.coming-soon {
+			color: #95a5a6;
+			font-style: italic;
+			font-size: 0.9rem;
+		}
+
+		.footer {
+			margin-top: 3rem;
+			padding-top: 2rem;
+			border-top: 1px solid #ecf0f1;
+			color: #7f8c8d;
+			font-size: 0.9rem;
+		}
+
+		.footer a {
+			color: #3498db;
+			text-decoration: none;
+		}
+
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		.info-box {
+			background: #e8f5e9;
+			border-left: 4px solid #18bc9c;
+			padding: 1rem 1.5rem;
+			margin-bottom: 2rem;
+			border-radius: 4px;
+		}
+
+		.info-box strong {
+			color: #2c3e50;
+		}
+	</style>
+	<style>
+		.pending { background:#fff8e1; border-left:4px solid #f0ad4e; padding:1rem 1.5rem;
+			margin-bottom:2rem; border-radius:4px; }
+		.break-row { background:#fdecea; border-left:4px solid #e74c3c; padding:0.85rem 1.5rem;
+			border-radius:4px; margin-bottom:1rem; color:#922b21; font-weight:600; }
+		.slot { background:#fafafa; border:1px dashed #cfd8dc; border-radius:6px; padding:1rem 1.25rem; }
+		.slot .session-number { color:#7f8c8d; font-size:0.8rem; letter-spacing:0.06em; font-weight:700; }
+		.slot .slot-date { color:#34495e; font-weight:600; margin:0.15rem 0 0.4rem; }
+		.slot .slot-tbd { color:#95a5a6; font-style:italic; font-size:0.9rem; }
+		.single-note { color:#b9770e; font-size:0.85rem; font-style:italic; margin-top:0.5rem; }
+		.carried { margin-top:1rem; }
+		.carried table { width:100%; border-collapse:collapse; font-size:0.92rem; }
+		.carried th, .carried td { text-align:left; padding:0.5rem 0.6rem; border-bottom:1px solid #ecf0f1; }
+		.carried th { color:#7f8c8d; font-weight:600; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; }
+		.carried a { color:#18bc9c; text-decoration:none; font-weight:600; }
+		.carried a:hover { text-decoration:underline; }
+		.tag { display:inline-block; background:#eef2f7; color:#5d6d7e; border-radius:3px;
+			padding:0.1rem 0.45rem; font-size:0.78rem; margin-left:0.35rem; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="breadcrumb">
+			<a href="../index.html">All Courses</a> &rsaquo; SSC 490
+		</div>
+
+		<h1>SSC 490-005: AI Workflows &amp; Organizational Intelligence</h1>
+		<div class="course-meta">Fall 2026 &bull; Michigan State University &bull; Jesse Flores &amp; Maya Craft</div>
+
+		<div class="course-description">
+			Project-based course in which student teams build a working AI system for a real
+			business partner &mdash; moving from primitives (prompts, embeddings, models) through
+			compositions (retrieval, vector search, multi-modal) into deployment (agents, skills,
+			automated workflows). Students hold their own Claude.ai Team seats and API keys this term.
+		</div>
+
+		<div class="info-box">
+			<strong>Semester shape:</strong> Tuesday / Thursday, 80 minutes &bull; <strong>28 sessions</strong>
+			across 15 weeks &bull; Classes begin Aug 31, 2026 &bull; Last day of classes Dec 11 &bull;
+			Finals Dec 14&ndash;18.
+		</div>
+
+		<div class="pending">
+			<strong>&#9888; Arc under design.</strong> Dates and session numbers below are final and
+			will not move. Session <em>titles and content</em> are not yet assigned &mdash; the Fall
+			arc is being rebuilt around the pilot&rsquo;s delivered path, and the partner project shape
+			differs from Spring. The 23 decks carried over from the SSC 493 pilot are listed at the
+			bottom as source material awaiting remap.
+		</div>
+
+		<h2>Fall 2026 Session Grid</h2>
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 1</span>
+				<span class="week-dates">Aug 31 – Sep 4</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 1</div>
+					<div class="slot-date">Tue Sep 1</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 2</div>
+					<div class="slot-date">Thu Sep 3</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 2</span>
+				<span class="week-dates">Sep 7 – 11</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 3</div>
+					<div class="slot-date">Tue Sep 8</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 4</div>
+					<div class="slot-date">Thu Sep 10</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+			<div class="coming-soon">Labor Day Mon Sep 7 — university closed (no Tu/Th impact)</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 3</span>
+				<span class="week-dates">Sep 14 – 18</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 5</div>
+					<div class="slot-date">Tue Sep 15</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 6</div>
+					<div class="slot-date">Thu Sep 17</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 4</span>
+				<span class="week-dates">Sep 21 – 25</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 7</div>
+					<div class="slot-date">Tue Sep 22</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 8</div>
+					<div class="slot-date">Thu Sep 24</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 5</span>
+				<span class="week-dates">Sep 28 – Oct 2</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 9</div>
+					<div class="slot-date">Tue Sep 29</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 10</div>
+					<div class="slot-date">Thu Oct 1</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 6</span>
+				<span class="week-dates">Oct 5 – 9</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 11</div>
+					<div class="slot-date">Tue Oct 6</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 12</div>
+					<div class="slot-date">Thu Oct 8</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 7</span>
+				<span class="week-dates">Oct 12 – 16</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 13</div>
+					<div class="slot-date">Tue Oct 13</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 14</div>
+					<div class="slot-date">Thu Oct 15</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 8</span>
+				<span class="week-dates">Oct 19 – 23</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 15</div>
+					<div class="slot-date">Tue Oct 20</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 16</div>
+					<div class="slot-date">Thu Oct 22</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 9</span>
+				<span class="week-dates">Oct 26 – 30</span>
+			</div>
+			<div class="break-row">FALL BREAK Mon–Tue Oct 26–27 — single-session week</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 17</div>
+					<div class="slot-date">Thu Oct 29</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="single-note">Single-session week &mdash; no paired build day</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 10</span>
+				<span class="week-dates">Nov 2 – 6</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 18</div>
+					<div class="slot-date">Tue Nov 3</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 19</div>
+					<div class="slot-date">Thu Nov 5</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 11</span>
+				<span class="week-dates">Nov 9 – 13</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 20</div>
+					<div class="slot-date">Tue Nov 10</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 21</div>
+					<div class="slot-date">Thu Nov 12</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 12</span>
+				<span class="week-dates">Nov 16 – 20</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 22</div>
+					<div class="slot-date">Tue Nov 17</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 23</div>
+					<div class="slot-date">Thu Nov 19</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 13</span>
+				<span class="week-dates">Nov 23 – 27</span>
+			</div>
+			<div class="break-row">THANKSGIVING Thu–Fri Nov 26–27 — single-session week</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 24</div>
+					<div class="slot-date">Tue Nov 24</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="single-note">Single-session week &mdash; no paired build day</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 14</span>
+				<span class="week-dates">Nov 30 – Dec 4</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 25</div>
+					<div class="slot-date">Tue Dec 1</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 26</div>
+					<div class="slot-date">Thu Dec 3</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Week 15</span>
+				<span class="week-dates">Dec 7 – 11</span>
+			</div>
+			<div class="sessions-grid">
+				<div class="session-card slot">
+					<div class="session-number">SESSION 27</div>
+					<div class="slot-date">Tue Dec 8</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+				<div class="session-card slot">
+					<div class="session-number">SESSION 28</div>
+					<div class="slot-date">Thu Dec 10</div>
+					<div class="slot-tbd">Title &amp; content TBD</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="week-section">
+			<div class="week-header">
+				<span class="week-title">Finals Week</span>
+				<span class="week-dates">Dec 14 &ndash; 18</span>
+			</div>
+			<div class="coming-soon">Use TBD &mdash; the pilot delivered to partners in the final class session rather than during finals.</div>
+		</div>
+
+		<h2>Carried Over from the SSC 493 Pilot</h2>
+		<div class="course-description" style="margin-bottom:1rem;">
+			All 23 decks from Spring 2026, copied here and rebranded. These are source material,
+			not the Fall arc &mdash; session numbers below refer to the <em>pilot&rsquo;s</em>
+			numbering. Sessions 13&ndash;14 never existed (spring break) and the pilot ended at
+			Session 23. The original frozen copies remain at
+			<a href="../ssc-493/index.html">ssc-493</a>.
+		</div>
+		<div class="carried">
+			<table>
+				<tr><th>Pilot #</th><th>Title</th><th></th></tr>
+				<tr><td>1</td><td>Course Framework & Team Formation</td><td><a href="session-01-course-framework.html">View&nbsp;slides</a></td></tr>
+				<tr><td>2</td><td>Prompts & Language Models</td><td><a href="session-02-prompts-language-models.html">View&nbsp;slides</a></td></tr>
+				<tr><td>3</td><td>RAG Fundamentals & Custom GPTs</td><td><a href="session-03-rag-custom-gpts.html">View&nbsp;slides</a></td></tr>
+				<tr><td>4</td><td>APIs, HTTP Requests & Data Structures</td><td><a href="session-04-apis-http-json-n8n.html">View&nbsp;slides</a></td></tr>
+				<tr><td>5</td><td>Business Partner Discovery</td><td><a href="session-05-business-partner-discovery.html">View&nbsp;slides</a></td></tr>
+				<tr><td>6</td><td>Embeddings & Semantic Search</td><td><a href="session-06-embeddings-semantic-search.html">View&nbsp;slides</a></td></tr>
+				<tr><td>7</td><td>Vector Database Indexing Workshop</td><td><a href="session-07-vector-database-indexing-workshop.html">View&nbsp;slides</a></td></tr>
+				<tr><td>8</td><td>Vector DB Debrief + Baserow Workshop</td><td><a href="session-08-vector-db-debrief-baserow.html">View&nbsp;slides</a></td></tr>
+				<tr><td>9</td><td>The Problem → The Plan → The Pattern</td><td><a href="session-09-semantic-analysis-planning.html">View&nbsp;slides</a></td></tr>
+				<tr><td>10</td><td>Build &amp; Debug Workflows 1–2</td><td><a href="session-10-build-debug-workflows.html">View&nbsp;slides</a></td></tr>
+				<tr><td>10 <span class="tag">contingency</span></td><td>Contingency — Workflow 3</td><td><a href="session-10-contingency-workflow-3.html">View&nbsp;slides</a></td></tr>
+				<tr><td>11</td><td>Similarity Search — Workflow 3</td><td><a href="session-11-workflow-3-similarity-search.html">View&nbsp;slides</a></td></tr>
+				<tr><td>12</td><td>Report Generation, Mock Interview &amp; Evaluations</td><td><a href="session-12-report-generation.html">View&nbsp;slides</a></td></tr>
+				<tr><td>15</td><td>MCP Servers &amp; Content Pillar Generation</td><td><a href="session-15-mcp-servers-content-pillars.html">View&nbsp;slides</a></td></tr>
+				<tr><td>16</td><td>NotebookLM &amp; Interactive Reel Scripts</td><td><a href="session-16-notebooklm-reel-scripts.html">View&nbsp;slides</a></td></tr>
+				<tr><td>17</td><td>Context Engineering &amp; Building Your Reel Agent</td><td><a href="session-17-context-engineering-reel-agent.html">View&nbsp;slides</a></td></tr>
+				<tr><td>18</td><td>HeyGen Videos &amp; Submagic Enhancement</td><td><a href="session-18-heygen-submagic-video-production.html">View&nbsp;slides</a></td></tr>
+				<tr><td>19</td><td>Image Generation Fundamentals</td><td><a href="session-19-image-generation-fundamentals.html">View&nbsp;slides</a></td></tr>
+				<tr><td>20</td><td>Art Director Agent &amp; Brand Skills</td><td><a href="session-20-art-director-agent-carousels.html">View&nbsp;slides</a></td></tr>
+				<tr><td>21</td><td>Catch-Up, Fal.ai &amp; the Road to Delivery</td><td><a href="session-21-fal-ai-carousel-production.html">View&nbsp;slides</a></td></tr>
+				<tr><td>22</td><td>Image Editing, MCP Server &amp; Cleanup</td><td><a href="session-22-content-calendar-assembly.html">View&nbsp;slides</a></td></tr>
+				<tr><td>23</td><td>Partner Delivery Day</td><td><a href="session-23-partner-delivery-day.html">View&nbsp;slides</a></td></tr>
+			</table>
+		</div>
+
+		<div class="footer">
+			Planning vault: <code>~/vaults/courses/msu-ssc490-fall2026/</code> &bull;
+			authoritative calendar: <code>course-calendar.md</code><br>
+			Pilot record (frozen): <code>~/vaults/courses/msu-ai-course/</code> &bull;
+			<a href="../index.html">All courses</a>
+		</div>
+	</div>
+</body>
+</html>

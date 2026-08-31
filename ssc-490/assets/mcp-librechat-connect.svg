@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" width="1100" height="500" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#495057"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="500" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#495057">Connect LibreChat to MCP Servers</text>
+
+  <!-- LibreChat box -->
+  <rect x="40" y="120" width="160" height="60" rx="8" fill="#d0bfff" stroke="#7048e8" stroke-width="2"/>
+  <text x="120" y="156" text-anchor="middle" font-size="15" font-weight="bold" fill="#5f3dc4">LibreChat</text>
+
+  <!-- Arrow 1: LibreChat to n8n MCP Server Trigger -->
+  <line x1="200" y1="140" x2="310" y2="110" stroke="#495057" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrow 2: LibreChat to n8n MCP Server 2 -->
+  <line x1="200" y1="160" x2="310" y2="240" stroke="#495057" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- n8n MCP Server Trigger box -->
+  <rect x="315" y="75" width="220" height="55" rx="8" fill="#dee2e6" stroke="#495057" stroke-width="2"/>
+  <text x="425" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#343a40">n8n MCP Server Trigger</text>
+
+  <!-- n8n MCP Server 2 box -->
+  <rect x="315" y="220" width="220" height="55" rx="8" fill="#dee2e6" stroke="#495057" stroke-width="2"/>
+  <text x="425" y="253" text-anchor="middle" font-size="14" font-weight="bold" fill="#343a40">n8n MCP Server 2</text>
+
+  <!-- Connector lines from MCP Server Trigger down to tool boxes -->
+  <line x1="365" y1="130" x2="365" y2="170" stroke="#495057" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="425" y1="130" x2="425" y2="170" stroke="#495057" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="485" y1="130" x2="485" y2="170" stroke="#495057" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Tool boxes row under MCP Server Trigger -->
+  <rect x="310" y="175" width="110" height="38" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5"/>
+  <text x="365" y="199" text-anchor="middle" font-size="12" font-weight="bold" fill="#1864ab">GET Themes</text>
+
+  <rect x="430" y="175" width="110" height="38" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5"/>
+  <text x="485" y="199" text-anchor="middle" font-size="12" font-weight="bold" fill="#1864ab">GET Pillars</text>
+
+  <rect x="550" y="175" width="120" height="38" rx="6" fill="#a5d8ff" stroke="#1971c2" stroke-width="1.5"/>
+  <text x="610" y="199" text-anchor="middle" font-size="12" font-weight="bold" fill="#1864ab">CREATE Pillar</text>
+
+  <!-- Extra connector for CREATE Pillar (offset) -->
+  <line x1="535" y1="107" x2="610" y2="170" stroke="#495057" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Connector from MCP Server 2 down to SEARCH Qdrant -->
+  <line x1="425" y1="275" x2="425" y2="310" stroke="#495057" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- SEARCH Qdrant box -->
+  <rect x="365" y="315" width="130" height="38" rx="6" fill="#b2f2bb" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="430" y="339" text-anchor="middle" font-size="12" font-weight="bold" fill="#1b7d32">SEARCH Qdrant</text>
+
+  <!-- Instruction callout boxes -->
+  <!-- Callout 1 -->
+  <rect x="710" y="65" width="370" height="70" rx="8" fill="#fff3bf" stroke="#e8c700" stroke-width="1"/>
+  <text x="725" y="85" font-size="13" fill="#495057" font-weight="bold">1.</text>
+  <text x="740" y="85" font-size="13" fill="#495057">Work with an LLM to review your themes,</text>
+  <text x="740" y="102" font-size="13" fill="#495057">research competitors, and provide an</text>
+  <text x="740" y="119" font-size="13" fill="#495057">assessment on what pillar content</text>
+  <text x="740" y="133" font-size="13" fill="#495057">should be generated</text>
+
+  <!-- Callout 2 -->
+  <rect x="710" y="155" width="370" height="58" rx="8" fill="#fff3bf" stroke="#e8c700" stroke-width="1"/>
+  <text x="725" y="178" font-size="13" fill="#495057" font-weight="bold">2.</text>
+  <text x="740" y="178" font-size="13" fill="#495057">Make sure the LLM verifies they don&apos;t</text>
+  <text x="740" y="195" font-size="13" fill="#495057">already have content around that pillar</text>
+
+  <!-- Callout 3 -->
+  <rect x="710" y="233" width="370" height="70" rx="8" fill="#fff3bf" stroke="#e8c700" stroke-width="1"/>
+  <text x="725" y="256" font-size="13" fill="#495057" font-weight="bold">3.</text>
+  <text x="740" y="256" font-size="13" fill="#495057">The LLM should UPDATE your Baserow</text>
+  <text x="740" y="273" font-size="13" fill="#495057">database with new pillars, descriptions,</text>
+  <text x="740" y="290" font-size="13" fill="#495057">resources, and analysis</text>
+</svg>

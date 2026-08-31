@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 6: Embeddings & Semantic Search - SSC 490</title>
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/white.css" id="theme">
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title slide -->
+            <section>
+                <h2>SSC 490: AI Workflows & Organizational Intelligence</h2>
+                <h3>Session 6: Embeddings & Semantic Search</h3>
+                <p>Fall 2026 &middot; <em>session mapping pending</em></p>
+            </section>
+
+            <!-- Load markdown content -->
+            <section data-markdown="markdown/session-06-embeddings-semantic-search.md"
+                     data-separator="^\r?\n---\r?\n$"
+                     data-separator-vertical="^\r?\n;;;\r?\n$"
+                     data-separator-notes="^Note:">
+            </section>
+        </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js"></script>
+
+    <script>
+        Reveal.initialize({
+            hash: true,
+            pdfSeparateFragments: false,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+
+        // Initialize visualizations after reveal is ready
+        Reveal.on('ready', () => {
+            // 2D Vector Plot
+            const vectorCanvas = document.getElementById('vectorPlot2D');
+            if (vectorCanvas) {
+                new Chart(vectorCanvas, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'cat',
+                            data: [{x: 4, y: 1}],
+                            backgroundColor: '#7c3aed',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }, {
+                            label: 'dog',
+                            data: [{x: 4.5, y: 2}],
+                            backgroundColor: '#0369a1',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }, {
+                            label: 'tiger',
+                            data: [{x: 0.5, y: 4}],
+                            backgroundColor: '#dc2626',
+                            pointRadius: 10,
+                            pointHoverRadius: 12
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Domestication →',
+                                    font: { size: 16, weight: 'bold' }
+                                },
+                                min: 0,
+                                max: 5,
+                                ticks: { stepSize: 1 }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Size →',
+                                    font: { size: 16, weight: 'bold' }
+                                },
+                                min: 0,
+                                max: 5,
+                                ticks: { stepSize: 1 }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    font: { size: 14 },
+                                    usePointStyle: true
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: (${context.parsed.x}, ${context.parsed.y})`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 3D Vector Plot
+            const vectorDiv3D = document.getElementById('vectorPlot3D');
+            if (vectorDiv3D) {
+                const data = [{
+                    type: 'scatter3d',
+                    mode: 'markers+text',
+                    x: [4, 4.5, 0.5, 0, 0],
+                    y: [1, 2, 4, 5, 3],
+                    z: [4, 4, 5, 1, 5],
+                    text: ['cat', 'dog', 'tiger', 'elephant', 'jaguar'],
+                    textposition: 'top center',
+                    marker: {
+                        size: 12,
+                        color: ['#7c3aed', '#0369a1', '#dc2626', '#a3a3a3', '#f97316'],
+                        opacity: 0.8
+                    }
+                }];
+
+                const layout = {
+                    scene: {
+                        xaxis: {
+                            title: {
+                                text: 'Domestication →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Size →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
+                        zaxis: {
+                            title: {
+                                text: 'Carnivore →',
+                                font: { size: 14, color: '#374151', family: 'Arial' }
+                            },
+                            range: [0, 5],
+                            backgroundcolor: 'white',
+                            gridcolor: '#e5e7eb'
+                        },
+                        camera: {
+                            eye: { x: 1.5, y: 1.5, z: 1.3 }
+                        }
+                    },
+                    margin: { l: 0, r: 0, b: 0, t: 0 },
+                    showlegend: false,
+                    height: 500
+                };
+
+                Plotly.newPlot(vectorDiv3D, data, layout, {responsive: true});
+            }
+
+            // Cosine Similarity Plot with vectors and angles
+            const cosineDiv = document.getElementById('cosinePlot');
+            if (cosineDiv) {
+                // Define vectors (using same coordinates from 2D plot)
+                const vectors = {
+                    cat: { x: 4, y: 1, color: '#7c3aed', name: 'cat' },
+                    dog: { x: 4.5, y: 2, color: '#0369a1', name: 'dog' },
+                    tiger: { x: 0.5, y: 4, color: '#dc2626', name: 'tiger' }
+                };
+
+                // Create arrow traces (lines from origin to each point)
+                const arrowTraces = Object.values(vectors).map(v => ({
+                    type: 'scatter',
+                    mode: 'lines+markers+text',
+                    x: [0, v.x],
+                    y: [0, v.y],
+                    line: { color: v.color, width: 4 },
+                    marker: {
+                        size: [0, 14],
+                        color: v.color,
+                        symbol: ['circle', 'arrow'],
+                        angleref: 'previous'
+                    },
+                    text: ['', v.name],
+                    textposition: 'top center',
+                    textfont: { size: 16, color: v.color, family: 'Arial Black' },
+                    showlegend: false,
+                    hoverinfo: 'text',
+                    hovertext: `${v.name}: (${v.x}, ${v.y})`
+                }));
+
+                // Origin point
+                const originTrace = {
+                    type: 'scatter',
+                    mode: 'markers+text',
+                    x: [0],
+                    y: [0],
+                    marker: { size: 10, color: '#374151' },
+                    text: ['origin'],
+                    textposition: 'bottom center',
+                    textfont: { size: 12, color: '#6b7280' },
+                    showlegend: false,
+                    hoverinfo: 'skip'
+                };
+
+                // Calculate angles for arcs
+                const dogAngle = Math.atan2(vectors.dog.y, vectors.dog.x) * 180 / Math.PI;
+                const catAngle = Math.atan2(vectors.cat.y, vectors.cat.x) * 180 / Math.PI;
+                const tigerAngle = Math.atan2(vectors.tiger.y, vectors.tiger.x) * 180 / Math.PI;
+
+                const layout = {
+                    xaxis: {
+                        title: 'Domestication →',
+                        range: [-0.5, 5.5],
+                        zeroline: true,
+                        zerolinewidth: 2,
+                        zerolinecolor: '#d1d5db'
+                    },
+                    yaxis: {
+                        title: 'Size →',
+                        range: [-0.5, 4.5],
+                        zeroline: true,
+                        zerolinewidth: 2,
+                        zerolinecolor: '#d1d5db'
+                    },
+                    shapes: [
+                        // Arc between dog and cat (small angle)
+                        {
+                            type: 'path',
+                            path: `M 0.8,0 A 0.8,0.8 0 0,1 ${0.8*Math.cos(catAngle*Math.PI/180)},${0.8*Math.sin(catAngle*Math.PI/180)}`,
+                            line: { color: '#16a34a', width: 3 }
+                        },
+                        // Arc between cat and tiger (large angle)
+                        {
+                            type: 'path',
+                            path: `M ${1.2*Math.cos(catAngle*Math.PI/180)},${1.2*Math.sin(catAngle*Math.PI/180)} A 1.2,1.2 0 0,1 ${1.2*Math.cos(tigerAngle*Math.PI/180)},${1.2*Math.sin(tigerAngle*Math.PI/180)}`,
+                            line: { color: '#dc2626', width: 3 }
+                        }
+                    ],
+                    annotations: [
+                        // Small angle annotation (dog-cat)
+                        {
+                            x: 1.2,
+                            y: 0.5,
+                            text: 'Small angle<br>Similarity: 0.85',
+                            showarrow: false,
+                            font: { size: 14, color: '#16a34a', family: 'Arial' },
+                            bgcolor: 'rgba(220, 252, 231, 0.9)',
+                            bordercolor: '#16a34a',
+                            borderwidth: 2,
+                            borderpad: 8
+                        },
+                        // Large angle annotation (cat-tiger)
+                        {
+                            x: 0.3,
+                            y: 2.5,
+                            text: 'Large angle<br>Similarity: 0.25',
+                            showarrow: false,
+                            font: { size: 14, color: '#dc2626', family: 'Arial' },
+                            bgcolor: 'rgba(254, 226, 226, 0.9)',
+                            bordercolor: '#dc2626',
+                            borderwidth: 2,
+                            borderpad: 8
+                        }
+                    ],
+                    margin: { l: 60, r: 20, b: 60, t: 20 },
+                    height: 400,
+                    plot_bgcolor: 'white',
+                    paper_bgcolor: 'white'
+                };
+
+                const allTraces = [...arrowTraces, originTrace];
+                Plotly.newPlot(cosineDiv, allTraces, layout, {responsive: true});
+            }
+        });
+    </script>
+</body>
+</html>

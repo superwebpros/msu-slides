@@ -2,7 +2,31 @@
 
 ## Overview
 
-This is a RevealJS presentation repository for Michigan State University course slides. Slides are tightly coupled with an Obsidian vault located at `/Users/jesseflores/vaults/courses/msu-ai-course/`. Always maintain bi-directional linking between slides and vault content.
+This is a RevealJS presentation repository for Michigan State University course slides. Slides are
+tightly coupled with Obsidian vaults under `/Users/jesseflores/vaults/courses/`. Always maintain
+bi-directional linking between slides and vault content.
+
+## Current State (updated 2026-08-31)
+
+| Course dir | Course | Semester | Vault | Status |
+|---|---|---|---|---|
+| `ssc-490/` | SSC 490-005 | **Fall 2026** | `~/vaults/courses/msu-ssc490-fall2026/` | **ACTIVE** |
+| `ssc-493/` | SSC 493 | Spring 2026 | `~/vaults/courses/msu-ai-course/` | Frozen pilot — do not edit |
+
+**Work in `ssc-490/`.** It was cloned from `ssc-493/` on 2026-08-31 and rebranded; all 23 pilot
+decks are present as source material. The Fall arc is still being designed, so session filenames
+still carry the *pilot's* numbering and the HTML wrappers say "session mapping pending" instead of
+a date. When the Fall arc lands, remap sessions to the 28-slot Fall grid in the vault's
+`course-calendar.md` (authoritative) and update `ssc-490/index.html`.
+
+`ssc-493/` is the honest record of what was actually taught in the pilot — and it is a *better*
+record than the pilot vault's lesson plans, which stop before Session 21. Read it; don't change it.
+
+> [!important] Frontmatter convention below is aspirational, not actual
+> The YAML front matter documented in "Create Markdown Content File" is **not present in any
+> existing deck**. Every `ssc-493/markdown/*.md` and `ssc-490/markdown/*.md` file starts directly
+> with slide content. Metadata lives in the HTML wrapper's title slide instead. Either adopt the
+> frontmatter deliberately going forward or ignore it — but don't assume it's there.
 
 ## Directory Structure
 
@@ -16,13 +40,14 @@ This is a RevealJS presentation repository for Michigan State University course 
 
 Example:
 ```
-msu-ai-course/
-├── index.html
-├── session-01-ai-fundamentals.html
-├── session-02-systems-thinking.html
-└── markdown/
-    ├── session-01-ai-fundamentals.md
-    └── session-02-systems-thinking.md
+ssc-490/
+├── index.html                          # course-level index
+├── session-01-course-framework.html    # HTML wrapper
+├── session-02-prompts-language-models.html
+├── assets/                             # course-specific images, SVGs, QR codes
+└── markdown/                           # slide content
+    ├── session-01-course-framework.md
+    └── session-02-prompts-language-models.md
 ```
 
 ## Creating New Lesson Slides
@@ -35,13 +60,13 @@ Use this format with YAML front matter:
 ```markdown
 ---
 title: "Session 1: Understand AI Models"
-course: "msu-ai-course"
+course: "ssc-490"
 week: 1
 session: 1
 date: "2026-01-13"
 duration: 80
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md#Week 1 Session 1"
-published_slide_url: "https://slides.example.com/msu-ai-course/session-01-ai-fundamentals.html"
+obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ssc490-fall2026/course-calendar.md#Session 1"
+published_slide_url: "https://msu-slides.superwebpros.com/ssc-490/session-01-course-framework.html"
 learning_objectives:
   - Understand what AI models are
   - How tokens, training, and inference work
@@ -146,12 +171,13 @@ Template:
 
 ### 3. Update Obsidian Vault
 
-Add slide link to the corresponding session in `/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md`:
+Add slide link to the corresponding session in the ACTIVE course vault's calendar
+(`/Users/jesseflores/vaults/courses/msu-ssc490-fall2026/course-calendar.md` for Fall 2026):
 
 ```markdown
 | Week | Session | Date | Learning Objectives | Slides |
 |------|---------|------|---------------------|--------|
-| 1 | 1 | 2026-01-13 | Understand AI Models | [View Slides](../../Sites/msu/msu-slides/msu-ai-course/session-01-ai-fundamentals.html) |
+| 1 | 1 | 2026-01-13 | Understand AI Models | [View Slides](../../Sites/msu/msu-slides/ssc-490/session-01-course-framework.html) |
 ```
 
 ### 4. Update Course Index
@@ -198,7 +224,7 @@ gulp css-themes
 
 Serve from custom directory:
 ```bash
-gulp serve --root ./msu-ai-course --port 9000
+gulp serve --root ./ssc-490 --port 9000
 ```
 
 ## Code Style Guidelines
@@ -293,9 +319,15 @@ Map these to slide sections with `---` separators.
 
 ## Reference Files
 
-**Obsidian Vault:**
-- `/Users/jesseflores/vaults/courses/msu-ai-course/course-calendar.md` - Master schedule
-- `/Users/jesseflores/vaults/courses/msu-ai-course/course-proposal.md` - Course overview
+**Obsidian Vault — active course (Fall 2026, SSC 490-005):**
+- `~/vaults/courses/msu-ssc490-fall2026/README.md` - start here
+- `~/vaults/courses/msu-ssc490-fall2026/course-calendar.md` - **authoritative** dates & session numbering
+- `~/vaults/courses/msu-ssc490-fall2026/course-facts.md` - enrollment, staffing, infra, funding
+- `~/vaults/courses/msu-ssc490-fall2026/course-arc.md` - semester arc (in design)
+
+**Obsidian Vault — frozen pilot (Spring 2026, SSC 493):**
+- `~/vaults/courses/msu-ai-course/` - read-only historical record
+- `~/vaults/courses/msu-ai-course/course-proposal.md` - original course overview
 
 **Example Presentations:**
 - `/Users/jesseflores/Sites/swp/pro-slides-v2/` - Production multi-presentation repo
