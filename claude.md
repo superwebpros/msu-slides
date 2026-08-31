@@ -10,8 +10,8 @@ bi-directional linking between slides and vault content.
 
 | Course dir | Course | Semester | Vault | Status |
 |---|---|---|---|---|
-| `ssc-490/` | SSC 490-005 | **Fall 2026** | `~/vaults/courses/msu-ssc490-fall2026/` | **ACTIVE** |
-| `ssc-493/` | SSC 493 | Spring 2026 | `~/vaults/courses/msu-ai-course/` | Frozen pilot — do not edit |
+| `ssc-490/` | SSC 490-005 | **Fall 2026** | `~/vaults/courses/msu/msu-ssc490-fall2026/` | **ACTIVE** |
+| `ssc-493/` | SSC 493 | Spring 2026 | `~/vaults/courses/msu/msu-ai-course/` | Frozen pilot — do not edit |
 
 **Work in `ssc-490/`.** It was cloned from `ssc-493/` on 2026-08-31 and rebranded; all 23 pilot
 decks are present as source material. The Fall arc is still being designed, so session filenames
@@ -65,7 +65,7 @@ week: 1
 session: 1
 date: "2026-01-13"
 duration: 80
-obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu-ssc490-fall2026/course-calendar.md#Session 1"
+obsidian_vault_link: "/Users/jesseflores/vaults/courses/msu/msu-ssc490-fall2026/course-calendar.md#Session 1"
 published_slide_url: "https://msu-slides.superwebpros.com/ssc-490/session-01-course-framework.html"
 learning_objectives:
   - Understand what AI models are
@@ -172,7 +172,7 @@ Template:
 ### 3. Update Obsidian Vault
 
 Add slide link to the corresponding session in the ACTIVE course vault's calendar
-(`/Users/jesseflores/vaults/courses/msu-ssc490-fall2026/course-calendar.md` for Fall 2026):
+(`/Users/jesseflores/vaults/courses/msu/msu-ssc490-fall2026/course-calendar.md` for Fall 2026):
 
 ```markdown
 | Week | Session | Date | Learning Objectives | Slides |
@@ -320,14 +320,14 @@ Map these to slide sections with `---` separators.
 ## Reference Files
 
 **Obsidian Vault — active course (Fall 2026, SSC 490-005):**
-- `~/vaults/courses/msu-ssc490-fall2026/README.md` - start here
-- `~/vaults/courses/msu-ssc490-fall2026/course-calendar.md` - **authoritative** dates & session numbering
-- `~/vaults/courses/msu-ssc490-fall2026/course-facts.md` - enrollment, staffing, infra, funding
-- `~/vaults/courses/msu-ssc490-fall2026/course-arc.md` - semester arc (in design)
+- `~/vaults/courses/msu/msu-ssc490-fall2026/README.md` - start here
+- `~/vaults/courses/msu/msu-ssc490-fall2026/course-calendar.md` - **authoritative** dates & session numbering
+- `~/vaults/courses/msu/msu-ssc490-fall2026/course-facts.md` - enrollment, staffing, infra, funding
+- `~/vaults/courses/msu/msu-ssc490-fall2026/course-arc.md` - semester arc (in design)
 
 **Obsidian Vault — frozen pilot (Spring 2026, SSC 493):**
-- `~/vaults/courses/msu-ai-course/` - read-only historical record
-- `~/vaults/courses/msu-ai-course/course-proposal.md` - original course overview
+- `~/vaults/courses/msu/msu-ai-course/` - read-only historical record
+- `~/vaults/courses/msu/msu-ai-course/course-proposal.md` - original course overview
 
 **Example Presentations:**
 - `/Users/jesseflores/Sites/swp/pro-slides-v2/` - Production multi-presentation repo

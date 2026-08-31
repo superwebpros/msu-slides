@@ -25,27 +25,20 @@ As you come in and get settled, take a moment to reflect on your own experiences
 
 **What we'll cover today:**
 
-1. Get to know each of you a bit
-2. How models work & differ
-3. Hands-on: Multi-model prompting lab
-4. Wrap & preview
+<div style="font-size: 21px; line-height: 2; margin: 30px 0;">
+
+1. How models work & differ — <span style="color: #6b7280;">25 min</span><br>
+2. Hands-on: Multi-model prompting lab — <span style="color: #7c3aed;"><strong>50 min</strong></span><br>
+3. Wrap & preview — <span style="color: #6b7280;">5 min</span>
+
+</div>
+
+<div style="margin-top: 30px; font-size: 20px; color: #15803d;">
+Most of today is <strong>your hands on the keyboard</strong>, not me talking.
+</div>
 
 Note:
-Today's packed with hands-on work. We'll start by getting to know each other, then dive into understanding how models work, and spend most of our time experimenting with different prompting strategies across multiple models.
-
----
-
-## Get to Know Each Other
-
-**Let's go around the room - share briefly:**
-
-1. Your name
-2. Where you're from
-3. Your major
-4. What is your ideal post-grad job?
-
-Note:
-This is informal - just want to get a sense of who everyone is and where you're headed. We'll be working together all semester, so let's start building that rapport.
+We did introductions on Tuesday, so today we get straight to work. Short lecture up front, then a full fifty minutes in the lab. I want you to have time to actually read what the models give you back - that's where the learning is. Last cohort rushed and it cost them.
 
 ---
 
@@ -194,8 +187,24 @@ They don't directly "mean" anything human-readable—they're just mathematical v
 
 ## Why this Matters
 
-- Larger models (120B) are generally smarter and more capable but require expensive GPUs, cost more to run, and respond slower.
-- Smaller models (7B, 13B) are faster, cheaper, and can run on consumer hardware but are less capable.
+- Larger open-weight models (e.g. **GPT-OSS-120B**) are generally more capable but require expensive GPUs, cost more to run, and respond slower.
+- Smaller open-weight models (e.g. **GPT-OSS-20B**) are faster, cheaper, and can run on consumer hardware but are less capable.
+
+;;;
+
+## A Caveat You Need to Carry
+
+**Nobody publishes parameter counts for the frontier models anymore.**
+
+Anthropic, OpenAI, and Google do not disclose how big Claude, GPT, or Gemini are.
+
+<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
+So use <strong>price and latency</strong> as your observable proxies for "size."<br>
+A model that costs 25x more per output token is telling you something.
+</div>
+
+Note:
+This is important and it trips people up. You'll read "GPT is a trillion parameters" on the internet - that's a rumor, not a spec sheet. The only models with published parameter counts are the open-weight ones you can download, like the GPT-OSS family. For everything else, the price sheet is the closest thing you get to a size chart. Expensive and slow usually means big. Cheap and fast usually means small or heavily distilled.
 
 ;;;
 
@@ -210,47 +219,48 @@ They don't directly "mean" anything human-readable—they're just mathematical v
 
 <div style="font-size: 17px; line-height: 1.6; margin: 20px 0;">
 
-| Category | Parameter Range | Examples | Strengths | Weaknesses |
-|----------|----------------|----------|-----------|------------|
-| **Frontier** | 120B+ | GPT-5.2, Claude Opus | Best reasoning, complex tasks | Expensive, slower |
-| **Balanced** | 20-70B | Claude Sonnet, Llama 70B | Good quality, reasonable cost | Not best at everything |
-| **Fast/Small** | 7-20B | Claude Haiku, Gemini Flash | Very fast, very cheap | Less capable on hard tasks |
-| **Thinking** | Varies | GPT-5.2 Pro, Claude Thinking | Extended reasoning | Very expensive, very slow |
+| Category | What it means | Examples (Aug 2026) | Strengths | Weaknesses |
+|----------|---------------|---------------------|-----------|------------|
+| **Frontier** | Top of a lab's lineup | Claude Opus 5, GPT-5.6 | Best reasoning, complex tasks | Expensive, slower |
+| **Balanced** | The everyday workhorse | Claude Sonnet 5, GPT-5.4 | Good quality, reasonable cost | Not best at everything |
+| **Fast/Small** | Cheap enough to run at volume | Claude Haiku 4.5, Gemini 3.7 Flash, GPT-OSS-20B | Very fast, very cheap | Less capable on hard tasks |
+| **Thinking** | Reasons before it answers | Claude Fable 5, GPT-5.4 Pro | Extended reasoning | Very expensive, very slow |
 
 </div>
 
 <div style="margin-top: 30px; font-size: 19px; color: #7c3aed;">
-**Key insight:** You can't just use the biggest model for everything - cost & speed matter
+<strong>Key insight:</strong> You can't just use the biggest model for everything - cost & speed matter
 </div>
 
 Note:
-This framework helps you categorize models. Frontier models are the most capable but expensive. Balanced models hit a sweet spot for most tasks. Fast models are great for high-volume simple tasks. Thinking models spend extra compute time reasoning through problems. The trap is thinking "just use GPT-4o for everything" - you'll blow your budget fast.
+This framework helps you categorize models, and the framework outlives any specific name in that Examples column. Frontier models are the most capable but expensive. Balanced models hit a sweet spot for most tasks. Fast models are great for high-volume simple tasks. Thinking models spend extra compute reasoning before they answer - on some of these, like Fable 5, the thinking is always on and you can't turn it off. Note how fast that Examples column ages: every model in it is newer than this course's first offering, eight months ago. Learn the categories, not the names.
 
 ;;;
 
-## Model Pricing: January 2026
+## Model Pricing: August 2026
 
 <div style="font-size: 14px; margin: 20px 0;">
 
 | Provider | Model | Category | Input (per 1M) | Output (per 1M) | Use Case |
 |----------|-------|----------|----------------|-----------------|----------|
-| **OpenAI** | GPT-5.2 Pro | Frontier | $21.00 | $168.00 | Advanced reasoning, research |
-| **OpenAI** | GPT-5.2 | Frontier | $1.75 | $14.00 | Complex reasoning, creative writing |
-| **OpenAI** | GPT-5 mini | Balanced | $0.25 | $2.00 | General purpose, cost-sensitive |
-| **Anthropic** | Claude Opus 4.5 | Frontier | $5.00 | $25.00 | Technical precision, long documents |
-| **Anthropic** | Claude Sonnet 4.5 | Balanced | $3.00 | $15.00 | Best quality/cost balance |
+| **OpenAI** | GPT-5.4 Pro | Thinking | $30.00 | $180.00 | Deep research, hardest problems |
+| **Anthropic** | Claude Fable 5 | Thinking | $10.00 | $50.00 | Long-horizon reasoning |
+| **Anthropic** | Claude Opus 5 | Frontier | $5.00 | $25.00 | Technical precision, long documents |
+| **OpenAI** | GPT-5.6 | Frontier | $4.00 | $20.00 | Complex reasoning, creative writing |
+| **OpenAI** | GPT-5.4 | Balanced | $2.50 | $15.00 | General purpose |
+| **Anthropic** | Claude Sonnet 5 | Balanced | $2.00 | $10.00 | Best quality/cost balance |
 | **Anthropic** | Claude Haiku 4.5 | Fast | $1.00 | $5.00 | High-volume, speed-critical |
-| **Google** | Gemini 2.0 Flash | Fast | $0.10 | $0.40 | Ultra-high volume, multimodal |
-| **Groq** | Llama 3.3 70B | Balanced | $0.59 | $0.79 | Fast inference, open source |
+| **Google** | Gemini 3.7 Flash | Fast | $0.75 | $3.75 | High volume, multimodal |
+| **Groq** | GPT-OSS-120B | Fast | $0.15 | $0.60 | Fast inference, open weights |
 
 </div>
 
 <div style="margin-top: 20px; font-size: 18px; color: #6b7280;">
-<strong>Note:</strong> Prices current as of Jan 2026. Batch processing offers 50% discounts on most providers.
+<strong>Note:</strong> Published list prices as of Aug 31, 2026. Batch processing offers 50% discounts on most providers. <em>Check the price sheet yourself before you quote a number - this table will be wrong by Thanksgiving.</em>
 </div>
 
 Note:
-This is real current pricing. Notice the ranges - Claude Opus is 62x more expensive than Gemini Flash for output tokens ($25 vs $0.40). But Opus is worth it when you need maximum quality. For your semester projects, you'll learn to mix models - use frontier models for critical content, fast models for bulk operations. Batch processing can cut costs in half if you're not in a rush.
+This is real current pricing, pulled the week before class. Look at the spread: GPT-5.4 Pro costs three hundred times what GPT-OSS-120B costs per output token. Three hundred. But Pro is worth it when you need maximum quality on a hard problem. For your semester projects you'll learn to mix models - frontier for the critical content, fast models for bulk operations. Batch processing cuts costs in half if you're not in a rush. And notice the date on this slide: last spring's version of this deck said January 2026 and every single row on it is now obsolete. Pricing and model lineups turn over about every quarter. Get in the habit of checking.
 
 ---
 
@@ -285,7 +295,7 @@ This is real current pricing. Notice the ranges - Claude Opus is 62x more expens
 </div>
 
 Note:
-This is crucial to understand. The model is only half the equation. Your skill as a prompter - how you frame the task, provide context, show examples - is equally important. You can get amazing results from a small model with expert prompting, and terrible results from GPT-4o with lazy prompting. Today's lab teaches you the prompting half.
+This is crucial to understand. The model is only half the equation. Your skill as a prompter - how you frame the task, provide context, show examples - is equally important. You can get amazing results out of Haiku with expert prompting, and terrible results out of Opus 5 with lazy prompting. Today's lab teaches you the prompting half.
 
 ---
 
@@ -300,37 +310,85 @@ This is crucial to understand. The model is only half the equation. Your skill a
 7. Tweak parameters
 
 Note:
-These three techniques work across all models. Zero-shot is fastest but least controlled. Few-shot guides the model with examples. Chain-of-thought makes the model show its reasoning, which often improves accuracy for complex tasks.
+These seven work across every model - they're not tricks for one product. We'll practice six of them in the lab in a few minutes; the seventh, tweaking parameters, is your take-home. Two to flag now: chain-of-thought makes the model show its reasoning, which usually improves accuracy on anything with constraints in it. And inviting participation - asking the model to interview you - is the one most people never try and the one that changes output the most.
 
 ---
 
-## Live Demo: Course LibreChat
+## You Have Three Ways In
 
-<div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 36px 0; font-size: 16px;">
+
+<div style="background: #ede9fe; padding: 24px; border-radius: 10px;">
+<h4 style="color: #5b21b6; margin-top: 0;">Claude.ai Team</h4>
+<p>Your own seat. Where you'll live for most of the semester - Projects, Skills, Connectors.</p>
+</div>
+
+<div style="background: #dbeafe; padding: 24px; border-radius: 10px;">
+<h4 style="color: #1e3a8a; margin-top: 0;">Your API keys</h4>
+<p>Anthropic + OpenAI, issued to you. For anything you build in code or automate.</p>
+</div>
+
+<div style="background: #fef3c7; padding: 24px; border-radius: 10px;">
+<h4 style="color: #92400e; margin-top: 0;">Course LibreChat</h4>
+<p>Many providers behind one interface. <strong>Best tool for side-by-side comparison</strong> - which is exactly today.</p>
+</div>
+
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: center; max-width: 1000px; margin: 20px auto;">
 <div>
-<h3>Access your course AI workspace:</h3>
+<h3 style="margin-top: 0;">Today we're in LibreChat:</h3>
 <a href="https://msu-ai.superwebpros.com/">https://msu-ai.superwebpros.com</a>
 </div>
 <div style="text-align: center;">
-<img src="assets/librechat-qr.png" alt="LibreChat QR Code" style="width: 320px; height: 320px;">
+<img src="assets/librechat-qr.png" alt="LibreChat QR Code" style="width: 260px; height: 260px;">
 </div>
 </div>
 
 Note:
-This is your AI workspace for the entire course. You have access to all major models in one place. No need to juggle multiple accounts or API keys. I'll demo how to switch between models and run the same prompt across different options.
+Big change from the pilot cohort: you each have your own Claude.ai Team seat and your own Anthropic and OpenAI API keys. LibreChat is not the only door anymore, and from Session 3 onward most of your work moves to Claude.ai. But for today LibreChat is still the right tool, because it's the one place you can run the same prompt against models from different providers and see them next to each other. Let me demo switching models, and I'll come back to comparison mode a bit later.
 
 ---
 
 ## Hands-On: Multi-Model Prompting Lab
 
-**Now it's time to experiment:**
+**Now it's time to experiment — 50 minutes:**
 
 <div style="margin-top: 40px; font-size: 22px; color: #7c3aed;">
 <strong>Goal:</strong> Develop intuition for model selection and prompting strategies
 </div>
 
+<div style="margin-top: 30px; font-size: 19px; color: #15803d;">
+<strong>Read the outputs.</strong> Actually read them. That's the assignment.
+</div>
+
 Note:
-This is individual work. You'll get hands-on with LibreChat and complete structured exercises adapted from Anthropic's prompt engineering tutorial. The workbook will guide you through specific prompting challenges across multiple models.
+This is individual work in LibreChat, structured exercises adapted from Anthropic's prompt engineering tutorial. One thing I want to say up front: do not race. The cohort that took this last spring got the most out of it when they slowed down and actually read what came back. If you finish an exercise early, go deeper on it rather than jumping ahead.
+
+;;;
+
+## Three Models. One Per Category.
+
+<div style="font-size: 19px; margin: 30px auto; max-width: 880px;">
+
+| Category | Model | Why it's here |
+|----------|-------|---------------|
+| **Frontier** | Claude Opus 5 | Ceiling of what's possible right now |
+| **Balanced** | GPT-5.4 | Different lab, mid-tier — isolates *provider* from *tier* |
+| **Fast** | Claude Haiku 4.5 | Cheap and quick — is it good enough? |
+
+</div>
+
+<div style="margin-top: 24px; font-size: 18px; color: #6b7280;">
+<strong>Finished early?</strong> Add <strong>Claude Sonnet 5</strong> — it completes the Anthropic ladder (Opus → Sonnet → Haiku) so you can see tier effects with the provider held constant.
+</div>
+
+<div style="margin-top: 20px; font-size: 17px; color: #92400e;">
+If a name in the dropdown doesn't match exactly, pick the nearest model in that category and note which one you used.
+</div>
+
+Note:
+Three models, not six. Last cohort tried six and it was too many - people were still reading model four when we needed to move on. Three is enough to see the pattern. The comparison you care about is across the categories, not between two specific product names. And write down which models you actually used, because your reflection needs to name them.
 
 ;;;
 
@@ -360,11 +418,9 @@ What to observe:
 Generate a marketing plan for local Pilates studio.
 ```
 
-Models to use:
-
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+<div style="background: #fef3c7; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px;">
+<strong>Run these one at a time.</strong> Opus 5, then GPT-5.4, then Haiku 4.5 — three separate chats. Yes, it's tedious. That's deliberate.
+</div>
 
 ---
 
@@ -388,11 +444,32 @@ What to observe:
 Generate a marketing plan for local Pilates studio. Only give me solutions I can self-implement for less than $2,000/month
 ```
 
-Models to use:
+<div style="background: #fef3c7; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px;">
+Still one at a time. Same three models: <strong>Opus 5 → GPT-5.4 → Haiku 4.5</strong>.
+</div>
 
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+---
+
+## Stop. There's a Faster Way.
+
+<div style="max-width: 900px; margin: 40px auto; font-size: 21px; line-height: 1.8;">
+
+You just ran the same prompt six times by hand.
+
+LibreChat has a **comparison mode** that fans one prompt out to several models at once and shows you the answers side by side.
+
+</div>
+
+<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
+Use it for the rest of the lab.
+</div>
+
+<div style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+So why did I make you do it the slow way first?
+</div>
+
+Note:
+I withheld this on purpose, and I'm telling you that I withheld it. If I'd shown you comparison mode at the top of the hour, you'd have skimmed three columns of text and learned nothing about how any individual model behaves. Running them one at a time forces you to sit with each answer on its own terms. Now that you've felt the tedium, the efficiency is obvious and you've still got the habit of reading carefully. That's the trade. This worked well with last spring's cohort and I'm doing it again.
 
 ---
 
@@ -414,11 +491,9 @@ What to observe:
 Generate a marketing plan for my local Pilates studio. Think step-by-step through the time and money constraints I may have. Then, give me a plan I can self-implement for less than $2,000/month. Justify your reasoning.
 ```
 
-Models to use:
+Models to use — **comparison mode**:
 
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
 
 ---
 
@@ -439,11 +514,9 @@ What to observe
 I need to generate a marketing plan for my local Pilates studio. I would like you to help me put it together. Please ask me questions to answer so that I can get a high-quality personalized plan for my studio.
 ```
 
-Models to use:
+Models to use — **comparison mode**:
 
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
 
 ---
 
@@ -461,14 +534,12 @@ What to observe:
 
 #### Prompt
 ```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer.
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
 ```
 
-Models to use:
+Models to use — **comparison mode**:
 
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
 
 ;;;
 
@@ -476,7 +547,7 @@ Models to use:
 
 ### Prompt
 ```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer. Use a tone based on the following examples:
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer. Use a tone based on the following examples:
 <example>
 Try the low-impact fitness method Jennifer Aniston calls a “game-changer.”
 
@@ -515,10 +586,19 @@ Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a d
 
 👉 Try any bundle risk-free for 30 days — streaming included.
 </example>
+```
+
+Models to use — **comparison mode**:
+
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
 
 ---
 
-## Exercise 6
+## Exercise 6 — Optional / Take-Home
+
+<div style="background: #f3f4f6; border-left: 5px solid #6b7280; padding: 20px 28px; margin: 30px auto; max-width: 900px; font-size: 19px;">
+We are <strong>not</strong> doing this one in class. It's here so you can run it on your own — and it's a good thing to reference in your reflection.
+</div>
 
 > Principle: Tweak parameters
 
@@ -527,7 +607,10 @@ What to observe:
 - How does temperature affect the quality and tone of response?
 - Are some models more sensitive than others?
 
-_Note: turn off thinking to see this in effect_
+_Note: turn off thinking/reasoning to see this in effect_
+
+Note:
+Straight talk: this exercise did not fit in eighty minutes last time and I'm not going to pretend it does. It's genuinely interesting, so I'm giving it to you as a take-home instead of rushing exercises 1 through 5 to squeeze it in. If you run it, bring it up in your reflection.
 
 ;;;
 
@@ -535,19 +618,18 @@ _Note: turn off thinking to see this in effect_
 
 ### Prompt
 ```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in at the start of the New Year. Please write me a Facebook ad for this offer.
+I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
 ```
 
 Temperatures to use: 1, 0.2
 
 Models to use:
-- Opus 4.5 vs GPT 5.2
-- Sonnet 4.5 vs Gemini Flash 2.5
-- Haiku 4.5 vs Groq/OpenAI OSS-120B
+
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
 
 ---
 
-## Exercise 7
+## Exercise 7 — Back in the Room
 
 > Principle: Use Roles
 
@@ -603,14 +685,22 @@ Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a d
 </example>
 ```
 
+Models to use — **comparison mode**:
+
+- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
+
+Note:
+This one goes in the system prompt field, not the chat box - that's the whole point of a role. Then send a plain one-line request as your user message and notice how much less you had to say to get a good ad. Flag me down if you can't find where the system prompt lives in LibreChat.
+
 ---
 
 ## Key Takeaways
 
 **Model Selection:**
 - Models come in categories: Frontier, Balanced, Fast, Thinking
-- Parameters = learned patterns stored in the model
-- Pricing varies 62x - match model to task complexity
+- Parameters = learned patterns stored in the model — and for frontier models, nobody publishes the count
+- Pricing varies **300x** across the table we looked at — match model to task complexity
+- The categories are durable. The model names are not.
 
 ;;;
 
@@ -621,42 +711,64 @@ Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a d
 - Use chains of thought for complex reasoning
 - Separate instructions from data
 - Assign roles to shape responses
-- Tweak parameters (temperature) for creativity vs consistency
+- Tweak parameters (temperature) for creativity vs consistency — *your take-home*
 
 > Prompting matters as much as model choice
 
 
 Note:
-These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective prompting. The seven principles you practiced today work across all models and will serve as your foundation for the rest of the course.
+These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective prompting. Six of these seven you practiced in the room; the temperature one is yours to run on your own. All seven work across every model and they're the foundation for the rest of the course.
 
 ---
 
-## Preview: Session 3 - RAG & Custom GPTs
+## Preview: Session 3 - Claude Projects
 
-**Tuesday we'll cover:**
+**Tuesday, September 8:**
 
 <div style="font-size: 20px; line-height: 2; margin: 40px 0;">
 
-**Rg (RAG)** - Retrieval Augmented Generation<br>
-How to give AI "memory" with your documents<br>
-Hands-on: Build a Custom GPT with your resume
+**Claude Projects** - persistent context you build once and reuse<br>
+Give a model your documents, your instructions, your standing context<br>
+Hands-on: start the <strong>Project for your own résumé & career coaching</strong>
 
 </div>
 
-<div style="margin-top: 40px; font-size: 22px; color: #15803d;">
+<div style="margin-top: 30px; font-size: 19px; color: #6b7280;">
+This is the start of <strong>Milestone 1</strong> — due Session 6, Sep 17.
+</div>
+
+<div style="margin-top: 30px; font-size: 22px; color: #15803d;">
 Today: steering models • Next: giving them memory
 </div>
 
 Note:
-Today you learned to steer models with prompts and understand their differences. But they don't remember things between conversations. Next session introduces RAG - how to upload your own documents and give AI access to specific knowledge. You'll build something immediately useful.
+Today you learned to steer models with prompts. But every chat you opened today started from nothing - the model has no idea who you are or what you told it an hour ago. Next session we fix that with Claude Projects: you load in documents and standing instructions once, and every conversation in that Project starts from there. And you're not building a toy - you're building the career-coaching system for yourself, with your own résumé in it. That Project is Milestone 1, due Session 6. Bring your résumé, and anything else that describes your work - portfolio, writing samples, job descriptions you're interested in.
+
+---
+
+## Bring to Session 3
+
+**On your laptop, Tuesday:**
+
+<div style="font-size: 20px; line-height: 2; margin: 30px 0;">
+
+- Your **résumé** (current version, any format)
+- Any **writing samples** or portfolio pieces
+- 2-3 **job postings** you'd actually want
+- Your Claude.ai Team login, working
+
+</div>
+
+Note:
+Please don't show up Tuesday planning to write your résumé during class. Bring what you have, even if it's rough - rough is fine, the Project will help you improve it. And confirm your Claude.ai Team seat works before Tuesday. Email me tonight if it doesn't.
 
 ---
 
 ## Deliverable: Class Learnings
 
-**Due before Session 3:**
+**Due before Session 3 (Tuesday, Sep 8):**
 
 - Reflection: **Session 2 - Prompting & Model Selection**
 
 Note:
-Focus on why models behave differently, not just which one you prefer. Evidence of testing multiple strategies. Clear reasoning about tradeoffs. This is your first individual deliverable.
+Focus on why models behave differently, not just which one you prefer. Name the specific models you tested. Evidence of trying multiple strategies. Clear reasoning about tradeoffs. This is your first individual deliverable.
