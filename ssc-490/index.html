@@ -195,6 +195,10 @@
 		.slot .session-number { color:#7f8c8d; font-size:0.8rem; letter-spacing:0.06em; font-weight:700; }
 		.slot .slot-date { color:#34495e; font-weight:600; margin:0.15rem 0 0.4rem; }
 		.slot .slot-tbd { color:#95a5a6; font-style:italic; font-size:0.9rem; }
+		.ready { background:#f0fdf4; border:1px solid #86efac; }
+		.ready .slot-date { color:#15803d; }
+		.ready .session-title { font-weight:600; color:#14532d; margin:0.2rem 0 0.6rem; }
+		.pending-deck { color:#b45309; font-size:0.86rem; font-style:italic; }
 		.single-note { color:#b9770e; font-size:0.85rem; font-style:italic; margin-top:0.5rem; }
 		.carried { margin-top:1rem; }
 		.carried table { width:100%; border-collapse:collapse; font-size:0.92rem; }
@@ -230,7 +234,7 @@
 
 		<div class="pending">
 			<strong>&#9888; Arc under design.</strong> Dates and session numbers below are final and
-			will not move. Session <em>titles and content</em> are not yet assigned &mdash; the Fall
+			will not move. Sessions 1&ndash;8 are titled; decks are built as each week approaches. Later sessions are not yet assigned &mdash; the Fall
 			arc is being rebuilt around the pilot&rsquo;s delivered path, and the partner project shape
 			differs from Spring. The 23 decks carried over from the SSC 493 pilot are listed at the
 			bottom as source material awaiting remap.
@@ -243,15 +247,17 @@
 				<span class="week-dates">Aug 31 – Sep 4</span>
 			</div>
 			<div class="sessions-grid">
-				<div class="session-card slot">
+				<div class="session-card slot ready">
 					<div class="session-number">SESSION 1</div>
 					<div class="slot-date">Tue Sep 1</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Course Framework &amp; Team Formation</div>
+					<a href="session-01-course-framework.html" class="session-link">View slides</a>
 				</div>
-				<div class="session-card slot">
+				<div class="session-card slot ready">
 					<div class="session-number">SESSION 2</div>
 					<div class="slot-date">Thu Sep 3</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Prompts &amp; Language Models</div>
+					<a href="session-02-prompts-language-models.html" class="session-link">View slides</a>
 				</div>
 			</div>
 		</div>
@@ -265,15 +271,17 @@
 				<div class="session-card slot">
 					<div class="session-number">SESSION 3</div>
 					<div class="slot-date">Tue Sep 8</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Claude Projects</div>
+					<div class="pending-deck">Deck not built yet</div>
 				</div>
 				<div class="session-card slot">
 					<div class="session-number">SESSION 4</div>
 					<div class="slot-date">Thu Sep 10</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Skills</div>
+					<div class="pending-deck">Deck not built yet</div>
 				</div>
 			</div>
-			<div class="coming-soon">Labor Day Mon Sep 7 — university closed (no Tu/Th impact)</div>
+			<div class="coming-soon">Labor Day Mon Sep 7 — university closed</div>
 		</div>
 
 		<div class="week-section">
@@ -285,12 +293,16 @@
 				<div class="session-card slot">
 					<div class="session-number">SESSION 5</div>
 					<div class="slot-date">Tue Sep 15</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Connectors — off-the-shelf</div>
+					<div class="pending-deck">Deck not built yet</div>
+					<div class="single-note">Jesse remote — Zoom</div>
 				</div>
 				<div class="session-card slot">
 					<div class="session-number">SESSION 6</div>
 					<div class="slot-date">Thu Sep 17</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Guest Lecture: Ethics + career project lab</div>
+					<div class="pending-deck">Deck not built yet</div>
+					<div class="single-note">Guest in person · M1 due</div>
 				</div>
 			</div>
 		</div>
@@ -304,12 +316,15 @@
 				<div class="session-card slot">
 					<div class="session-number">SESSION 7</div>
 					<div class="slot-date">Tue Sep 22</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Partner kickoff + APIs return</div>
+					<div class="pending-deck">Deck not built yet</div>
+					<div class="single-note">Partner day — may shift to S8/S9</div>
 				</div>
 				<div class="session-card slot">
 					<div class="session-number">SESSION 8</div>
 					<div class="slot-date">Thu Sep 24</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">APIs &amp; data sources</div>
+					<div class="pending-deck">Deck not built yet</div>
 				</div>
 			</div>
 		</div>
@@ -367,6 +382,7 @@
 					<div class="session-number">SESSION 14</div>
 					<div class="slot-date">Thu Oct 15</div>
 					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="single-note">M2 due</div>
 				</div>
 			</div>
 		</div>
@@ -401,7 +417,7 @@
 					<div class="session-number">SESSION 17</div>
 					<div class="slot-date">Thu Oct 29</div>
 					<div class="slot-tbd">Title &amp; content TBD</div>
-					<div class="single-note">Single-session week &mdash; no paired build day</div>
+					<div class="single-note">Single-session week — no paired build day</div>
 				</div>
 			</div>
 		</div>
@@ -421,6 +437,7 @@
 					<div class="session-number">SESSION 19</div>
 					<div class="slot-date">Thu Nov 5</div>
 					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="single-note">M3 due</div>
 				</div>
 			</div>
 		</div>
@@ -474,7 +491,8 @@
 					<div class="session-number">SESSION 24</div>
 					<div class="slot-date">Tue Nov 24</div>
 					<div class="slot-tbd">Title &amp; content TBD</div>
-					<div class="single-note">Single-session week &mdash; no paired build day</div>
+					<div class="single-note">M4 due</div>
+					<div class="single-note">Single-session week — no paired build day</div>
 				</div>
 			</div>
 		</div>
@@ -507,12 +525,15 @@
 				<div class="session-card slot">
 					<div class="session-number">SESSION 27</div>
 					<div class="slot-date">Tue Dec 8</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Handoff &amp; showcase</div>
+					<div class="pending-deck">Deck not built yet</div>
+					<div class="single-note">M5 due</div>
 				</div>
 				<div class="session-card slot">
 					<div class="session-number">SESSION 28</div>
 					<div class="slot-date">Thu Dec 10</div>
-					<div class="slot-tbd">Title &amp; content TBD</div>
+					<div class="session-title">Retrospective</div>
+					<div class="pending-deck">Deck not built yet</div>
 				</div>
 			</div>
 		</div>
