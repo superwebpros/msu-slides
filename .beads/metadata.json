@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "msu_slides",
+  "project_id": "61b53e88-84c1-47dd-bed4-d5230c1967f0"
+}
