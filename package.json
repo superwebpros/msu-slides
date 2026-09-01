@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "gulp test",
+    "test:a11y": "node scripts/audit-a11y.js",
     "start": "gulp serve",
     "build": "gulp build"
   },

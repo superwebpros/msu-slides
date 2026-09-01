@@ -1,33 +1,20 @@
-<div style="text-align: center;">
-<h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Session 1: Course Framework & Team Formation</h1>
-
-<h2 style="font-size: 1.8rem; margin-bottom: 1rem;">SSC 490: AI Workflows & Organizational Intelligence</h2>
-
-<p style="font-size: 1.2rem;">Fall 2026 • Michigan State University</p>
-</div>
-
-Note:
-Welcome to SSC 490. Today we set up the frameworks we'll use for the next fifteen weeks. Two of them, and you'll hear about both before you leave. This semester you build AI systems - first for yourself, then with a real organization that's counting on you to show up.
-
----
-
 ## Check-In: What Do You Expect?
 
-<div style="display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: center; max-width: 1000px; margin: 40px auto;">
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: center; max-width: 900px; margin: 20px auto;">
 <div>
 <h3>Two questions:</h3>
-<ol style="font-size: 20px; line-height: 2;">
+<ol style="font-size: 18px; line-height: 1.8;">
 <li>What do you expect to get out of this class?</li>
 <li>Which AI tools have you used?</li>
 </ol>
-<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+<p style="margin-top: 20px; font-size: 16px; color: #6b7280;">
 Scan the QR code, or go to <strong>slido.com</strong> and enter<br>
-<strong style="font-size: 24px; color: #1d4ed8;">#4017 568</strong>
+<strong style="font-size: 22px; color: #1d4ed8;">#4017 568</strong>
 </p>
 </div>
 <div style="text-align: center;">
-<img src="assets/slido-s01.png" alt="Slido QR Code" style="width: 320px; height: 320px;">
-<div style="font-size: 13px; color: #9ca3af; margin-top: 8px; word-break: break-all;">app.sli.do/event/4h2Xu9BHz6SCGfPAtRbafo</div>
+<img src="assets/slido-s01.png" alt="Slido QR Code" style="width: 240px; height: 240px;">
+<div style="font-size: 12px; color: #9ca3af; margin-top: 6px; word-break: break-all;">app.sli.do/event/4h2Xu9BHz6SCGfPAtRbafo</div>
 </div>
 </div>
 
@@ -73,50 +60,79 @@ Here's the shape of today. We're going to spend real time up front getting to kn
 
 1. Your name
 2. Where you're from
-3. Your major
-4. What is your ideal post-grad job?
+3. Your major & why you chose it
+4. Expectations for the course
+5. Which AI tools do you use?
+6. What is your ideal post-grad job?
 
 Note:
 This is informal - just want to get a sense of who everyone is and where you're headed. We'll be working together all semester, so let's start building that rapport. And pay attention to that last one, because the first three weeks of this course are you building an AI system for your own career. The job you just named out loud is the thing that project points at.
 
 ---
 
+## The Real Goal: Professional Problem Solving
+
+<div style="background: #f8fafc; border-left: 5px solid #2563eb; padding: 18px 24px; border-radius: 8px; margin: 20px auto; max-width: 920px; text-align: left;">
+<p style="font-size: 21px; line-height: 1.5; color: #1e293b; margin: 0;">
+<strong>This course is not just about learning AI tools.</strong><br>
+It is about learning how to work <em>together as a team</em> to solve real problems in a <em>professional setting</em>.
+</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 950px; margin: 20px auto; text-align: left;">
+
+<div style="background: #eff6ff; padding: 18px; border-radius: 8px;">
+<h3 style="color: #1e40af; font-size: 18px; margin: 0 0 8px 0;">Team Accountability</h3>
+<p style="font-size: 14px; line-height: 1.5; color: #334155; margin: 0;">
+Collaborate reliably, communicate proactively, and carry your weight with your peers.
+</p>
+</div>
+
+<div style="background: #f5f3ff; padding: 18px; border-radius: 8px;">
+<h3 style="color: #6d28d9; font-size: 18px; margin: 0 0 8px 0;">Client Professionalism</h3>
+<p style="font-size: 14px; line-height: 1.5; color: #334155; margin: 0;">
+Engage real organizations with curiosity, structured communication, and respect.
+</p>
+</div>
+
+<div style="background: #f0fdf4; padding: 18px; border-radius: 8px;">
+<h3 style="color: #15803d; font-size: 18px; margin: 0 0 8px 0;">Working Solutions</h3>
+<p style="font-size: 14px; line-height: 1.5; color: #334155; margin: 0;">
+Deliver documented, tested prototypes that actually address client bottlenecks.
+</p>
+</div>
+
+</div>
+
+Note:
+I want to be clear about what this course is really for. You are going to learn technical tools — prompts, embeddings, vectors, automation. But the technical skills are only half of it. The real skill is professionalism: showing up for your team, communicating with real clients, figuring out what problem actually matters, and delivering something that works. That is what will separate you in your career.
+
+---
+
 ## What You'll Build This Semester
 
-**Two projects. Sequential. The second one is harder for a reason.**
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 25px auto; max-width: 950px;">
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 30px 0;">
-
-<div style="background: #ede9fe; padding: 25px; border-radius: 10px;">
-<h3 style="color: #7c3aed; margin-top: 0;">Weeks 1-3 &nbsp;·&nbsp; You</h3>
-<p style="font-size: 18px; line-height: 1.7;">
-A <strong>Claude Project</strong> for your own résumé and career coaching.
-</p>
-<ul style="font-size: 17px; line-height: 1.7;">
-<li>You are the client</li>
-<li>You already know the domain cold</li>
-<li>The only unknown is the technology</li>
+<div style="background: #ede9fe; padding: 20px 24px; border-radius: 10px;">
+<h3 style="color: #7c3aed; margin: 0 0 10px 0;">Foundation</h3>
+<p style="font-size: 18px; line-height: 1.5; margin-bottom: 10px;"><strong>Personal Career Coach</strong> (Claude Project)</p>
+<ul style="font-size: 16px; line-height: 1.6; margin: 0; padding-left: 20px;">
+<li>Domain you know cold</li>
+<li>Master prompts, models & project context</li>
+<li>Working tool you'll actually use</li>
 </ul>
-<p style="margin-bottom: 0; font-size: 17px; color: #7c3aed;"><strong>You'll actually use this one.</strong></p>
 </div>
 
-<div style="background: #dcfce7; padding: 25px; border-radius: 10px;">
-<h3 style="color: #15803d; margin-top: 0;">Weeks 4-15 &nbsp;·&nbsp; A Real Organization</h3>
-<p style="font-size: 18px; line-height: 1.7;">
-With a <strong>partner organization</strong>, a working prototype that automates an internal process or workflow.
-</p>
-<ul style="font-size: 17px; line-height: 1.7;">
-<li>You don't know their domain</li>
-<li>You have to find the problem first</li>
-<li>Then build something that survives contact with real users</li>
+<div style="background: #dcfce7; padding: 20px 24px; border-radius: 10px;">
+<h3 style="color: #15803d; margin: 0 0 10px 0;">Implementation</h3>
+<p style="font-size: 18px; line-height: 1.5; margin-bottom: 10px;"><strong>Workflow Automation Prototype</strong></p>
+<ul style="font-size: 16px; line-height: 1.6; margin: 0; padding-left: 20px;">
+<li>Discover real organizational bottlenecks</li>
+<li>Map, anchor, and compose the solution</li>
+<li>Delivered & tested with real users</li>
 </ul>
-<p style="margin-bottom: 0; font-size: 17px; color: #15803d;"><strong>They'll actually test this one.</strong></p>
 </div>
 
-</div>
-
-<div style="text-align: center; font-size: 22px; color: #dc2626; margin-top: 20px;">
-<strong>Same method, twice. First on a domain you own, then on one you don't.</strong>
 </div>
 
 Note:
@@ -128,18 +144,17 @@ Same method both times. The first one is the rehearsal.
 
 ---
 
-## Business Partners: The Real Stakes
+## Real Projects with Community Partners
 
-<div style="text-align: center; font-size: 24px; margin: 20px 0 30px 0;">
+<div style="text-align: center; font-size: 22px; margin: 15px 0 20px 0;">
 <strong>Samaritas &nbsp;·&nbsp; CAMW &nbsp;·&nbsp; LEAP</strong><br>
-<span style="font-size: 18px; color: #6b7280;">MSU Career Office possible</span>
 </div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 20px 0;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 15px auto; max-width: 900px;">
 
-<div>
-<h3 style="color: #7c3aed;">What they provide</h3>
-<ul style="font-size: 18px; line-height: 1.8;">
+<div style="background: #f5f3ff; padding: 20px; border-radius: 8px;">
+<h3 style="color: #7c3aed; margin-top: 0; font-size: 20px;">What They Provide</h3>
+<ul style="font-size: 16px; line-height: 1.6; margin: 0; padding-left: 20px;">
 <li>Access to people, systems, and context</li>
 <li>Honest feedback while you build</li>
 <li>Real testing of what you hand them</li>
@@ -147,20 +162,15 @@ Same method both times. The first one is the rehearsal.
 </ul>
 </div>
 
-<div>
-<h3 style="color: #15803d;">What they receive</h3>
-<ul style="font-size: 18px; line-height: 1.8;">
+<div style="background: #f0fdf4; padding: 20px; border-radius: 8px;">
+<h3 style="color: #15803d; margin-top: 0; font-size: 20px;">What They Receive</h3>
+<ul style="font-size: 16px; line-height: 1.6; margin: 0; padding-left: 20px;">
 <li>A working <strong>prototype</strong> of an automated process</li>
 <li>Process documentation and training</li>
-<li>An honest ledger of what's unfinished</li>
-<li><strong>Several</strong> attacks on the same problem</li>
+<li>Training plan & handoff coordination</li>
 </ul>
 </div>
 
-</div>
-
-<div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center; font-size: 19px; color: #92400e;">
-<strong>Multiple teams per partner.</strong> Delivery is a showcase, not a single handoff — the partner sees a range of approaches to their problem.
 </div>
 
 Note:
@@ -172,14 +182,13 @@ Second thing, and I want to be blunt about it: what you build is a prototype, no
 
 ---
 
-## How We'll Get There: Course Structure
+## How We'll Get There
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 30px 0;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px auto; max-width: 900px;">
 
 <div>
-<h3>28 sessions across 15 weeks</h3>
+<h3>Class Structure</h3>
 <p style="font-size: 16px; line-height: 1.6;">
-Tue/Thu, 80 minutes. Fall Break costs us a Tuesday, Thanksgiving costs us a Thursday.<br><br>
 <strong>A typical session:</strong><br>
 • Review & debug what you built<br>
 • New concept + live demo<br>
@@ -189,17 +198,13 @@ Tue/Thu, 80 minutes. Fall Break costs us a Tuesday, Thanksgiving costs us a Thur
 </div>
 
 <div>
-<h3>This is a lab, not a lecture</h3>
+<h3>Think "lab", not "lecture"</h3>
 <p style="font-size: 16px; line-height: 1.6;">
-I demo, then you build. The ratio shifts across the semester — heavier instruction early, near-pure studio by the time you're composing.<br><br>
+Attendance is <em>strongly, strongly, <b>strongly</b></em> recommended. But, you are adults. You'll be treated as such.<br><br>
 <strong>Outside class:</strong> team meetings, partner contact, reading.
 </p>
 </div>
 
-</div>
-
-<div style="text-align: center; font-size: 20px; color: #7c3aed; margin-top: 20px;">
-<em>"Students learn when they work, not when I yammer."</em>
 </div>
 
 Note:
@@ -224,7 +229,7 @@ The structure of a session is: we look at what you built, I show you something n
 </div>
 
 <div style="background: #dbeafe; padding: 25px; border-radius: 10px;">
-<h3 style="color: #1e3a8a; margin-top: 0;">Ours (I run these)</h3>
+<h3 style="color: #1e3a8a; margin-top: 0;">Platform</h3>
 <ul style="font-size: 17px; line-height: 1.8;">
 <li><strong>LibreChat</strong> — many models, one window</li>
 <li><strong>n8n</strong> — workflow automation</li>
@@ -248,13 +253,13 @@ One rule about the keys: they cost money and the budget is finite. Treat them li
 
 <div style="font-size: 16px;">
 
-| Weeks | Unit | Focus | What You'll Build | Milestone |
-|-------|------|-------|-------------------|-----------|
-| **1-3** | **Foundations & Career Project** | Consumer AI, done well | Claude Project for your own résumé & career coaching | **M1** — Career project |
-| **4-7** | **I·M** — Inventory & Map | What does the org know, and where does AI actually pay? | Data-source inventory, API/pipeline reps, ranked possibility map | **M2** — Inventory & Mapping |
-| **8-10** | **P·A** — Process & Anchor | Can we do this by hand, twice, the same way? | Process maps, control structures, data flows, grounded responses | **M3** — Process maps |
-| **11-13** | **C** — Compose | Build the thing | Working automation in the partner's hands for testing | **M4** — Working automation |
-| **14-15** | **T** — Track & Handoff | Iterate, then hand it over | Partner-tested revisions, training, debt ledger | **M5** — Training & handoff |
+| Weeks     | Unit                             | Focus                                                   | What You'll Build                                                | Milestone                    |
+| --------- | -------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------- |
+| **1-3**   | **Foundations & Career Project** | Consumer AI, done well                                  | Claude Project for your own résumé & career coaching             | **M1** — Career project      |
+| **4-7**   | **I·M** — Inventory & Map        | What does the org know, and where does AI actually pay? | Data-source inventory, API/pipeline reps, ranked possibility map | **M2** — Inventory & Mapping |
+| **8-10**  | **P·A** — Process & Anchor       | Can we do this by hand, twice, the same way?            | Process maps, control structures, data flows, grounded responses | **M3** — Process maps        |
+| **11-13** | **C** — Compose                  | Build the thing                                         | Working automation in the partner's hands for testing            | **M4** — Working automation  |
+| **14-15** | **T** — Track & Handoff          | Iterate, then hand it over                              | Partner-tested revisions, training, debt ledger                  | **M5** — Training & handoff  |
 
 </div>
 
@@ -271,7 +276,7 @@ The milestones are the five things you're formally assessed on. M1 is individual
 
 <div style="text-align: left; font-size: 17px; line-height: 1.7; margin: 25px 0;">
 
-**Weeks 1-3 — Foundations.** Prompts and models, then Claude Projects, Skills, and Connectors. You build a career-coaching system for *yourself*, so the only unknown is the technology. Ends with a working thing you'll actually use.
+**Weeks 1-3 — Foundations.** Prompts and models, then Claude Projects, Skills, and Connectors. You build a career-coaching system for _yourself_, so the only unknown is the technology. Ends with a working thing you'll actually use.
 
 **Weeks 4-7 — Inventory & Map.** Meet your partner. Find out what they know and where it lives — by connecting to it, not by making a list. Then rank where AI actually pays and pick **one** problem. This is the decision the whole rest of the semester rests on.
 
@@ -304,28 +309,44 @@ Weeks fourteen and fifteen you fix what they found, and you hand it over — inc
 
 ## Grading: The GWC Framework
 
-<div style="font-size: 18px; line-height: 1.6;">
+<p style="font-size: 18px; color: #6b7280; margin-bottom: 20px;">Evaluated as professionals across three dimensions:</p>
 
-**Three dimensions (inspired by Traction/EOS):**
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 1000px; margin: 20px auto; text-align: left;">
 
-**Get it:** Do you understand the concepts?
-- Comprehension checks throughout
-- Teammates rate: "Do they get it? Do they add value?"
+<div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border: 1px solid #bae6fd;">
+<h3 style="color: #0369a1; margin: 0 0 8px 0; font-size: 22px;">Get It</h3>
+<p style="font-size: 15px; color: #555; margin-bottom: 12px;"><em>Do you understand the problem & tools?</em></p>
+<ul style="font-size: 15px; line-height: 1.6; margin: 0; padding-left: 18px;">
+<li>Conceptual mastery & system thinking</li>
+<li>Understands client workflow & constraints</li>
+<li>Peer rating: "Adds clear value to our team"</li>
+</ul>
+</div>
 
-**Want it:** Are you engaged and contributing?
-- Turns work in on time
-- Participates actively in class
-- Shows initiative and ownership
+<div style="background: #f5f3ff; padding: 20px; border-radius: 8px; border: 1px solid #ddd6fe;">
+<h3 style="color: #6d28d9; margin: 0 0 8px 0; font-size: 22px;">Want It</h3>
+<p style="font-size: 15px; color: #555; margin-bottom: 12px;"><em>Are you professional & dependable?</em></p>
+<ul style="font-size: 15px; line-height: 1.6; margin: 0; padding-left: 18px;">
+<li>Shows up reliably for team & partners</li>
+<li>Proactive communication (no going dark)</li>
+<li>Takes ownership of outcomes & growth</li>
+</ul>
+</div>
 
-**Capacity:** Can you execute the skills?
-- Work meets quality standards
-- Technical implementation works
-- Applies feedback effectively
+<div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border: 1px solid #bbf7d0;">
+<h3 style="color: #15803d; margin: 0 0 8px 0; font-size: 22px;">Capacity</h3>
+<p style="font-size: 15px; color: #555; margin-bottom: 12px;"><em>Can you execute & deliver?</em></p>
+<ul style="font-size: 15px; line-height: 1.6; margin: 0; padding-left: 18px;">
+<li>Builds working, tested automations</li>
+<li>Applies peer & partner feedback</li>
+<li>Produces clear client documentation</li>
+</ul>
+</div>
 
 </div>
 
 Note:
-You're rated on these three dimensions: plus, plus-minus, or minus. This isn't about perfection - it's about effort, engagement, and growth. I'm looking for consistent progress.
+You're rated on these three dimensions: plus, plus-minus, or minus. This is about professional habits: showing up for your team, communicating proactively, and delivering solid work. The people who thrive are the ones who communicate clearly and take ownership.
 
 ---
 
@@ -348,7 +369,7 @@ You're rated on these three dimensions: plus, plus-minus, or minus. This isn't a
 <div style="background: #dbeafe; padding: 25px; border-radius: 10px;">
 <h3 style="color: #1e3a8a; margin-top: 0;">Small, frequent checks</h3>
 <p style="font-size: 16px; line-height: 1.7;">
-Near-daily. Short. Mostly completion-based.<br><br>
+Short. Mostly completion-based.<br><br>
 Not there to trip you up — there so that if you're off track, we both find out this week instead of in November.
 </p>
 </div>
@@ -372,7 +393,7 @@ Underneath that there's a much tighter cadence of small stuff. Near-daily, short
 
 **This is Pass / No Pass — no letter grades.**
 
-<div style="font-size: 19px; line-height: 1.9; margin: 30px 0;">
+<div style="font-size: 18px; line-height: 1.8; margin: 20px 0;">
 
 To pass SSC 490 you need to be solid across all of these:
 
@@ -385,8 +406,8 @@ To pass SSC 490 you need to be solid across all of these:
 
 </div>
 
-<div style="background: #fef3c7; padding: 18px; border-radius: 10px; font-size: 18px; color: #92400e; text-align: center;">
-Exact thresholds will be confirmed in the syllabus. If a number isn't in writing yet, I'm not going to make one up on slide fourteen.
+<div style="font-size: 16px; color: #6b7280; text-align: center; margin-top: 15px;">
+Exact thresholds are specified in the syllabus.
 </div>
 
 Note:
@@ -397,6 +418,34 @@ Six things, and honestly they collapse into one thing: do the work, do it with y
 I'm going to be straight with you about the numbers. Last year's version of this slide said "twelve of fourteen weekly deliverables." The structure changed this year — five milestones plus a frequent check layer instead of fourteen weekly deliverables — and I have not finalized the exact thresholds. They'll be in the syllabus in writing. I'd rather tell you that than invent a percentage right now and change it in three weeks.
 
 What I can tell you without any hedging: nobody who does the work and communicates fails this course. The people who get in trouble are the ones who go quiet.
+
+---
+
+## Support & Collaboration: Course Discord
+
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: center; max-width: 920px; margin: 20px auto; text-align: left;">
+
+<div>
+<h3 style="color: #5865F2; margin-top: 0; font-size: 22px;">Join the Class Discord</h3>
+<ul style="font-size: 16px; line-height: 1.8; margin: 15px 0; padding-left: 20px;">
+<li><strong>Fastest updates:</strong> Announcements post here first (often faster than D2L).</li>
+<li><strong>Direct messaging:</strong> Best place to reach me and ask questions anytime.</li>
+<li><strong>Team coordination:</strong> Collaborate with your group & share resources.</li>
+<li><strong>Important:</strong> <a href="https://www.youtube.com/watch?v=4RWs70KCHJM" target="_blank" style="color: #1d4ed8; text-decoration: underline;">Change server nickname</a> to your <strong>actual first & last name</strong> so we know who is who.</li>
+</ul>
+</div>
+
+<div style="text-align: center;">
+<img src="assets/discord-qr.png" alt="QR code to join the SSC 490 course Discord server" style="width: 220px; height: 220px; border-radius: 8px;">
+<div style="font-size: 14px; margin-top: 8px;">
+<a href="https://discord.gg/CHJ3Ed9bS" target="_blank" style="color: #1d4ed8; text-decoration: underline; font-weight: 600;">discord.gg/CHJ3Ed9bS</a>
+</div>
+</div>
+
+</div>
+
+Note:
+We'll use Discord as our primary hub for day-to-day communication, questions, and team discussions. I'll post quick announcements and tips here much faster than D2L. Scan the QR code or click the link to join right now. Please be sure to update your server nickname to your actual real name right away so we can easily connect your Discord identity to your teams and grading roster.
 
 ---
 
@@ -485,7 +534,8 @@ This is the problem we're solving. The AI landscape is overwhelming. Everyone's 
 </div>
 
 Note:
-Just like chemistry has the periodic table to organize elements into families with predictable properties, we're going to use a framework to organize all AI technologies. The Miro board above is interactive - you can zoom and pan. I'll walk you through the structure now.
+Disclaimer: There is no official AI periodic table like there is in chemistry. This is a mental model to put structure to the chaos.
+Once you understand this structure, you can decode any AI architecture, any product demo, or any vendor pitch. You'll see which elements they're using, how they connect, and what might be missing (like safety guardrails or data grounding). The Miro board above is interactive - you can zoom and pan. Let's walk through the structure.
 
 ---
 
@@ -533,11 +583,11 @@ These are the 5 families or groups. Elements in the same family have similar pro
 
 <div style="font-size: 18px;">
 
-| Element | Name | What It Is |
-|---------|------|------------|
-| **Pr** | Prompts | Instructions you give to AI |
-| **Em** | Embeddings | Numerical representations of meaning |
-| **Lg** | Large Language Models | The models themselves (ChatGPT, Claude, etc.) |
+| Element | Type      | Name                  | What It Is                                    |
+| ------- | --------- | --------------------- | --------------------------------------------- |
+| **Pr**  | Reactive  | Prompts               | Instructions you give to AI                   |
+| **Em**  | Retrieval | Embeddings            | Numerical representations of meaning          |
+| **Lg**  | Models    | Large Language Models | The models themselves (ChatGPT, Claude, etc.) |
 
 <div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
 Everything else in AI is built from combining these three primitives.
@@ -554,18 +604,20 @@ These are foundational. You'll work with prompts every single day. Embeddings ar
 
 <div style="font-size: 16px;">
 
-| Element | Name | Description |
-|---------|------|-------------|
-| **Fc** | Function Calling | AI calls external tools (APIs, databases) |
-| **Vx** | Vector Databases | Storage for semantic search |
-| **Rg** | RAG | Retrieval Augmented Generation - AI with "memory" |
-| **Gr** | Guardrails | Quality control and safety filters |
-| **Mm** | Multi-modal | Processing text, images, audio, video |
+| Element | Type          | Name             | Description                                       |
+| ------- | ------------- | ---------------- | ------------------------------------------------- |
+| **Fc**  | Reactive      | Function Calling | AI calls external tools (APIs, databases)         |
+| **Vx**  | Retrieval     | Vector Databases | Storage for semantic search                       |
+| **Rg**  | Orchestration | RAG              | Retrieval Augmented Generation - AI with "memory" |
+| **Gr**  | Validation    | Guardrails       | Quality control and safety filters                |
+| **Mm**  | Models        | Multi-modal      | Processing text, images, audio, video             |
 
 </div>
 
 Note:
-This is where things get practical. RAG lets AI access an organization's knowledge. Vector databases store embeddings for fast semantic search. Which of these you build depends on what your project needs - but you'll meet all of them.
+Compositions combine primitives into standard patterns.
+Notice that Row 1 had no orchestration element because you can't orchestrate just one thing — orchestration only emerges when combining pieces.
+RAG lets AI access private organizational knowledge, vector DBs store millions of embeddings for fast retrieval, and guardrails ensure the model doesn't leak data or output garbage. These 5 compositions power the vast majority of production AI systems today.
 
 ---
 
@@ -573,18 +625,21 @@ This is where things get practical. RAG lets AI access an organization's knowled
 
 <div style="font-size: 16px;">
 
-| Element | Name | Description |
-|---------|------|-------------|
-| **Ag** | Agents | Think-act-observe loops, autonomous AI |
-| **Ft** | Fine-Tuning | Training models on your specific data |
-| **Fw** | Frameworks | Platforms like N8N for orchestration |
-| **Rt** | Red Teaming | Adversarial testing to find vulnerabilities |
-| **Sm** | Small Models | Fast, cheap, specialized models |
+| Element | Type          | Name         | Description                                      |
+| ------- | ------------- | ------------ | ------------------------------------------------ |
+| **Ag**  | Reactive      | Agents       | Think-act-observe loops, autonomous AI           |
+| **Ft**  | Retrieval     | Fine-Tuning  | Training models on your specific data            |
+| **Fw**  | Orchestration | Frameworks   | Platforms like N8N / LangChain for orchestration |
+| **Rt**  | Validation    | Red Teaming  | Adversarial testing to find vulnerabilities      |
+| **Sm**  | Models        | Small Models | Fast, cheap, specialized models                  |
 
 </div>
 
 Note:
-Deployment is where theory becomes practice. You'll build agents that run without you sitting there. You'll use tools like n8n to orchestrate workflows. This row is where an idea turns into something that runs on its own - which is also where it starts breaking in interesting ways.
+Deployment takes compositions into real-world production.
+Look at Group 1 evolving: Prompt (control) → Function Calling (action) → Agents (autonomy).
+Look at Group 2 (memory timescales): Embeddings (encode meaning) → Vector DBs (store for search) → Fine-Tuning (bake memory directly into model weights).
+Frameworks provide the plumbing, Red Teaming conducts adversarial stress tests (jailbreaks, data exfiltration), and Small Models give fast, specialized execution without massive inference costs.
 
 ---
 
@@ -592,17 +647,22 @@ Deployment is where theory becomes practice. You'll build agents that run withou
 
 <div style="font-size: 16px;">
 
-| Element | Name | Description |
-|---------|------|-------------|
-| **Ma** | Multi-Agent | Specialized AIs working together |
-| **Sy** | Synthetic Data | Using AI to generate training data |
-| **In** | Interpretability | Understanding why AI makes decisions |
-| **Th** | Thinking Models | Models that reason step-by-step |
+| Element | Type       | Name             | Description                          |
+| ------- | ---------- | ---------------- | ------------------------------------ |
+| **Ma**  | Reactive   | Multi-Agent      | Specialized AIs working together     |
+| **Sy**  | Retrieval  | Synthetic Data   | Using AI to generate training data   |
+| **In**  | Validation | Interpretability | Understanding why AI makes decisions |
+| **Th**  | Models     | Thinking Models  | Models that reason step-by-step      |
 
 </div>
 
 Note:
-This row is evolving fastest. Multi-agent systems are becoming standard. Thinking models (like OpenAI's o1) spend time reasoning before answering. You'll experiment with these.
+Row 4 covers frontier capabilities evolving rapidly right now.
+Multi-agent systems coordinate multiple specialized AIs (researcher, writer, critic).
+Synthetic data generates training data as we approach the boundaries of human text on the internet.
+Interpretability peers inside the black box to identify neurons responsible for specific behaviors.
+Thinking models (like OpenAI o1/o3) scale test-time compute, reasoning through chains of thought before answering.
+Notice the empty gap in Row 4 under Orchestration: there is no clear consensus yet on what paradigm will succeed today's frameworks.
 
 ---
 
@@ -796,20 +856,27 @@ Models are like the noble gases in chemistry - stable foundations that everythin
 <div style="text-align: left; font-size: 18px; line-height: 1.8; margin: 30px 0;">
 
 **The Pattern:**
+
 1. **Em** (Embeddings) - Convert your documents to vectors
 2. **Vx** (Vector Database) - Store embeddings in Qdrant
 3. **Rg** (RAG) - User asks question → retrieve relevant docs → augment prompt
-4. **Lg** (LLM) - Generate answer grounded in your data
-5. **Gr** (Guardrails) - Wrap in safety filters
+4. **Pr** (Prompt) + **Lg** (LLM) - Generate answer grounded in your data
+5. **Gr** (Guardrails) - Wrap in safety filters & data leakage protection
 
 </div>
 
 <div style="text-align: center; font-size: 22px; color: #7c3aed; margin-top: 40px;">
-That's 5 elements working together = production AI chatbot
+That's 6 elements working together = enterprise production AI system
 </div>
 
 Note:
-This is a pattern you'll recognize all semester. Five elements, working together, producing something that no single element does alone. When we get to the Anchor stage with your partner, this is the shape a lot of that work takes - grounding an AI system in an organization's own information instead of whatever the model happened to memorize.
+This is a standard reaction in enterprise AI: 6 elements working together.
+
+1. Take documents and turn them into vectors with Embeddings (Em).
+2. Store them in a Vector Database (Vx).
+3. When a user asks a question, RAG (Rg) queries the database to retrieve relevant context.
+4. That context augments the Prompt (Pr), and the LLM (Lg) generates an answer grounded in private data.
+5. Guardrails (Gr) wrap the pipeline in runtime safety filters to prevent hallucinations and data exfiltration.
 
 ---
 
@@ -822,10 +889,11 @@ This is a pattern you'll recognize all semester. Five elements, working together
 **The Goal:** Book me a flight to Tokyo next month under $800
 
 **The Pattern:**
+
 1. **Ag** (Agent) - Breaks goal into steps (search flights → check calendar → compare prices → book)
 2. **Fc** (Function Calling) - Calls external APIs (flight search, calendar, payment)
 3. **Observe** - Gets results, decides next action
-4. **Fw** (Framework) - N8N orchestrates the whole loop
+4. **Fw** (Framework) - N8N / LangChain orchestrates the whole loop
 
 </div>
 
@@ -834,7 +902,7 @@ Think. Act. Observe. Repeat until goal achieved.
 </div>
 
 Note:
-This is what makes agents powerful. They don't just respond - they plan, take action, observe results, and keep going until the goal is met. And notice something: this only works because the goal decomposes into steps. An agent is a process with a model inside it. Hold that thought, because it's the whole argument of the second framework.
+An agent is an element that executes think-act-observe cycles toward a goal. It decomposes the objective, executes actions via Function Calling (Fc) across external APIs, observes the responses, and loops until the goal is achieved. An orchestration Framework (Fw) like n8n or LangChain provides the plumbing that makes this loop reliable.
 
 ---
 
@@ -852,7 +920,7 @@ A list of boxes we tick off one by one before December.
 <div style="background: #dcfce7; padding: 30px; border-radius: 10px;">
 <h3 style="color: #15803d; margin-top: 0;">What this table is</h3>
 <p style="font-size: 18px; line-height: 1.7; margin-bottom: 0;">
-A place to put <em>any</em> tool you meet — including the ones that don't exist yet.
+A mental model to audit, decode, and evaluate <em>any</em> AI architecture or pitch.
 </p>
 </div>
 
@@ -860,19 +928,18 @@ A place to put <em>any</em> tool you meet — including the ones that don't exis
 
 <div style="text-align: center; font-size: 21px; color: #7c3aed; margin-top: 20px;">
 We'll go deep on the elements your project actually needs.<br>
-<span style="font-size: 18px; color: #6b7280;">Which elements those are depends on the problem you pick.</span>
+<span style="font-size: 18px; color: #6b7280;">Which elements those are depends on the problem you need to solve .</span>
 </div>
 
 Note:
-One honest caveat before we move on.
+This table gives you a framework to evaluate and audit any AI solution or startup pitch:
+• What elements are they actually using?
+• What reactions are they running?
+• Are they missing a critical safety element (like guardrails or evaluation)?
+• Are they over-engineering the orchestration?
+• Are they using an expensive thinking model when a small, fast model would do the job?
 
-Last year I stood in this room and promised the pilot cohort we'd cover thirteen elements of this table. We didn't. We got through the ones the projects actually needed and the rest were name-checked at best. That's not a scheduling failure I'm going to repeat by making the same promise louder.
-
-So here's the reframe. This table is not a syllabus. It's a coordinate system. Its job is that when somebody at a party in five years says "we're doing agentic retrieval with a fine-tuned small model," you can locate that in the space instead of nodding. And when a tool launches next spring that none of us have heard of, you can put it somewhere.
-
-We'll go deep on the elements your project needs, and which ones those are, I genuinely don't know yet — because you haven't picked your problem. The table tells you where you are. It doesn't tell you where to go.
-
-That's the other framework's job.
+We'll go deep on the elements your partner project needs, and the table ensures you always know where you are.
 
 ---
 
@@ -903,43 +970,42 @@ The uncomfortable version of this: most of what you'll do for your partner this 
 
 ## IMPACT: The Six Stages
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 30px 0; font-size: 17px;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px auto; max-width: 900px; font-size: 15px;">
 
-<div style="background: #f0f9ff; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #1e3a8a;">I — Inventory</strong><br>
-What does the organization know, and where does it actually live?<br>
-<em style="color: #6b7280;">Connect to it. Don't just list it.</em>
+<div style="background: #f0f9ff; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #1e3a8a;">I — Inventory</strong><br>
+What does the organization know, and where does it live? Connect to it directly.
 </div>
 
-<div style="background: #dbeafe; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #1e3a8a;">M — Map</strong><br>
+<div style="background: #dbeafe; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #1e3a8a;">M — Map</strong><br>
 Where does AI actually pay? Rank the possibilities, then pick <strong>one</strong>.
 </div>
 
-<div style="background: #f0fdf4; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #15803d;">P — Process</strong><br>
+<div style="background: #f0fdf4; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #15803d;">P — Process</strong><br>
 Can two people do this by hand and get the same result? Write it down.
 </div>
 
-<div style="background: #dcfce7; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #15803d;">A — Anchor</strong><br>
+<div style="background: #dcfce7; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #15803d;">A — Anchor</strong><br>
 Ground it in the organization's real data and real constraints.
 </div>
 
-<div style="background: #ede9fe; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #7c3aed;">C — Compose</strong><br>
+<div style="background: #ede9fe; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #7c3aed;">C — Compose</strong><br>
 Build it. Narrow tools, structured output, errors that reach a human.
 </div>
 
-<div style="background: #ddd6fe; padding: 20px; border-radius: 10px;">
-<strong style="font-size: 21px; color: #7c3aed;">T — Track</strong><br>
+<div style="background: #ddd6fe; padding: 14px 18px; border-radius: 8px;">
+<strong style="font-size: 18px; color: #7c3aed;">T — Track</strong><br>
 Watch it in real use. Iterate. Hand it over honestly.
 </div>
 
 </div>
 
-<div style="text-align: center; font-size: 20px; color: #dc2626;">
-<strong>This is the spine of weeks 4 through 15.</strong> Go back and look at the unit names.
+<div style="text-align: center; font-size: 17px; color: #7c3aed; margin-top: 15px;">
+The spine of weeks 4 through 15: Inventory, Map, Process, Anchor, Compose, Track.
 </div>
 
 Note:
@@ -963,18 +1029,18 @@ Now go back and look at the unit names on the roadmap slide. I·M. P·A. C. T. T
 
 ## Hands-On: PrinciplesYou Assessment
 
-<div style="display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: center; max-width: 1000px; margin: 40px auto;">
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: center; max-width: 900px; margin: 20px auto;">
 
 <div>
 <h3>Next few minutes:</h3>
-<ol style="font-size: 18px; line-height: 2;">
+<ol style="font-size: 17px; line-height: 1.8;">
 <li>Scan QR code or visit principlesyou.com/assessment</li>
 <li>Complete the assessment (be honest!)</li>
 <li>Review your results</li>
-<li>Submit via D2L email</li>
+<li>Send me a PDF or screenshot via Discord DM</li>
 </ol>
 
-<p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
+<p style="margin-top: 20px; font-size: 16px; color: #6b7280;">
 <strong>Why we're doing this:</strong><br>
 • Teams formed based on balanced strengths<br>
 • Understand your working style<br>
@@ -983,13 +1049,13 @@ Now go back and look at the unit names on the roadmap slide. I·M. P·A. C. T. T
 </div>
 
 <div style="text-align: center;">
-<img src="assets/principlesyou-qr.png" alt="PrinciplesYou QR Code" style="width: 320px; height: 320px;">
+<img src="assets/principlesyou-qr.png" alt="PrinciplesYou QR Code" style="width: 240px; height: 240px;">
 </div>
 
 </div>
 
 Note:
-This is not a test. There are no right answers. Be honest. We use this to create balanced teams where everyone's strengths complement each other. When you're done, submit your results via D2L email.
+This is not a test. There are no right answers. Be honest. We use this to create balanced teams where everyone's strengths complement each other. When you're done, send me your results (PDF export or screenshot) via Discord DM.
 
 ---
 
@@ -998,6 +1064,7 @@ This is not a test. There are no right answers. Be honest. We use this to create
 **Session 2: Prompts & Language Models — Thursday, Sep 3**
 
 We'll dive into:
+
 - **Pr** (Prompts) - How prompting steers AI behavior
 - **Lg** (LLMs) - Understanding language models
 - Hands-on: the same prompt across multiple models, side by side
@@ -1017,11 +1084,13 @@ You'll run the same prompt through several different models and watch them disag
 ## Deliverables Due Before Next Session
 
 **Individual:**
+
+- ✅ Join the Course Discord & set server profile identity to your real name
 - ✅ Complete PrinciplesYou assessment (if not done in class)
-- ✅ Submit via D2L email
+- ✅ Upload results (PDF or screenshot) to me via Discord DM
 
 Note:
-One thing due before Thursday: finish PrinciplesYou if you didn't get through it in class, and send me the results through D2L. I need those to build teams, so don't sit on it.
+Deliverables before Thursday: join our Discord server, set your nickname to your real name, finish PrinciplesYou, and DM me your results as a PDF or screenshot. I need those to configure balanced teams for next week, so please don't sit on it.
 
 ---
 
