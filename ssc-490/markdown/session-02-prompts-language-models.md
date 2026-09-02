@@ -4,7 +4,7 @@
 <div>
 <h3>Question for reflection:</h3>
 <p style="font-size: 22px; line-height: 1.8;">
-<strong>"What best practices have you discovered working with LLMs to get better outcomes?"</strong>
+<strong>"What are your top prompting 'hacks'?"</strong>
 </p>
 <p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
 Scan the QR code or visit:<br>
@@ -21,6 +21,36 @@ As you come in and get settled, take a moment to reflect on your own experiences
 
 ---
 
+## Housekeeping & Last Class Follow-Up
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px auto; max-width: 950px; text-align: left;">
+
+<div style="background: #f8fafc; border-left: 4px solid #7c3aed; padding: 20px 24px; border-radius: 8px;">
+<h4 style="color: #7c3aed; margin-top: 0;">Sent in Discord:</h4>
+<ul style="font-size: 18px; line-height: 1.8;">
+<li>Full lecture slides link</li>
+<li>Session overview & key takeaways</li>
+<li>Class recording link</li>
+<li>Searchable session transcript</li>
+</ul>
+</div>
+
+<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 20px 24px; border-radius: 8px;">
+<h4 style="color: #2563eb; margin-top: 0;">Also in D2L:</h4>
+<ul style="font-size: 18px; line-height: 1.8;">
+<li>All session assets & links mirrored in D2L</li>
+<li>Required readings & enrichment resources</li>
+<li>Weekly reflections dropbox</li>
+</ul>
+</div>
+
+</div>
+
+Note:
+A quick housekeeping note from Tuesday: everything we covered is documented and sent in Discord—including slide decks, session recordings, and full transcripts. If you prefer D2L, all materials and assignment dropboxes are mirrored there as well.
+
+---
+
 ## Session Roadmap
 
 **What we'll cover today:**
@@ -33,10 +63,6 @@ As you come in and get settled, take a moment to reflect on your own experiences
 
 </div>
 
-<div style="margin-top: 30px; font-size: 20px; color: #15803d;">
-Most of today is <strong>your hands on the keyboard</strong>, not me talking.
-</div>
-
 Note:
 We did introductions on Tuesday, so today we get straight to work. Short lecture up front, then a full fifty minutes in the lab. I want you to have time to actually read what the models give you back - that's where the learning is. Last cohort rushed and it cost them.
 
@@ -46,12 +72,12 @@ We did introductions on Tuesday, so today we get straight to work. Short lecture
 
 <div style="font-size: 14px; margin: 20px auto; max-width: 900px;">
 
-| | Reactive | Retrieval | Orchestration | Validation | Models |
-| --- | --- | --- | --- | --- | --- |
-| **Primitives** | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Prompts (Pr)</span> | Embeddings | | | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">LLMs (Lg)</span> |
-| **Compositions** | Function Calling | Vector DBs | RAG | Guardrails | Multi-modal |
-| **Deployment** | Agents | Fine-tuning | Frameworks | Red-teaming | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Small Models (Sm)</span> |
-| **Emerging** | Multi-agent | Synthetic Data | | Interpretability | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Thinking Models (Th)</span> |
+|                  | Reactive                                                                                                             | Retrieval      | Orchestration | Validation       | Models                                                                                                                       |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------- | -------------- | ------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Primitives**   | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Prompts (Pr)</span> | Embeddings     |               |                  | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">LLMs (Lg)</span>            |
+| **Compositions** | Function Calling                                                                                                     | Vector DBs     | RAG           | Guardrails       | Multi-modal                                                                                                                  |
+| **Deployment**   | Agents                                                                                                               | Fine-tuning    | Frameworks    | Red-teaming      | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Small Models (Sm)</span>    |
+| **Emerging**     | Multi-agent                                                                                                          | Synthetic Data |               | Interpretability | <span style="background: #e0e0e0; padding: 5px 10px; border-radius: 4px; display: inline-block;">Thinking Models (Th)</span> |
 
 </div>
 
@@ -61,6 +87,114 @@ Today we focus on the <strong>Models family</strong> plus how to steer them with
 
 Note:
 These are elements from the AI Periodic Table. Highlighted in gray are what we'll cover today: Prompts (Row 1), and three types of models - Large Language Models (Row 1), Small Models (Row 3), and Thinking Models (Row 4). Everything else builds from these foundations.
+
+---
+
+## How LLMs Work: The Training Pipeline
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin: 35px auto; max-width: 1000px; flex-wrap: wrap;">
+
+<div style="background: #ede9fe; border: 2px solid #7c3aed; border-radius: 8px; padding: 14px 18px; text-align: center; min-width: 140px;">
+<strong style="color: #5b21b6; font-size: 16px;">1. Data Collection</strong><br>
+<span style="font-size: 13px; color: #4c1d95;">Web, Books, Code</span>
+</div>
+
+<div style="font-size: 24px; color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #ede9fe; border: 2px solid #7c3aed; border-radius: 8px; padding: 14px 18px; text-align: center; min-width: 140px;">
+<strong style="color: #5b21b6; font-size: 16px;">2. Pre-training</strong><br>
+<span style="font-size: 13px; color: #4c1d95;">Next-Token Guessing</span>
+</div>
+
+<div style="font-size: 24px; color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #ede9fe; border: 2px solid #7c3aed; border-radius: 8px; padding: 14px 18px; text-align: center; min-width: 140px;">
+<strong style="color: #5b21b6; font-size: 16px;">3. Fine-tuning</strong><br>
+<span style="font-size: 13px; color: #4c1d95;">Instructions & QA</span>
+</div>
+
+<div style="font-size: 24px; color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #ede9fe; border: 2px solid #7c3aed; border-radius: 8px; padding: 14px 18px; text-align: center; min-width: 140px;">
+<strong style="color: #5b21b6; font-size: 16px;">4. Alignment (RLHF)</strong><br>
+<span style="font-size: 13px; color: #4c1d95;">Human Feedback</span>
+</div>
+
+<div style="font-size: 24px; color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #f3f4f6; border: 2px solid #6b7280; border-radius: 8px; padding: 14px 18px; text-align: center; min-width: 140px;">
+<strong style="color: #374151; font-size: 16px;">5. Deployment</strong><br>
+<span style="font-size: 13px; color: #4b5563;">Safety & Eval</span>
+</div>
+
+</div>
+
+;;;
+
+**High-level LLM Training Process:**
+
+1. **Data Collection:** Gather massive amounts of text data from the internet, books, code repositories, research papers, etc., then clean and filter it.
+
+2. **Pre-training:** Train the base model to predict the next word/token across trillions of words. The model learns grammar, world facts, and reasoning patterns.
+
+;;;
+
+### Deep Dive: What is Pre-Training?
+
+<div style="font-size: 20px; line-height: 1.8; max-width: 950px; margin: 30px auto; text-align: left;">
+
+Think of pre-training as **predicting the redacted word across civilization's library**:
+
+- The model isn't memorizing answers in a database; it is learning a massive **map of associations**.
+- To accurately guess the blank in:  
+  <div style="background: #f1f5f9; padding: 12px 18px; border-radius: 6px; font-family: monospace; margin: 12px 0;">
+  "The Supreme Court ruled that the statute was [____] under the Fourteenth Amendment."
+  </div>
+- The model *must* learn American legal history, constitutional grammar, judicial tone, and political science.
+
+</div>
+
+<div style="background: #ede9fe; padding: 16px 20px; border-radius: 8px; margin-top: 20px; font-size: 18px; color: #5b21b6;">
+<strong>Takeaway for Social Science:</strong> Pre-training builds a dense web of human associations. How you prompt is how you navigate that web.
+</div>
+
+Note:
+Pre-training is by far the most expensive part of building an LLM. It takes months and tens of millions of dollars on thousands of GPUs. The model plays a relentless game of "fill in the blank" across billions of web pages. Because it has to predict text accurately across every field—from clinical medicine to Michigan politics—it develops an internal representation of language, reasoning, and domain relationships.
+
+;;;
+
+3. **Fine-tuning (Instruction Tuning):** Further train the base model on curated question-and-answer pairs so it learns to follow instructions rather than just continuing raw text.
+
+4. **Alignment (RLHF - Reinforcement Learning from Human Feedback):** Human evaluators rank model responses, teaching it to be helpful, harmless, and honest—reinforcing desired behavior and suppressing harmful output.
+
+;;;
+
+5. **Evaluation & Deployment:** Test the model on standard benchmarks, safety red-teaming, and bias evaluations before releasing it behind APIs and chat interfaces.
+
+---
+
+## Live Demo: Same Prompt, Different Models
+
+<div style="max-width: 900px; margin: 30px auto; font-size: 21px; line-height: 1.8;">
+
+Let's do a quick live test in LibreChat before we look under the hood:
+
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 20px; border-radius: 10px; margin: 25px 0;">
+<strong>Prompt:</strong> "Analyze why Michigan's manufacturing economy shifted toward automotive automation in the 1980s."
+</div>
+
+Comparing:
+- **Claude Opus 5** (Frontier: large, deep, high reasoning)
+- **Claude Haiku 4.5** (Fast: small, instant, cheap)
+
+</div>
+
+<div style="font-size: 18px; color: #7c3aed; text-align: center;">
+Both models come from the same company (Anthropic) — notice how training scale and parameter size change the depth of response.
+</div>
+
+Note:
+Watch the difference in how they respond. Haiku answers almost instantly with solid bullet points. Opus takes longer, writes with richer historical texture, and synthesizes economic policy with technological change. They're built by the same engineering team, but sized and trained for very different operational tradeoffs.
 
 ---
 
@@ -101,64 +235,129 @@ This is how LLMs actually see text. They don't see whole words - they break ever
 
 ---
 
-## How LLMs Work: Training & Prediction
+## What Happens When You "Talk" to an LLM
 
-```mermaid
-graph LR
-    A[Data Collection] --> B[Pre-training]
-    B --> C[Fine-tuning]
-    C --> D[Alignment/RLHF]
-    D --> E[Evaluation + Deployment]
-```
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 30px auto; max-width: 1000px; flex-wrap: wrap;">
+
+<div style="background: #f3f4f6; border-radius: 8px; padding: 12px 14px; text-align: center;">
+<strong style="font-size: 15px;">1. Tokenize</strong><br><span style="font-size: 12px; color: #6b7280;">Text ➔ Token IDs</span>
+</div>
+<div style="color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #f3f4f6; border-radius: 8px; padding: 12px 14px; text-align: center;">
+<strong style="font-size: 15px;">2. Embed</strong><br><span style="font-size: 12px; color: #6b7280;">IDs ➔ Vectors</span>
+</div>
+<div style="color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #ede9fe; border: 2px solid #7c3aed; border-radius: 8px; padding: 12px 14px; text-align: center;">
+<strong style="font-size: 15px; color: #5b21b6;">3. Attention</strong><br><span style="font-size: 12px; color: #5b21b6;">Context & Weight</span>
+</div>
+<div style="color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #f3f4f6; border-radius: 8px; padding: 12px 14px; text-align: center;">
+<strong style="font-size: 15px;">4. Predict</strong><br><span style="font-size: 12px; color: #6b7280;">Probability Dist.</span>
+</div>
+<div style="color: #7c3aed; font-weight: bold;">➔</div>
+
+<div style="background: #f3f4f6; border-radius: 8px; padding: 12px 14px; text-align: center;">
+<strong style="font-size: 15px;">5. Select & Repeat</strong><br><span style="font-size: 12px; color: #6b7280;">Next Token Chosen</span>
+</div>
+
+</div>
+
+<p style="font-size: 20px; color: #6b7280; text-align: center; margin-top: 20px;">
+Let's follow one sentence step-by-step ⬇
+</p>
 
 ;;;
 
-**High-level LLM Training Process:**
+### Step 1: Tokenization & Embedding
 
-1. **Data Collection:** Gather massive amounts of text data from the internet, books, code repositories, etc. and clean/filter it
+<div style="font-size: 20px; line-height: 1.8; max-width: 900px; margin: 20px auto; text-align: left;">
 
-2. **Pre-training:** Train the model to predict the next token in sequences, learning language patterns, facts, and reasoning abilities from billions of examples
+Our input sentence:
+<div style="background: #f1f5f9; padding: 12px 20px; border-radius: 8px; font-family: monospace; font-size: 22px; color: #0f172a; margin: 15px 0;">
+"The capital of France is"
+</div>
+
+1. **Tokens:** Split into vocabulary units:
+   <div style="display: flex; gap: 8px; margin: 10px 0;">
+   <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-family: monospace;">The</span>
+   <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-family: monospace;">capital</span>
+   <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-family: monospace;">of</span>
+   <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-family: monospace;">France</span>
+   <span style="background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-family: monospace;">is</span>
+   </div>
+
+2. **Embedding:** Each token maps to a high-dimensional vector (coordinates representing semantic meaning).
+
+</div>
 
 ;;;
 
-3. **Fine-tuning (Optional):** Further train on specific datasets for particular tasks like instruction-following or conversation
+### Step 2: Attention in Transformer Layers
 
-4. **Alignment (RLHF):** Use human feedback to teach the model to be helpful, harmless, and honest—reinforcing desired behaviors and reducing unwanted ones
+<div style="font-size: 20px; line-height: 1.8; max-width: 900px; margin: 20px auto; text-align: left;">
+
+The model doesn't process tokens in isolation:
+
+- **Self-Attention:** Every token looks at every other token to establish meaning in context.
+- When processing **"is"**, attention heads link back strongly to **"capital"** and **"France"**.
+- This tells the model: *"We are not discussing French cuisine or vacation spots; we are answering a geographical entity query."*
+
+</div>
 
 ;;;
 
-5. **Evaluation & Deployment:** Test the model on benchmarks, safety checks, and real-world scenarios before releasing it
+### Step 3 & 4: Prediction & Generation Loop
+
+<div style="font-size: 19px; line-height: 1.7; max-width: 900px; margin: 20px auto; text-align: left;">
+
+The final layer produces a probability distribution over the entire vocabulary:
+
+<div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 16px 20px; border-radius: 8px; margin: 15px 0; font-family: monospace;">
+• " Paris"  ─── 94.2%  ████████████████████ (Selected)<br>
+• " a"      ───  2.4%  █<br>
+• " located"───  1.1%  ▌<br>
+• " one"    ───  0.6%  ▎<br>
+• " Lyon"   ───  0.2%  ▏
+</div>
+
+**The Loop:**  
+`" Paris"` is appended to the input: `"The capital of France is Paris"`.  
+The entire updated string goes through the model again to predict the next token (period, explanation, etc.) until a stop condition is reached.
+
+</div>
 
 ---
 
-## What Happens When You "Talk" to an LLM
+## Context, Context Windows & Tokens
 
-```mermaid
-graph LR
-    A[Tokenization & Embedding] --> B[Transformer Layers Processing]
-    B --> C[Output Prediction]
-    C --> D[Token Selection]
-    D --> E[Repeat for Generation]
-    E -.-> B
-```
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px auto; max-width: 950px; text-align: left;">
 
-;;;
+<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 22px; border-radius: 8px;">
+<h4 style="color: #15803d; margin-top: 0;">Context Window = Working Memory</h4>
+<ul style="font-size: 17px; line-height: 1.7;">
+<li>The total token limit for prompt + history + output in one session.</li>
+<li>Modern windows range from 128K to 1M+ tokens (entire books!).</li>
+<li>Larger windows allow models to find nuanced associations across vast documents without forgetting instructions.</li>
+</ul>
+</div>
 
-**What Happens When Text is Sent to an LLM:**
+<div style="background: #fdf4ff; border-left: 4px solid #a855f7; padding: 22px; border-radius: 8px;">
+<h4 style="color: #7e22ce; margin-top: 0;">Thinking Models & Reasoning Tokens</h4>
+<ul style="font-size: 17px; line-height: 1.7;">
+<li>Traditional models output words immediately.</li>
+<li>Reasoning models (Claude thinking, o1/o3) generate hidden <strong>thinking tokens</strong> before answering.</li>
+<li>They explore paths, verify logic, and self-correct.</li>
+<li><strong>Cost:</strong> More tokens consumed and higher latency for substantially higher analytical accuracy.</li>
+</ul>
+</div>
 
-1. **Tokenization & Embedding:** The input text is split into tokens, then each token is converted into a numerical vector (embedding) that the neural network can process
+</div>
 
-2. **Transformer Layers Processing:** The embeddings pass through multiple transformer layers, where attention mechanisms identify relationships between tokens and feedforward networks transform the representations
-
-;;;
-
-## This repeats until complete
-
-3. **Output Prediction:** The final layer produces a probability distribution over all possible next tokens in the "vocabulary"
-
-4. **Token Selection:** The model selects the next token based on probability algorithm
-
-5. **Repeat for Generation:** The newly generated token is added to the input sequence, and steps 2-4 repeat until the model generates a complete response or hits a stopping condition
+Note:
+Context window is the model's active working memory. When you have a long chat or upload large PDFs, you are filling that window. And with reasoning models, notice that they generate tokens you might not even see directly—hidden thinking tokens that plan out the answer before the final text appears. They spend more token budget to deliver higher reliability.
 
 ---
 
@@ -177,11 +376,12 @@ Some models are 'small' and some models are 'large'
 Note:
 Weights represent the learned transformations and relationships in the network, not specific tokens or concepts.
 They're the numbers that define:
+
 - How to convert token IDs into embeddings (embedding layer weights)
 - How tokens should pay attention to each other (attention weights)
 - How to transform information between layers (feedforward weights)
 - What patterns, grammar rules, facts, and reasoning steps to apply
-They don't directly "mean" anything human-readable—they're just mathematical values that, when combined through billions of calculations, produce intelligent behavior. The model learned these specific numbers by adjusting them during training to minimize prediction errors.
+  They don't directly "mean" anything human-readable—they're just mathematical values that, when combined through billions of calculations, produce intelligent behavior. The model learned these specific numbers by adjusting them during training to minimize prediction errors.
 
 ;;;
 
@@ -219,12 +419,12 @@ This is important and it trips people up. You'll read "GPT is a trillion paramet
 
 <div style="font-size: 17px; line-height: 1.6; margin: 20px 0;">
 
-| Category | What it means | Examples (Aug 2026) | Strengths | Weaknesses |
-|----------|---------------|---------------------|-----------|------------|
-| **Frontier** | Top of a lab's lineup | Claude Opus 5, GPT-5.6 | Best reasoning, complex tasks | Expensive, slower |
-| **Balanced** | The everyday workhorse | Claude Sonnet 5, GPT-5.4 | Good quality, reasonable cost | Not best at everything |
-| **Fast/Small** | Cheap enough to run at volume | Claude Haiku 4.5, Gemini 3.7 Flash, GPT-OSS-20B | Very fast, very cheap | Less capable on hard tasks |
-| **Thinking** | Reasons before it answers | Claude Fable 5, GPT-5.4 Pro | Extended reasoning | Very expensive, very slow |
+| Category       | What it means                 | Examples (Aug 2026)                             | Strengths                     | Weaknesses                 |
+| -------------- | ----------------------------- | ----------------------------------------------- | ----------------------------- | -------------------------- |
+| **Frontier**   | Top of a lab's lineup         | Claude Opus 5, GPT-5.6                          | Best reasoning, complex tasks | Expensive, slower          |
+| **Balanced**   | The everyday workhorse        | Claude Sonnet 5, GPT-5.4                        | Good quality, reasonable cost | Not best at everything     |
+| **Fast/Small** | Cheap enough to run at volume | Claude Haiku 4.5, Gemini 3.7 Flash, GPT-OSS-20B | Very fast, very cheap         | Less capable on hard tasks |
+| **Thinking**   | Reasons before it answers     | Claude Fable 5, GPT-5.4 Pro                     | Extended reasoning            | Very expensive, very slow  |
 
 </div>
 
@@ -241,17 +441,17 @@ This framework helps you categorize models, and the framework outlives any speci
 
 <div style="font-size: 14px; margin: 20px 0;">
 
-| Provider | Model | Category | Input (per 1M) | Output (per 1M) | Use Case |
-|----------|-------|----------|----------------|-----------------|----------|
-| **OpenAI** | GPT-5.4 Pro | Thinking | $30.00 | $180.00 | Deep research, hardest problems |
-| **Anthropic** | Claude Fable 5 | Thinking | $10.00 | $50.00 | Long-horizon reasoning |
-| **Anthropic** | Claude Opus 5 | Frontier | $5.00 | $25.00 | Technical precision, long documents |
-| **OpenAI** | GPT-5.6 | Frontier | $4.00 | $20.00 | Complex reasoning, creative writing |
-| **OpenAI** | GPT-5.4 | Balanced | $2.50 | $15.00 | General purpose |
-| **Anthropic** | Claude Sonnet 5 | Balanced | $2.00 | $10.00 | Best quality/cost balance |
-| **Anthropic** | Claude Haiku 4.5 | Fast | $1.00 | $5.00 | High-volume, speed-critical |
-| **Google** | Gemini 3.7 Flash | Fast | $0.75 | $3.75 | High volume, multimodal |
-| **Groq** | GPT-OSS-120B | Fast | $0.15 | $0.60 | Fast inference, open weights |
+| Provider      | Model            | Category | Input (per 1M) | Output (per 1M) | Use Case                            |
+| ------------- | ---------------- | -------- | -------------- | --------------- | ----------------------------------- |
+| **OpenAI**    | GPT-5.4 Pro      | Thinking | $30.00         | $180.00         | Deep research, hardest problems     |
+| **Anthropic** | Claude Fable 5   | Thinking | $10.00         | $50.00          | Long-horizon reasoning              |
+| **Anthropic** | Claude Opus 5    | Frontier | $5.00          | $25.00          | Technical precision, long documents |
+| **OpenAI**    | GPT-5.6          | Frontier | $4.00          | $20.00          | Complex reasoning, creative writing |
+| **OpenAI**    | GPT-5.4          | Balanced | $2.50          | $15.00          | General purpose                     |
+| **Anthropic** | Claude Sonnet 5  | Balanced | $2.00          | $10.00          | Best quality/cost balance           |
+| **Anthropic** | Claude Haiku 4.5 | Fast     | $1.00          | $5.00           | High-volume, speed-critical         |
+| **Google**    | Gemini 3.7 Flash | Fast     | $0.75          | $3.75           | High volume, multimodal             |
+| **Groq**      | GPT-OSS-120B     | Fast     | $0.15          | $0.60           | Fast inference, open weights        |
 
 </div>
 
@@ -314,31 +514,40 @@ These seven work across every model - they're not tricks for one product. We'll 
 
 ---
 
-## You Have Three Ways In
+## Prompting as "Steering" the Model
 
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 36px 0; font-size: 16px;">
+<div style="max-width: 920px; margin: 30px auto; font-size: 21px; line-height: 1.8; text-align: left;">
 
-<div style="background: #ede9fe; padding: 24px; border-radius: 10px;">
-<h4 style="color: #5b21b6; margin-top: 0;">Claude.ai Team</h4>
-<p>Your own seat. Where you'll live for most of the semester - Projects, Skills, Connectors.</p>
-</div>
+Think of an LLM as a **vast landscape of probable completions**:
 
-<div style="background: #dbeafe; padding: 24px; border-radius: 10px;">
-<h4 style="color: #1e3a8a; margin-top: 0;">Your API keys</h4>
-<p>Anthropic + OpenAI, issued to you. For anything you build in code or automate.</p>
-</div>
-
-<div style="background: #fef3c7; padding: 24px; border-radius: 10px;">
-<h4 style="color: #92400e; margin-top: 0;">Course LibreChat</h4>
-<p>Many providers behind one interface. <strong>Best tool for side-by-side comparison</strong> - which is exactly today.</p>
-</div>
+- Left to itself with a vague prompt ("write about marketing"), the model wanders into the **statistical average**—generic, safe, bland text.
+- **Your prompt acts like a rudder or steering wheel:**
+  - **Persona / Role:** Steers toward an expert mindset (e.g., *"You are a senior fitness studio marketing director"*).
+  - **Constraints:** Steers away from fluff and sets strict boundaries (e.g., *"Under $2,000/mo, self-implemented only"*).
+  - **Examples (Few-shot):** Steers tone and structure directly into the target zone.
 
 </div>
 
-<div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: center; max-width: 1000px; margin: 20px auto;">
-<div>
-<h3 style="margin-top: 0;">Today we're in LibreChat:</h3>
-<a href="https://msu-ai.superwebpros.com/">https://msu-ai.superwebpros.com</a>
+<div style="background: #ede9fe; padding: 18px 24px; border-radius: 8px; margin-top: 25px; font-size: 19px; color: #5b21b6; text-align: center;">
+Prompting isn't about polite manners or magic keywords — it's about <strong>steering the probability distribution into the exact token space you want</strong>.
+</div>
+
+Note:
+This is why prompt engineering works. The model contains many possible perspectives. A vague prompt gets an average answer because that's the center of the probability distribution. When you provide clear constraints, examples, and roles, you steer the model away from the generic center into the specific, high-capability corner of its training data.
+
+---
+
+## Accessing Course LibreChat
+
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: center; max-width: 950px; margin: 40px auto;">
+<div style="text-align: left;">
+<h3 style="margin-top: 0; color: #7c3aed;">Log in for today's lab:</h3>
+<p style="font-size: 22px; margin: 15px 0;">
+<a href="https://msu-ai.superwebpros.com/" target="_blank"><strong>https://msu-ai.superwebpros.com</strong></a>
+</p>
+<p style="font-size: 18px; color: #4b5563; line-height: 1.6;">
+LibreChat is our multi-model testbed. Today we'll use its <strong>comparison mode</strong> to test prompts across different model tiers side-by-side in real time.
+</p>
 </div>
 <div style="text-align: center;">
 <img src="assets/librechat-qr.png" alt="LibreChat QR Code" style="width: 260px; height: 260px;">
@@ -346,7 +555,7 @@ These seven work across every model - they're not tricks for one product. We'll 
 </div>
 
 Note:
-Big change from the pilot cohort: you each have your own Claude.ai Team seat and your own Anthropic and OpenAI API keys. LibreChat is not the only door anymore, and from Session 3 onward most of your work moves to Claude.ai. But for today LibreChat is still the right tool, because it's the one place you can run the same prompt against models from different providers and see them next to each other. Let me demo switching models, and I'll come back to comparison mode a bit later.
+For today's lab, LibreChat is our primary tool because it lets us fan out a single prompt to multiple models at the same time and compare their outputs side by side. Log in now with your course credentials.
 
 ---
 
@@ -371,11 +580,11 @@ This is individual work in LibreChat, structured exercises adapted from Anthropi
 
 <div style="font-size: 19px; margin: 30px auto; max-width: 880px;">
 
-| Category | Model | Why it's here |
-|----------|-------|---------------|
-| **Frontier** | Claude Opus 5 | Ceiling of what's possible right now |
-| **Balanced** | GPT-5.4 | Different lab, mid-tier — isolates *provider* from *tier* |
-| **Fast** | Claude Haiku 4.5 | Cheap and quick — is it good enough? |
+| Category     | Model            | Why it's here                                             |
+| ------------ | ---------------- | --------------------------------------------------------- |
+| **Frontier** | Claude Opus 5    | Ceiling of what's possible right now                      |
+| **Balanced** | GPT-5.4          | Different lab, mid-tier — isolates _provider_ from _tier_ |
+| **Fast**     | Claude Haiku 4.5 | Cheap and quick — is it good enough?                      |
 
 </div>
 
@@ -414,12 +623,13 @@ What to observe:
 ### Exercise 1
 
 #### Prompt
+
 ```
 Generate a marketing plan for local Pilates studio.
 ```
 
-<div style="background: #fef3c7; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px;">
-<strong>Run these one at a time.</strong> Opus 5, then GPT-5.4, then Haiku 4.5 — three separate chats. Yes, it's tedious. That's deliberate.
+<div style="background: #ede9fe; border: 2px solid #7c3aed; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px; text-align: left;">
+<strong>Use LibreChat Comparison Mode:</strong> Select <strong>Claude Opus 5</strong>, <strong>GPT-5.4</strong>, and <strong>Claude Haiku 4.5</strong> side-by-side. Send the prompt once and observe all three outputs simultaneously.
 </div>
 
 ---
@@ -436,7 +646,7 @@ What to observe:
 
 ### Exercise 2
 
-> Note: start a new 'chat' session (don't use the one you were already using)
+> Note: Start a new comparison chat session
 
 #### Prompt
 
@@ -444,32 +654,9 @@ What to observe:
 Generate a marketing plan for local Pilates studio. Only give me solutions I can self-implement for less than $2,000/month
 ```
 
-<div style="background: #fef3c7; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px;">
-Still one at a time. Same three models: <strong>Opus 5 → GPT-5.4 → Haiku 4.5</strong>.
+<div style="background: #ede9fe; border: 2px solid #7c3aed; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px; text-align: left;">
+<strong>Comparison Mode:</strong> Continue with <strong>Opus 5 · GPT-5.4 · Haiku 4.5</strong> side-by-side. Compare how each model adapts to the budget constraint.
 </div>
-
----
-
-## Stop. There's a Faster Way.
-
-<div style="max-width: 900px; margin: 40px auto; font-size: 21px; line-height: 1.8;">
-
-You just ran the same prompt six times by hand.
-
-LibreChat has a **comparison mode** that fans one prompt out to several models at once and shows you the answers side by side.
-
-</div>
-
-<div style="margin-top: 30px; font-size: 20px; color: #7c3aed;">
-Use it for the rest of the lab.
-</div>
-
-<div style="margin-top: 30px; font-size: 18px; color: #6b7280;">
-So why did I make you do it the slow way first?
-</div>
-
-Note:
-I withheld this on purpose, and I'm telling you that I withheld it. If I'd shown you comparison mode at the top of the hour, you'd have skimmed three columns of text and learned nothing about how any individual model behaves. Running them one at a time forces you to sit with each answer on its own terms. Now that you've felt the tedium, the efficiency is obvious and you've still got the habit of reading carefully. That's the trade. This worked well with last spring's cohort and I'm doing it again.
 
 ---
 
@@ -487,6 +674,7 @@ What to observe:
 ### Exercise 3
 
 #### Prompt
+
 ```
 Generate a marketing plan for my local Pilates studio. Think step-by-step through the time and money constraints I may have. Then, give me a plan I can self-implement for less than $2,000/month. Justify your reasoning.
 ```
@@ -510,6 +698,7 @@ What to observe
 ### Exercise 4
 
 #### Prompt
+
 ```
 I need to generate a marketing plan for my local Pilates studio. I would like you to help me put it together. Please ask me questions to answer so that I can get a high-quality personalized plan for my studio.
 ```
@@ -533,6 +722,7 @@ What to observe:
 ### Exercise 5a
 
 #### Prompt
+
 ```
 I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
 ```
@@ -546,6 +736,7 @@ Models to use — **comparison mode**:
 ### Exercise 5b
 
 ### Prompt
+
 ```
 I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer. Use a tone based on the following examples:
 <example>
@@ -617,6 +808,7 @@ Straight talk: this exercise did not fit in eighty minutes last time and I'm not
 ### Exercise 6a/b
 
 ### Prompt
+
 ```
 I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
 ```
@@ -643,6 +835,7 @@ What to observe:
 ### Exercise 7
 
 #### Role Prompt
+
 ```
 You are an expert Facebook ad copywriter. You use best practices as exemplified by these examples to craft high-quality ads for local pilates studios:
 <example>
@@ -697,6 +890,7 @@ This one goes in the system prompt field, not the chat box - that's the whole po
 ## Key Takeaways
 
 **Model Selection:**
+
 - Models come in categories: Frontier, Balanced, Fast, Thinking
 - Parameters = learned patterns stored in the model — and for frontier models, nobody publishes the count
 - Pricing varies **300x** across the table we looked at — match model to task complexity
@@ -705,16 +899,16 @@ This one goes in the system prompt field, not the chat box - that's the whole po
 ;;;
 
 **Prompting Principles You Practiced:**
+
 - Be clear and direct
 - Use examples (few-shot learning)
 - Invite participation - work WITH the model
 - Use chains of thought for complex reasoning
 - Separate instructions from data
 - Assign roles to shape responses
-- Tweak parameters (temperature) for creativity vs consistency — *your take-home*
+- Tweak parameters (temperature) for creativity vs consistency — _your take-home_
 
 > Prompting matters as much as model choice
-
 
 Note:
 These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective prompting. Six of these seven you practiced in the room; the temperature one is yours to run on your own. All seven work across every model and they're the foundation for the rest of the course.
