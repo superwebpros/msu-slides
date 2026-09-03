@@ -8,11 +8,11 @@
 </p>
 <p style="margin-top: 30px; font-size: 18px; color: #6b7280;">
 Scan the QR code or visit:<br>
-<strong>slido.com #4027 289</strong>
+<strong style="font-size: 22px; color: #7c3aed;">slido.com #4017 568</strong>
 </p>
 </div>
 <div style="text-align: center;">
-<img src="assets/slido-1.png" alt="Slido QR Code" style="width: 320px; height: 320px;">
+<img src="assets/slido-s01.png" alt="Slido QR Code" style="width: 300px; height: 300px;">
 </div>
 </div>
 
@@ -198,43 +198,6 @@ Watch the difference in how they respond. Haiku answers almost instantly with so
 
 ---
 
-## How LLMs Work: Tokens
-
-- Tokens are the basic units of text that LLMs process, similar to how words work in human language.
-- A token can be a whole word, part of a word, or even a single character
-- LLMs read input and generate output by processing sequences of these tokens
-
-;;;
-
-### For Example
-
-- Tokenization -> "Token" + "ization"
-- Understanding -> "under" + "standing"
-- Hello World! -> "hello" + "world" + "!"
-
-;;;
-
-### Tokens Not Standardized
-
-- Different providers use different tokenization algorithms like BPE (Byte Pair Encoding), WordPiece, or SentencePiece.
-- The choice depends on factors like the languages they want to support, desired vocabulary size (typically 30K-100K tokens), computational efficiency, and how well it handles rare words or multiple languages.
-
-Note:
-**BPE (Byte Pair Encoding):** Iteratively merges the most frequently occurring pairs of characters or tokens in the training data to build up a vocabulary from individual characters to common subwords.
-**WordPiece:** Similar to BPE but chooses merges based on which pair maximizes the likelihood of the training data, rather than just raw frequency.
-**SentencePiece:** Treats text as raw Unicode characters (no pre-tokenization needed) and applies algorithms like BPE or unigram, making it language-agnostic and able to handle spaces as regular characters.
-
-;;;
-
-### Why This Matters
-
-You're billed per token, not per word
-
-Note:
-This is how LLMs actually see text. They don't see whole words - they break everything into subword pieces called tokens. Common prefixes, suffixes, and roots get their own tokens. This lets models understand new words they've never seen by recognizing familiar pieces.
-
----
-
 ## What Happens When You "Talk" to an LLM
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 30px auto; max-width: 1000px; flex-wrap: wrap;">
@@ -297,13 +260,43 @@ Our input sentence:
 
 ### Step 2: Attention in Transformer Layers
 
-<div style="font-size: 20px; line-height: 1.8; max-width: 900px; margin: 20px auto; text-align: left;">
+<div style="font-size: 17px; line-height: 1.6; max-width: 960px; margin: 15px auto; text-align: left;">
 
-The model doesn't process tokens in isolation:
+The model doesn't process tokens in isolation: **every token looks backwards and forwards** across surrounding tokens to resolve meaning:
 
-- **Self-Attention:** Every token looks at every other token to establish meaning in context.
-- When processing **"is"**, attention heads link back strongly to **"capital"** and **"France"**.
-- This tells the model: *"We are not discussing French cuisine or vacation spots; we are answering a geographical entity query."*
+<!-- Visual Attention Multiples -->
+<div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 10px; padding: 18px; margin: 15px 0;">
+
+  <!-- Token row with attention directions -->
+  <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 18px;">
+    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; font-family: monospace; font-size: 18px; text-align: center;">The</div>
+    <div style="background: #fef3c7; border: 2px solid #d97706; padding: 6px 14px; border-radius: 6px; font-family: monospace; font-size: 18px; text-align: center;">
+      <strong>capital</strong><br><span style="font-size: 11px; color: #92400e;">Looks ➔ forward</span>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; font-family: monospace; font-size: 18px; text-align: center;">of</div>
+    <div style="background: #ede9fe; border: 2px solid #7c3aed; padding: 6px 14px; border-radius: 6px; font-family: monospace; font-size: 18px; text-align: center;">
+      <strong>France</strong><br><span style="font-size: 11px; color: #5b21b6;">Anchor Context</span>
+    </div>
+    <div style="background: #dbeafe; border: 2px solid #2563eb; padding: 6px 14px; border-radius: 6px; font-family: monospace; font-size: 18px; text-align: center;">
+      <strong>is</strong><br><span style="font-size: 11px; color: #1e40af;">Looks ⬅ backward</span>
+    </div>
+  </div>
+
+  <!-- Small Multiples: Disambiguation Pairs -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 14px;">
+    <div style="background: #ffffff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #d97706;">
+      <strong>Without Attention (Isolated Words):</strong><br>
+      • <code>"capital"</code> = financial money? uppercase letter? punishment?<br>
+      • <code>"France"</code> = European nation? soccer team? geography?
+    </div>
+    <div style="background: #ffffff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #16a34a;">
+      <strong>With Attention (Looking Both Ways):</strong><br>
+      • <code>"capital"</code> attends to <code>"France"</code> ➔ <em>seat of government</em><br>
+      • <code>"is"</code> attends back to both ➔ <em>demands city entity "Paris"</em>
+    </div>
+  </div>
+
+</div>
 
 </div>
 
@@ -331,33 +324,40 @@ The entire updated string goes through the model again to predict the next token
 
 ---
 
-## Context, Context Windows & Tokens
+## How LLMs Work: Tokens
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px auto; max-width: 950px; text-align: left;">
+- Tokens are the basic units of text that LLMs process, similar to how words work in human language.
+- A token can be a whole word, part of a word, or even a single character
+- LLMs read input and generate output by processing sequences of these tokens
 
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 22px; border-radius: 8px;">
-<h4 style="color: #15803d; margin-top: 0;">Context Window = Working Memory</h4>
-<ul style="font-size: 17px; line-height: 1.7;">
-<li>The total token limit for prompt + history + output in one session.</li>
-<li>Modern windows range from 128K to 1M+ tokens (entire books!).</li>
-<li>Larger windows allow models to find nuanced associations across vast documents without forgetting instructions.</li>
-</ul>
-</div>
+;;;
 
-<div style="background: #fdf4ff; border-left: 4px solid #a855f7; padding: 22px; border-radius: 8px;">
-<h4 style="color: #7e22ce; margin-top: 0;">Thinking Models & Reasoning Tokens</h4>
-<ul style="font-size: 17px; line-height: 1.7;">
-<li>Traditional models output words immediately.</li>
-<li>Reasoning models (Claude thinking, o1/o3) generate hidden <strong>thinking tokens</strong> before answering.</li>
-<li>They explore paths, verify logic, and self-correct.</li>
-<li><strong>Cost:</strong> More tokens consumed and higher latency for substantially higher analytical accuracy.</li>
-</ul>
-</div>
+### For Example
 
-</div>
+- Tokenization -> "Token" + "ization"
+- Understanding -> "under" + "standing"
+- Hello World! -> "hello" + "world" + "!"
+
+;;;
+
+### Tokens Not Standardized
+
+- Different providers use different tokenization algorithms like BPE (Byte Pair Encoding), WordPiece, or SentencePiece.
+- The choice depends on factors like the languages they want to support, desired vocabulary size (typically 30K-100K tokens), computational efficiency, and how well it handles rare words or multiple languages.
 
 Note:
-Context window is the model's active working memory. When you have a long chat or upload large PDFs, you are filling that window. And with reasoning models, notice that they generate tokens you might not even see directly—hidden thinking tokens that plan out the answer before the final text appears. They spend more token budget to deliver higher reliability.
+**BPE (Byte Pair Encoding):** Iteratively merges the most frequently occurring pairs of characters or tokens in the training data to build up a vocabulary from individual characters to common subwords.
+**WordPiece:** Similar to BPE but chooses merges based on which pair maximizes the likelihood of the training data, rather than just raw frequency.
+**SentencePiece:** Treats text as raw Unicode characters (no pre-tokenization needed) and applies algorithms like BPE or unigram, making it language-agnostic and able to handle spaces as regular characters.
+
+;;;
+
+### Why This Matters
+
+You're billed per token, not per word
+
+Note:
+This is how LLMs actually see text. They don't see whole words - they break everything into subword pieces called tokens. Common prefixes, suffixes, and roots get their own tokens. This lets models understand new words they've never seen by recognizing familiar pieces.
 
 ---
 
@@ -496,6 +496,36 @@ This is real current pricing, pulled the week before class. Look at the spread: 
 
 Note:
 This is crucial to understand. The model is only half the equation. Your skill as a prompter - how you frame the task, provide context, show examples - is equally important. You can get amazing results out of Haiku with expert prompting, and terrible results out of Opus 5 with lazy prompting. Today's lab teaches you the prompting half.
+
+---
+
+## Context, Context Windows & Tokens
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px auto; max-width: 950px; text-align: left;">
+
+<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 22px; border-radius: 8px;">
+<h4 style="color: #15803d; margin-top: 0;">Context Window = Working Memory</h4>
+<ul style="font-size: 17px; line-height: 1.7;">
+<li>The total token limit for prompt + history + output in one session.</li>
+<li>Modern windows range from 128K to 1M+ tokens (entire books!).</li>
+<li>Larger windows allow models to find nuanced associations across vast documents without forgetting instructions.</li>
+</ul>
+</div>
+
+<div style="background: #fdf4ff; border-left: 4px solid #a855f7; padding: 22px; border-radius: 8px;">
+<h4 style="color: #7e22ce; margin-top: 0;">Thinking Models & Reasoning Tokens</h4>
+<ul style="font-size: 17px; line-height: 1.7;">
+<li>Traditional models output words immediately.</li>
+<li>Reasoning models (Claude thinking, o1/o3) generate hidden <strong>thinking tokens</strong> before answering.</li>
+<li>They explore paths, verify logic, and self-correct.</li>
+<li><strong>Cost:</strong> More tokens consumed and higher latency for substantially higher analytical accuracy.</li>
+</ul>
+</div>
+
+</div>
+
+Note:
+Context window is the model's active working memory. When you have a long chat or upload large PDFs, you are filling that window. And with reasoning models, notice that they generate tokens you might not even see directly—hidden thinking tokens that plan out the answer before the final text appears. They spend more token budget to deliver higher reliability.
 
 ---
 
@@ -733,27 +763,29 @@ Follow the step-by-step instructions and record your findings directly in your c
 
 ## Key Takeaways
 
-**Model Selection:**
-
-- Models come in categories: Frontier, Balanced, Fast, Thinking
-- Parameters = learned patterns stored in the model — and for frontier models, nobody publishes the count
-- Pricing varies **300x** across the table we looked at — match model to task complexity
-- The categories are durable. The model names are not.
+**1. Model Selection & Economics:**
+- Models come in distinct tiers: **Frontier, Balanced, Fast, Thinking**
+- Price spread is **300x** (from /bin/bash.15 to 80 per 1M tokens) — calibrate model tier to task complexity
+- **Provider DNA:** Anthropic, OpenAI, Google, and Groq have distinct philosophical voices and behaviors
 
 ;;;
 
-**Prompting Principles You Practiced:**
+**2. The 4 Principles of Steering:**
+- **Be Clear, Direct & Bounded:** Set constraints and negative bounds upfront
+- **Use Examples (Few-Shot):** Show, don't just tell — examples steer tone faster than adjectives
+- **Invite Participation (Co-Pilot):** Ask the model to interview you before generating
+- **Separate Instructions from Data:** Use tags/headers so source data doesn't contaminate rules
 
-- **Be Clear, Direct & Bounded:** Define your objective and negative bounds upfront
-- **Use Examples:** Show the model what good output looks like (few-shot)
-- **Invite Participation:** Turn the monologue into a collaborative dialogue
-- **Separate Instructions from Data:** Use clean structure so rules don't bleed into content
-- **Anti-Peter Rule:** When the spell destabilizes, start a fresh chat!
+;;;
 
-> Prompting matters as much as model choice
+**3. The Golden Rules for Your Semester Project:**
+- **The Equalizer:** A small, fast model with a great prompt regularly matches or beats a frontier model with a lazy prompt.
+- **The Anti-Peter Rule:** If a chat conversation derails, stop arguing with it. **Copy what worked, close the tab, and start a fresh chat.**
+
+> Prompting is the steering wheel. The model is just the engine.
 
 Note:
-These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective steering. You practiced all four core principles in the room today. They work across every model and provider, and they form the bedrock for everything we will build this semester.
+These are the foundational lessons from today. You now understand how to choose models strategically AND how to get better results through effective steering. You benchmarked this empirically in the lab today across 4 models. These principles work across every provider, and they form the bedrock for everything we build this semester.
 
 ---
 
