@@ -146,16 +146,12 @@ These are elements from the AI Periodic Table. Highlighted in gray are what we'l
 Think of pre-training as **predicting the redacted word across civilization's library**:
 
 - The model isn't memorizing answers in a database; it is learning a massive **map of associations**.
-- To accurately guess the blank in:  
+- To accurately guess the blank in:
   <div style="background: #f1f5f9; padding: 12px 18px; border-radius: 6px; font-family: monospace; margin: 12px 0;">
   "The Supreme Court ruled that the statute was [____] under the Fourteenth Amendment."
   </div>
-- The model *must* learn American legal history, constitutional grammar, judicial tone, and political science.
+- The model _must_ learn American legal history, constitutional grammar, judicial tone, and political science.
 
-</div>
-
-<div style="background: #ede9fe; padding: 16px 20px; border-radius: 8px; margin-top: 20px; font-size: 18px; color: #5b21b6;">
-<strong>Takeaway for Social Science:</strong> Pre-training builds a dense web of human associations. How you prompt is how you navigate that web.
 </div>
 
 Note:
@@ -184,6 +180,7 @@ Let's do a quick live test in LibreChat before we look under the hood:
 </div>
 
 Comparing:
+
 - **Claude Opus 5** (Frontier: large, deep, high reasoning)
 - **Claude Haiku 4.5** (Fast: small, instant, cheap)
 
@@ -239,6 +236,7 @@ Let's follow one sentence step-by-step ⬇
 <div style="font-size: 20px; line-height: 1.8; max-width: 900px; margin: 20px auto; text-align: left;">
 
 Our input sentence:
+
 <div style="background: #f1f5f9; padding: 12px 20px; border-radius: 8px; font-family: monospace; font-size: 22px; color: #0f172a; margin: 15px 0;">
 "The capital of France is"
 </div>
@@ -537,8 +535,8 @@ Think of an LLM as a **vast landscape of probable completions**:
 
 - Left to itself with a vague prompt ("write about marketing"), the model wanders into the **statistical average**—generic, safe, bland text.
 - **Your prompt acts like a rudder or steering wheel:**
-  - **Persona & Context:** Steers toward an expert mindset (e.g., *"You are a senior fitness studio marketing director"*).
-  - **Constraints & Bounds:** Steers away from fluff and sets strict boundaries (e.g., *"Under $2,000/mo, self-implemented only"*).
+  - **Persona & Context:** Steers toward an expert mindset (e.g., _"You are a senior fitness studio marketing director"_).
+  - **Constraints & Bounds:** Steers away from fluff and sets strict boundaries (e.g., _"Under $2,000/mo, self-implemented only"_).
   - **Examples (Few-shot):** Steers tone and structure directly into the target zone.
 
 </div>
@@ -705,14 +703,14 @@ One partner clones the document and shares edit access with the other. You will 
 
 <div style="font-size: 15px; margin: 15px auto; max-width: 980px;">
 
-| Group | Provider A (Small + Large) | Provider B (Small + Large) |
-| :---: | :--- | :--- |
-| **Group A** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **OpenAI:** GPT-5.4 · GPT-5.6 |
+|    Group    | Provider A (Small + Large)                      | Provider B (Small + Large)                    |
+| :---------: | :---------------------------------------------- | :-------------------------------------------- |
+| **Group A** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **OpenAI:** GPT-5.4 · GPT-5.6                 |
 | **Group B** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro |
-| **Group C** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
-| **Group D** | **OpenAI:** GPT-5.4 · GPT-5.6 | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro |
-| **Group E** | **OpenAI:** GPT-5.4 · GPT-5.6 | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
-| **Group F** | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
+| **Group C** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **Groq:** GPT-OSS-20B · GPT-OSS-120B          |
+| **Group D** | **OpenAI:** GPT-5.4 · GPT-5.6                   | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro |
+| **Group E** | **OpenAI:** GPT-5.4 · GPT-5.6                   | **Groq:** GPT-OSS-20B · GPT-OSS-120B          |
+| **Group F** | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro   | **Groq:** GPT-OSS-20B · GPT-OSS-120B          |
 
 </div>
 
@@ -764,13 +762,15 @@ Follow the step-by-step instructions and record your findings directly in your c
 ## Key Takeaways
 
 **1. Model Selection & Economics:**
+
 - Models come in distinct tiers: **Frontier, Balanced, Fast, Thinking**
-- Price spread is **300x** (from /bin/bash.15 to 80 per 1M tokens) — calibrate model tier to task complexity
+- Price spread is **300x** (from $0.15 to $180 per 1M tokens) — calibrate model tier to task complexity
 - **Provider DNA:** Anthropic, OpenAI, Google, and Groq have distinct philosophical voices and behaviors
 
 ;;;
 
 **2. The 4 Principles of Steering:**
+
 - **Be Clear, Direct & Bounded:** Set constraints and negative bounds upfront
 - **Use Examples (Few-Shot):** Show, don't just tell — examples steer tone faster than adjectives
 - **Invite Participation (Co-Pilot):** Ask the model to interview you before generating
@@ -779,6 +779,7 @@ Follow the step-by-step instructions and record your findings directly in your c
 ;;;
 
 **3. The Golden Rules for Your Semester Project:**
+
 - **The Equalizer:** A small, fast model with a great prompt regularly matches or beats a frontier model with a lazy prompt.
 - **The Anti-Peter Rule:** If a chat conversation derails, stop arguing with it. **Copy what worked, close the tab, and start a fresh chat.**
 
