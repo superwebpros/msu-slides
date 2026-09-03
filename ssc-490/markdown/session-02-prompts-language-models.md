@@ -499,21 +499,6 @@ This is crucial to understand. The model is only half the equation. Your skill a
 
 ---
 
-## Prompt Engineering Principles
-
-1. Be clear and direct
-2. Use examples
-3. Invite participation
-4. Use Chains of Thought (CoT)
-5. Separate instruction from Data
-6. Use roles
-7. Tweak parameters
-
-Note:
-These seven work across every model - they're not tricks for one product. We'll practice six of them in the lab in a few minutes; the seventh, tweaking parameters, is your take-home. Two to flag now: chain-of-thought makes the model show its reasoning, which usually improves accuracy on anything with constraints in it. And inviting participation - asking the model to interview you - is the one most people never try and the one that changes output the most.
-
----
-
 ## Prompting as "Steering" the Model
 
 <div style="max-width: 920px; margin: 30px auto; font-size: 21px; line-height: 1.8; text-align: left;">
@@ -522,8 +507,8 @@ Think of an LLM as a **vast landscape of probable completions**:
 
 - Left to itself with a vague prompt ("write about marketing"), the model wanders into the **statistical average**—generic, safe, bland text.
 - **Your prompt acts like a rudder or steering wheel:**
-  - **Persona / Role:** Steers toward an expert mindset (e.g., *"You are a senior fitness studio marketing director"*).
-  - **Constraints:** Steers away from fluff and sets strict boundaries (e.g., *"Under $2,000/mo, self-implemented only"*).
+  - **Persona & Context:** Steers toward an expert mindset (e.g., *"You are a senior fitness studio marketing director"*).
+  - **Constraints & Bounds:** Steers away from fluff and sets strict boundaries (e.g., *"Under $2,000/mo, self-implemented only"*).
   - **Examples (Few-shot):** Steers tone and structure directly into the target zone.
 
 </div>
@@ -534,6 +519,94 @@ Prompting isn't about polite manners or magic keywords — it's about <strong>st
 
 Note:
 This is why prompt engineering works. The model contains many possible perspectives. A vague prompt gets an average answer because that's the center of the probability distribution. When you provide clear constraints, examples, and roles, you steer the model away from the generic center into the specific, high-capability corner of its training data.
+
+---
+
+## Don't Prompt Like Peter Parker
+
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/M1D2zTJhIss?start=10&end=120" title="Peter Parker Messes Up Dr Strange's Spell" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 15px auto; display: block;"></iframe>
+
+<p style="font-size: 16px; color: #6b7280; text-align: center; margin-top: 10px;">
+<a href="https://www.youtube.com/watch?v=M1D2zTJhIss" target="_blank">Watch on YouTube (Spider-Man: No Way Home)</a>
+</p>
+
+Note:
+Play about 60 to 90 seconds here—up to where Strange shuts down the spell. Watch what Peter does: he asks for an extreme spell, then changes the parameters over and over mid-casting until the entire spell spins out of control. We see students do this every single semester in prompt engineering.
+
+;;;
+
+### Anatomy of a Prompting Disaster
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px auto; max-width: 950px; text-align: left;">
+
+<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 20px; border-radius: 8px;">
+<h4 style="color: #991b1b; margin-top: 0; font-size: 18px;">Peter's 4 Blunders:</h4>
+<ul style="font-size: 15px; line-height: 1.7;">
+<li><strong>Constraint Creep:</strong> Tacking on exception after exception mid-stream (MJ, Ned, Aunt May, Happy).</li>
+<li><strong>Assuming Mind-Reading:</strong> Expecting Strange to guess what a "normal life" looks like without examples.</li>
+<li><strong>One-Way Monologue:</strong> Never letting Strange ask questions or diagnose the real problem.</li>
+<li><strong>Context Pollution:</strong> Trying to patch a collapsing spell while reality is actively tearing apart.</li>
+</ul>
+</div>
+
+<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 20px; border-radius: 8px;">
+<h4 style="color: #15803d; margin-top: 0; font-size: 18px;">The LLM Reality:</h4>
+<ul style="font-size: 15px; line-height: 1.7;">
+<li><strong>Conflicted Attention:</strong> Piling on contradictory rules guarantees bland or broken completions.</li>
+<li><strong>Show, Don't Tell:</strong> Without examples, models guess the average interpretation.</li>
+<li><strong>Ask First:</strong> The best results come when you let the AI interview you.</li>
+<li><strong>Start Fresh:</strong> When a chat goes off the rails, don't keep arguing—start a new chat!</li>
+</ul>
+</div>
+
+</div>
+
+<div style="text-align: center; font-size: 18px; color: #7c3aed; margin-top: 15px;">
+<em>"You changed my spell five times while I was casting it!"</em> — Dr. Strange
+</div>
+
+---
+
+## The 4 Core Principles of Steering
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px auto; max-width: 950px; text-align: left;">
+
+<div style="background: #f8fafc; border-top: 4px solid #7c3aed; padding: 20px; border-radius: 8px;">
+<h4 style="color: #5b21b6; margin-top: 0; font-size: 18px;">1. Be Clear, Direct & Bounded</h4>
+<p style="font-size: 15px; color: #4b5563; line-height: 1.6; margin: 8px 0;">
+State the exact goal upfront. Give positive instructions and <strong>negative bounds</strong> (e.g., *"Under $2k/mo, self-implemented only"*). Stop adding rules mid-air.
+</p>
+</div>
+
+<div style="background: #f8fafc; border-top: 4px solid #2563eb; padding: 20px; border-radius: 8px;">
+<h4 style="color: #1e40af; margin-top: 0; font-size: 18px;">2. Use Examples (Show, Don't Tell)</h4>
+<p style="font-size: 15px; color: #4b5563; line-height: 1.6; margin: 8px 0;">
+One sample output is worth 500 words of adjectives. Show the model the exact tone, structure, and depth you expect.
+</p>
+</div>
+
+<div style="background: #f8fafc; border-top: 4px solid #059669; padding: 20px; border-radius: 8px;">
+<h4 style="color: #065f46; margin-top: 0; font-size: 18px;">3. Invite Participation (Co-Pilot)</h4>
+<p style="font-size: 15px; color: #4b5563; line-height: 1.6; margin: 8px 0;">
+Turn the monologue into a dialogue. Instruct the model: <em>"Ask me 3 clarifying questions before you generate the plan."</em>
+</p>
+</div>
+
+<div style="background: #f8fafc; border-top: 4px solid #d97706; padding: 20px; border-radius: 8px;">
+<h4 style="color: #92400e; margin-top: 0; font-size: 18px;">4. Separate Instructions from Data</h4>
+<p style="font-size: 15px; color: #4b5563; line-height: 1.6; margin: 8px 0;">
+Use markdown headers, bullet blocks, or tags (<code>&lt;context&gt;</code>, <code>&lt;rules&gt;</code>). Prevent the model from confusing source data with instructions.
+</p>
+</div>
+
+</div>
+
+<div style="background: #fef3c7; padding: 12px 20px; border-radius: 8px; margin-top: 15px; font-size: 16px; color: #92400e; text-align: center;">
+<strong>Golden Rule:</strong> When a conversation gets derailed, don't keep patching it. <strong>Copy what worked and start a fresh chat.</strong>
+</div>
+
+Note:
+We've cut the old 2023 prompting list down to the four that actually matter in 2026. Notice how each one fixes one of Peter's mistakes. In modern frontier models, you don't need to tweak temperature sliders or tell models to 'think step by step'—they do that natively. What matters is bounding your request, showing examples, collaborating, and keeping your instructions clean.
 
 ---
 
@@ -559,331 +632,102 @@ For today's lab, LibreChat is our primary tool because it lets us fan out a sing
 
 ---
 
-## Hands-On: Multi-Model Prompting Lab
+## Hands-On: Multi-Model Discovery Lab
 
-**Now it's time to experiment — 50 minutes:**
+**50 Minutes · Work with Your Table Partner**
 
-<div style="margin-top: 40px; font-size: 22px; color: #7c3aed;">
-<strong>Goal:</strong> Develop intuition for model selection and prompting strategies
+<div style="margin-top: 30px; font-size: 22px; color: #7c3aed;">
+<strong>Goal:</strong> Empirically benchmark 4 models across Provider × Model Scale × Prompt Steering
 </div>
 
-<div style="margin-top: 30px; font-size: 19px; color: #15803d;">
-<strong>Read the outputs.</strong> Actually read them. That's the assignment.
-</div>
-
-Note:
-This is individual work in LibreChat, structured exercises adapted from Anthropic's prompt engineering tutorial. One thing I want to say up front: do not race. The cohort that took this last spring got the most out of it when they slowed down and actually read what came back. If you finish an exercise early, go deeper on it rather than jumping ahead.
-
-;;;
-
-## Three Models. One Per Category.
-
-<div style="font-size: 19px; margin: 30px auto; max-width: 880px;">
-
-| Category     | Model            | Why it's here                                             |
-| ------------ | ---------------- | --------------------------------------------------------- |
-| **Frontier** | Claude Opus 5    | Ceiling of what's possible right now                      |
-| **Balanced** | GPT-5.4          | Different lab, mid-tier — isolates _provider_ from _tier_ |
-| **Fast**     | Claude Haiku 4.5 | Cheap and quick — is it good enough?                      |
-
-</div>
-
-<div style="margin-top: 24px; font-size: 18px; color: #6b7280;">
-<strong>Finished early?</strong> Add <strong>Claude Sonnet 5</strong> — it completes the Anthropic ladder (Opus → Sonnet → Haiku) so you can see tier effects with the provider held constant.
-</div>
-
-<div style="margin-top: 20px; font-size: 17px; color: #92400e;">
-If a name in the dropdown doesn't match exactly, pick the nearest model in that category and note which one you used.
+<div style="margin-top: 25px; font-size: 19px; color: #15803d; line-height: 1.8;">
+You are not just chatting—you are running a controlled experiment and recording observations in a <strong>Lab Notebook</strong>.
 </div>
 
 Note:
-Three models, not six. Last cohort tried six and it was too many - people were still reading model four when we needed to move on. Three is enough to see the pattern. The comparison you care about is across the categories, not between two specific product names. And write down which models you actually used, because your reflection needs to name them.
+We've restructured the lab around your table pairings. Each pair of students has 4 models running side-by-side in LibreChat. You will send prompts once, observe all four responses, and document what happens in your cloned Google Doc notebook.
 
 ;;;
 
-## Example Case Study
+## Step 1: Clone Your Lab Notebook
 
-You are a marketing consultant who just signed a local Pilates studio as a client. Our goal is to help them generate a plan to scale their business.
-
-;;;
-
-## Exercise 1: Zero-Shot Baseline
-
-> Principle: Be clear and direct
-
-What to observe:
-
-- Which model is fastest?
-- Which model provides the most helpful answer?
-- Which model provides the most over-confident answer?
-- Which model provides the least helpful answer?
-
-;;;
-
-### Exercise 1
-
-#### Prompt
-
-```
-Generate a marketing plan for local Pilates studio.
-```
-
-<div style="background: #ede9fe; border: 2px solid #7c3aed; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px; text-align: left;">
-<strong>Use LibreChat Comparison Mode:</strong> Select <strong>Claude Opus 5</strong>, <strong>GPT-5.4</strong>, and <strong>Claude Haiku 4.5</strong> side-by-side. Send the prompt once and observe all three outputs simultaneously.
+<div style="display: grid; grid-template-columns: 1fr 320px; gap: 30px; align-items: center; max-width: 1000px; margin: 30px auto;">
+<div style="text-align: left;">
+<h3 style="margin-top: 0; color: #7c3aed; font-size: 26px;">Clone the Discovery Lab Doc:</h3>
+<p style="font-size: 20px; line-height: 1.6; margin: 20px 0;">
+Scan the QR code or click:<br>
+<a href="https://docs.google.com/document/u/0/d/1MdrQwEhPp2tQ63fQVINzCqTXdtvPFFrg-X9krSHfPrI/copy?pli=1" target="_blank" style="word-break: break-all; font-size: 18px;">
+<strong>Make a Copy of the Lab Notebook</strong>
+</a>
+</p>
+<p style="font-size: 16px; color: #6b7280; line-height: 1.6;">
+One partner clones the document and shares edit access with the other. You will submit your completed notebook in D2L at the end of class.
+</p>
+</div>
+<div style="text-align: center;">
+<img src="assets/lab-notebook-qr.png" alt="Lab Notebook QR Code" style="width: 280px; height: 280px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+</div>
 </div>
 
----
-
-## Exercise 2
-
-> Principle: Be clear and direct
-
-What to observe:
-
-- How does bounding the 'set' of possibilities impact the result?
-
 ;;;
 
-### Exercise 2
+## Step 2: Your Table Pairings (A – F)
 
-> Note: Start a new comparison chat session
+<div style="font-size: 15px; margin: 15px auto; max-width: 980px;">
 
-#### Prompt
+| Group | Provider A (Small + Large) | Provider B (Small + Large) |
+| :---: | :--- | :--- |
+| **Group A** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **OpenAI:** GPT-5.4 · GPT-5.6 |
+| **Group B** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro |
+| **Group C** | **Anthropic:** Claude Haiku 4.5 · Claude Opus 5 | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
+| **Group D** | **OpenAI:** GPT-5.4 · GPT-5.6 | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro |
+| **Group E** | **OpenAI:** GPT-5.4 · GPT-5.6 | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
+| **Group F** | **Google:** Gemini 3.7 Flash · Gemini 3.7 Pro | **Groq:** GPT-OSS-20B · GPT-OSS-120B |
 
-```
-Generate a marketing plan for local Pilates studio. Only give me solutions I can self-implement for less than $2,000/month
-```
-
-<div style="background: #ede9fe; border: 2px solid #7c3aed; padding: 18px 24px; border-radius: 8px; margin-top: 24px; font-size: 18px; text-align: left;">
-<strong>Comparison Mode:</strong> Continue with <strong>Opus 5 · GPT-5.4 · Haiku 4.5</strong> side-by-side. Compare how each model adapts to the budget constraint.
 </div>
 
----
-
-## Exercise 3
-
-> Principle: Use Chains of Thought/Planning
-
-What to observe:
-
-- How do the models change when you ask it to think or plan?
-- Which model(s) change the most? The least? Why do you suppose that is?
-
-;;;
-
-### Exercise 3
-
-#### Prompt
-
-```
-Generate a marketing plan for my local Pilates studio. Think step-by-step through the time and money constraints I may have. Then, give me a plan I can self-implement for less than $2,000/month. Justify your reasoning.
-```
-
-Models to use — **comparison mode**:
-
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
-
----
-
-## Exercise 4
-
-> Principle: Invite Participation
-
-What to observe
-
-- How does working with an LLM vs "using" an LLM change the output?
-
-;;;
-
-### Exercise 4
-
-#### Prompt
-
-```
-I need to generate a marketing plan for my local Pilates studio. I would like you to help me put it together. Please ask me questions to answer so that I can get a high-quality personalized plan for my studio.
-```
-
-Models to use — **comparison mode**:
-
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
-
----
-
-## Exercise 5
-
-> Principles: Use Examples, Separate Instruction from Data
-
-What to observe:
-
-- How do examples affect the outcome of what's generated?
-
-;;;
-
-### Exercise 5a
-
-#### Prompt
-
-```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
-```
-
-Models to use — **comparison mode**:
-
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
-
-;;;
-
-### Exercise 5b
-
-### Prompt
-
-```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer. Use a tone based on the following examples:
-<example>
-Try the low-impact fitness method Jennifer Aniston calls a “game-changer.”
-
-✨ “Within weeks I felt stronger, leaner, and my back pain started to fade. This is the only workout I’ve stuck with.” – Amanda K.
-
-✅ Joint-friendly, results you can see and feel
-✅ Functional, Pilates-inspired movements that sculpt head to toe
-✅ Clinically proven to reduce lower back pain
-
-👉 Get started risk-free for 30 days with a new-member bundle. Love it or send it back for a full refund.
-</example>
-<example>
-Did you know only 6% of sports science research focuses on women? 🤯
-
-That’s why Pvolve ran clinical studies of our own — and the results speak for themselves:
-
-✨ +23% more daily energy
-✨ +21% more flexibility
-✨ +19% more hip strength & function
-
-And members also saw:
-💪 Stronger balance & mobility
-🔥 Lean muscle (without bulk)
-❤️ Healthier blood markers
-🌟 Better overall quality of life
-
-The best part? Every bundle comes with a 30-day money-back guarantee. Don’t love it? Send it back—on us.
-</example>
-<example>
-Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a day with the low-impact method everyone’s talking about.
-
-💪 Total-Body Sculpting From Home
-🏋️ Functional, Pilates-Inspired Movements
-🧠 Backed by Clinical Research
-🌟 Loved by Jennifer Aniston
-
-👉 Try any bundle risk-free for 30 days — streaming included.
-</example>
-```
-
-Models to use — **comparison mode**:
-
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
-
----
-
-## Exercise 6 — Optional / Take-Home
-
-<div style="background: #f3f4f6; border-left: 5px solid #6b7280; padding: 20px 28px; margin: 30px auto; max-width: 900px; font-size: 19px;">
-We are <strong>not</strong> doing this one in class. It's here so you can run it on your own — and it's a good thing to reference in your reflection.
+<div style="margin-top: 15px; font-size: 17px; color: #7c3aed; text-align: center;">
+In LibreChat: Select <strong>Comparison Mode</strong> ➔ Add your 4 assigned models side-by-side.
 </div>
-
-> Principle: Tweak parameters
-
-What to observe:
-
-- How does temperature affect the quality and tone of response?
-- Are some models more sensitive than others?
-
-_Note: turn off thinking/reasoning to see this in effect_
 
 Note:
-Straight talk: this exercise did not fit in eighty minutes last time and I'm not going to pretend it does. It's genuinely interesting, so I'm giving it to you as a take-home instead of rushing exercises 1 through 5 to squeeze it in. If you run it, bring it up in your reflection.
+Check your table letter (A through F). That tells you which two providers you are testing. For each provider, pick their fast/small model and their frontier/large model. All four will sit side by side in LibreChat.
 
 ;;;
 
-### Exercise 6a/b
+## The 5 Lab Experiments
 
-### Prompt
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px auto; max-width: 950px; text-align: left; font-size: 15px;">
 
-```
-I am offering a new member 30-day $7 trial for my new pilates studio to bring people in for the back-to-school season. Please write me a Facebook ad for this offer.
-```
+<div style="background: #f8fafc; border-left: 4px solid #ef4444; padding: 14px 18px; border-radius: 6px;">
+<strong>Exp 1: The "Peter Parker" Baseline</strong><br>
+<span style="color: #6b7280;">Vague, unbounded prompt. Compare speed, fluff, and raw provider voice.</span>
+</div>
 
-Temperatures to use: 1, 0.2
+<div style="background: #f8fafc; border-left: 4px solid #7c3aed; padding: 14px 18px; border-radius: 6px;">
+<strong>Exp 2: Clear, Direct & Bounded</strong><br>
+<span style="color: #6b7280;">Add k/mo & 5 hr/wk limits. Watch which models respect negative constraints.</span>
+</div>
 
-Models to use:
+<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 14px 18px; border-radius: 6px;">
+<strong>Exp 3: Few-Shot Steering</strong><br>
+<span style="color: #6b7280;">Provide 2 winning ad examples. Can small models match frontier quality?</span>
+</div>
 
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
+<div style="background: #f8fafc; border-left: 4px solid #059669; padding: 14px 18px; border-radius: 6px;">
+<strong>Exp 4: The "Call MIT First" Test</strong><br>
+<span style="color: #6b7280;">Interview mode: instruct models to ask 3 diagnostic questions before planning.</span>
+</div>
 
----
+</div>
 
-## Exercise 7 — Back in the Room
+<div style="background: #f8fafc; border-left: 4px solid #d97706; padding: 14px 18px; border-radius: 6px; max-width: 950px; margin: 15px auto; text-align: left; font-size: 15px;">
+<strong>Exp 5: Separating Instructions from Data</strong> — Feed messy raw client intake notes inside <code>&lt;client_notes&gt;</code> tags to test extraction and business synthesis.
+</div>
 
-> Principle: Use Roles
-
-What to observe:
-
-- How do 'roles' make it "easier" for an LLM to get to an outcome faster?
-- How do 'roles' reduce your work as a human?
-
-;;;
-
-### Exercise 7
-
-#### Role Prompt
-
-```
-You are an expert Facebook ad copywriter. You use best practices as exemplified by these examples to craft high-quality ads for local pilates studios:
-<example>
-Try the low-impact fitness method Jennifer Aniston calls a “game-changer.”
-
-✨ “Within weeks I felt stronger, leaner, and my back pain started to fade. This is the only workout I’ve stuck with.” – Amanda K.
-
-✅ Joint-friendly, results you can see and feel
-✅ Functional, Pilates-inspired movements that sculpt head to toe
-✅ Clinically proven to reduce lower back pain
-
-👉 Get started risk-free for 30 days with a new-member bundle. Love it or send it back for a full refund.
-</example>
-<example>
-Did you know only 6% of sports science research focuses on women? 🤯
-
-That’s why Pvolve ran clinical studies of our own — and the results speak for themselves:
-
-✨ +23% more daily energy
-✨ +21% more flexibility
-✨ +19% more hip strength & function
-
-And members also saw:
-💪 Stronger balance & mobility
-🔥 Lean muscle (without bulk)
-❤️ Healthier blood markers
-🌟 Better overall quality of life
-
-The best part? Every bundle comes with a 30-day money-back guarantee. Don’t love it? Send it back—on us.
-</example>
-<example>
-Too busy to workout? Pvolve makes it easy. Transform your body in 30 minutes a day with the low-impact method everyone’s talking about.
-
-💪 Total-Body Sculpting From Home
-🏋️ Functional, Pilates-Inspired Movements
-🧠 Backed by Clinical Research
-🌟 Loved by Jennifer Aniston
-
-👉 Try any bundle risk-free for 30 days — streaming included.
-</example>
-```
-
-Models to use — **comparison mode**:
-
-- Claude Opus 5 · GPT-5.4 · Claude Haiku 4.5
-
-Note:
-This one goes in the system prompt field, not the chat box - that's the whole point of a role. Then send a plain one-line request as your user message and notice how much less you had to say to get a good ad. Flag me down if you can't find where the system prompt lives in LibreChat.
+<div style="text-align: center; font-size: 17px; color: #15803d; margin-top: 15px;">
+Follow the step-by-step instructions and record your findings directly in your cloned Google Doc!
+</div>
 
 ---
 
@@ -900,18 +744,16 @@ This one goes in the system prompt field, not the chat box - that's the whole po
 
 **Prompting Principles You Practiced:**
 
-- Be clear and direct
-- Use examples (few-shot learning)
-- Invite participation - work WITH the model
-- Use chains of thought for complex reasoning
-- Separate instructions from data
-- Assign roles to shape responses
-- Tweak parameters (temperature) for creativity vs consistency — _your take-home_
+- **Be Clear, Direct & Bounded:** Define your objective and negative bounds upfront
+- **Use Examples:** Show the model what good output looks like (few-shot)
+- **Invite Participation:** Turn the monologue into a collaborative dialogue
+- **Separate Instructions from Data:** Use clean structure so rules don't bleed into content
+- **Anti-Peter Rule:** When the spell destabilizes, start a fresh chat!
 
 > Prompting matters as much as model choice
 
 Note:
-These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective prompting. Six of these seven you practiced in the room; the temperature one is yours to run on your own. All seven work across every model and they're the foundation for the rest of the course.
+These are the core lessons from today. You now understand how to choose models strategically AND how to get better results through effective steering. You practiced all four core principles in the room today. They work across every model and provider, and they form the bedrock for everything we will build this semester.
 
 ---
 
