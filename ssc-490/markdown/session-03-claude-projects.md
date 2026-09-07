@@ -18,8 +18,8 @@
 
 </div>
 <div style="text-align: center;">
-<img src="assets/slido-s01.png" alt="Slido QR Code" style="width: 240px; height: 240px;">
-<div style="font-size: 15px; color: #6b7280; margin-top: 8px;">slido.com <strong style="color: #7c3aed;">#4017 568</strong></div>
+<img src="assets/poll-s05-qr.png" alt="Live Poll QR Code" style="width: 240px; height: 240px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
+<div style="font-size: 13px; color: #6b7280; margin-top: 8px;">Live Poll: <a href="https://msu-slides-poll.jesse-41b.workers.dev/s05" target="_blank" style="color: #7c3aed; font-weight: bold; word-break: break-all;">msu-slides-poll.jesse-41b.workers.dev/s05</a></div>
 </div>
 </div>
 
@@ -338,14 +338,17 @@ Try prompting a fresh Claude chat: <em>"Interview me step-by-step about my caree
 Before we build a skill, let's look at the real workflow:
 
 <div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 22px; border-radius: 10px; margin: 20px 0; text-align: center;">
-<h3 style="color: #5b21b6; margin-top: 0;">Slido / Live Brainstorm</h3>
-<p style="font-size: 22px; color: #1e293b; margin-bottom: 0;">
+<h3 style="color: #5b21b6; margin-top: 0;">Live Poll &amp; Brainstorm</h3>
+<p style="font-size: 22px; color: #1e293b; margin-bottom: 8px;">
 <strong>"What are all the distinct tasks involved in finding a job and getting hired?"</strong>
 </p>
+<div style="font-size: 16px; color: #2563eb; font-family: monospace;">
+👉 <a href="https://msu-slides-poll.jesse-41b.workers.dev/s05" target="_blank" style="color: #2563eb;">msu-slides-poll.jesse-41b.workers.dev/s05</a>
+</div>
 </div>
 
 <p style="color: #6b7280; font-size: 18px; text-align: center;">
-Post your answers on Slido or call them out in the room. Let's map the messy reality.
+Submit your answers to the live poll or call them out in the room. Let's map the messy reality.
 </p>
 
 </div>
