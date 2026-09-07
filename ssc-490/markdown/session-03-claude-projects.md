@@ -107,9 +107,8 @@ We are building inside <strong>Claude.ai Team seats</strong>. If you are not in 
 </div>
 </div>
 
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; font-size: 16px; line-height: 1.6;">
-<strong>Verify Success:</strong> When you log in, look at the top-left selector. It must show: <code>SSC 490 - Fall 2026</code>.<br>
-<em>Raise your hand right now if you see an error!</em>
+<div style="background: #fefce8; border-left: 4px solid #eab308; padding: 14px 18px; border-radius: 6px; font-size: 16px; line-height: 1.6; color: #854d0e;">
+<strong>Next Step:</strong> Maya and I will need to approve your registration. Hang tight!
 </div>
 </div>
 
@@ -234,20 +233,21 @@ Walk through the triad: Project = who you are (always true). Skills = what you d
 
 ;;;
 
-### Why Connectors Matter: Systems of Record
+### Skills Manage Processes · Connectors Manage Information
 
-<div style="max-width: 900px; margin: 30px auto; font-size: 19px; line-height: 1.8; text-align: left;">
+<div style="max-width: 920px; margin: 30px auto; font-size: 20px; line-height: 1.8; text-align: left;">
 
-Context windows are finite, and chats are temporary:
+Today is all about setting up your workspace and building your first skill. On Thursday, we'll dive deep into connectors. Here is how they divide the labor:
 
-- **Skills Manage Runtime Context:** You don't have to remember an SOP and neither does the agent. It gets invoked on-demand at runtime without polluting your active context window.
-- **Connectors Provide Systems of Record:** A chat interface will never give you a queryable database you can sort, filter, or audit.
-- **Real Workflows Need Structured Storage:**
-  - **Google Sheets:** Live application pipeline (State · Read/Write)
-  - **Baserow:** Curated, licensed MSU Career Services resources (Reference · Read)
-  - **Google Docs:** Exported resumes and cover letters (Artifacts · Write)
+- **Skills Manage Processes:**  
+  A reusable, step-by-step recipe. When you ask Claude to tailor a résumé or extract accomplishments, the skill tells it *how to do the work* so you don't have to re-explain the rules every single time.
 
-*(We'll wire these connectors up on Thursday!)*
+- **Connectors Manage Knowledge & Information:**  
+  How your system reaches outside the chat to pull in external knowledge (like MSU career resources) or save what you do into real tools (like a live Google Sheets tracker).
+
+<div style="background: #ede9fe; padding: 16px 20px; border-radius: 8px; margin-top: 25px; font-size: 18px; color: #5b21b6; text-align: center;">
+<strong>Skills</strong> give your AI repeatable workflows. <strong>Connectors</strong> give your AI access to real data.
+</div>
 
 </div>
 
@@ -333,23 +333,27 @@ Try prompting a fresh Claude chat: <em>"Interview me step-by-step about my caree
 
 ## Interactive Discussion: The Job Search Process
 
-<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
+<div style="display: grid; grid-template-columns: 1fr 240px; gap: 24px; align-items: center; max-width: 950px; margin: 25px auto; text-align: left;">
 
-Before we build a skill, let's look at the real workflow:
-
-<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 22px; border-radius: 10px; margin: 20px 0; text-align: center;">
+<div>
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 20px; border-radius: 10px;">
 <h3 style="color: #5b21b6; margin-top: 0;">Live Poll &amp; Brainstorm</h3>
-<p style="font-size: 22px; color: #1e293b; margin-bottom: 8px;">
+<p style="font-size: 20px; color: #1e293b; margin-bottom: 10px; line-height: 1.5;">
 <strong>"What are all the distinct tasks involved in finding a job and getting hired?"</strong>
 </p>
-<div style="font-size: 16px; color: #2563eb; font-family: monospace;">
-👉 <a href="https://msu-slides-poll.jesse-41b.workers.dev/s05" target="_blank" style="color: #2563eb;">msu-slides-poll.jesse-41b.workers.dev/s05</a>
+<div style="font-size: 14px; color: #2563eb; font-family: monospace;">
+👉 <a href="https://msu-slides-poll.jesse-41b.workers.dev/s05" target="_blank" style="color: #2563eb; word-break: break-all;">msu-slides-poll.jesse-41b.workers.dev/s05</a>
 </div>
+</div>
+<p style="color: #6b7280; font-size: 16px; margin-top: 15px;">
+Scan the QR code to submit your tasks, or call them out in the room. Let's map the messy reality.
+</p>
 </div>
 
-<p style="color: #6b7280; font-size: 18px; text-align: center;">
-Submit your answers to the live poll or call them out in the room. Let's map the messy reality.
-</p>
+<div style="text-align: center;">
+<img src="assets/poll-s05-qr.png" alt="Live Poll QR Code" style="width: 210px; height: 210px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
+<div style="font-size: 12px; color: #6b7280; margin-top: 6px;">Scan to Join Poll</div>
+</div>
 
 </div>
 
@@ -552,7 +556,7 @@ For **Milestone 1**, you must build **at least two skills**. Here are the 5 top 
 
 Today we configured **Who you are** (Project) and built **What you do** (Skills).
 
-On Thursday, we wire up **Connectors** (APIs without the jargon):
+On Thursday, we wire up **Connectors**:
 
 - **Google Sheets Application Tracker:** Your skill will read and write pipeline state (Company, Role, Date, Stage, Next Action).
 - **MSU Career Services Database (Baserow):** Live access to 400+ curated Michigan career resources, professional associations, and O*NET descriptors.
