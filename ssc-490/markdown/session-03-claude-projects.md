@@ -30,37 +30,37 @@ Welcome everyone back to the room. Give them the roadmap for the next two weeks 
 
 ## Session 2 Diagnostic: What Did You Learn?
 
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
+<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
 
 Because last week got pushed virtual by the storm, today starts with a **diagnostic check** on your take-home lab notebooks:
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px;">
-<h4 style="color: #0f172a; margin-top: 0;">1. Model Scale vs. Prompting</h4>
+<h4 style="color: #0f172a; margin-top: 0;">1. Small vs. Large Models</h4>
 <p style="font-size: 16px; color: #334155;">
-Did a great prompt on <strong>Haiku 4.5</strong> beat or match a lazy prompt on <strong>Opus 5</strong>? What was the difference?
+Did you observe any instance where a <strong>Small Model with a steered prompt</strong> produced a better result than a <strong>Large Model with a lazy prompt</strong>?
 </p>
 </div>
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px;">
-<h4 style="color: #0f172a; margin-top: 0;">2. Provider "DNA"</h4>
+<h4 style="color: #0f172a; margin-top: 0;">2. Provider "Personality"</h4>
 <p style="font-size: 16px; color: #334155;">
-How did Anthropic, OpenAI, Google, and Groq differ in their tone, structure, and refusal style?
+Did you notice any <strong>"personality" differences</strong> across providers (Anthropic, OpenAI, Google, Groq)?
 </p>
 </div>
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px;">
-<h4 style="color: #0f172a; margin-top: 0;">3. Context Pollution</h4>
+<h4 style="color: #0f172a; margin-top: 0;">3. Fixing Broken Sessions</h4>
 <p style="font-size: 16px; color: #334155;">
-When you tried to patch an existing prompt mid-flight, did the output improve or degrade?
+What is the proper "fix" once a conversational session starts to <strong>break or drift</strong>?
 </p>
 </div>
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px;">
-<h4 style="color: #0f172a; margin-top: 0;">4. The "Anti-Peter" Test</h4>
+<h4 style="color: #0f172a; margin-top: 0;">4. Business Economics</h4>
 <p style="font-size: 16px; color: #334155;">
-When the conversation started hallucinating or drifting, what fixed it faster: arguing, or starting fresh?
+If you were running a business on a budget, what kinds of tasks would you <strong>delegate to a small model</strong>? What requires a <strong>large model</strong>?
 </p>
 </div>
 
@@ -129,16 +129,26 @@ Do NOT proceed past this slide until every student has confirmed they are in the
 
 ### "Build Your Career Coach"
 
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+<div style="display: grid; grid-template-columns: 1fr 260px; gap: 24px; align-items: center; max-width: 960px; margin: 20px auto; text-align: left;">
 
+<div style="font-size: 18px; line-height: 1.7;">
+<p style="margin-top: 0;">
 You are going to build a working AI system that runs your personal job search:
+</p>
+<ul style="margin: 8px 0 14px 18px; font-size: 16px;">
+<li><strong>Not a one-off chatbot:</strong> A persistent container holding <strong>who you are</strong>, <strong>reusable skills you engineered</strong>, and <strong>live data</strong> it reads/writes.</li>
+<li><strong>Your Single-Player Rehearsal:</strong> In October, your team automates a real process for a community partner (Samaritas, CAMW, LEAP). This job-search system is the rehearsal with you as the client.</li>
+</ul>
 
-- **Not a one-off chatbot** you converse with and discard.
-- A persistent system containing **who you are**, **reusable skills you engineered**, and **live data** it can read and write.
+<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 12px 16px; border-radius: 6px; font-size: 15px;">
+👉 <strong>Clone Assignment Template:</strong><br>
+<a href="https://docs.google.com/document/d/1w6h6nHIZpsJr1aOfg_ZWCXDWW70bUc7A0TcQ6OSVn6M/copy" target="_blank" style="color: #1d4ed8; word-break: break-all; font-family: monospace; font-size: 13px;">docs.google.com/.../copy</a>
+</div>
+</div>
 
-<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 18px 24px; border-radius: 8px; margin: 20px 0;">
-<strong>Why You Are Your Own Client:</strong><br>
-In October, your team will automate an internal process for an external partner (Samaritas, CAMW, or LEAP). A job search has the exact same architecture: an opportunity pipeline, repeatable drafting with variations, and persistent state. <strong>This is your single-player rehearsal.</strong>
+<div style="text-align: center;">
+<img src="assets/m1-assignment-qr.png" alt="M1 Assignment Doc QR Code" style="width: 220px; height: 220px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
+<div style="font-size: 13px; color: #6b7280; margin-top: 6px;">Scan for Google Doc Template</div>
 </div>
 
 </div>
@@ -150,54 +160,29 @@ Frame M1 clearly. This is not busywork; this is their own professional career en
 
 ### Milestone 1: The Deliverable & Grading
 
-<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
+<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 18px; line-height: 1.7;">
 
 **Due Date:** Monday, September 21 (Submitted on D2L)
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-
-<div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 18px; border-radius: 8px;">
-<h4 style="color: #7c3aed; margin-top: 0;">What You Submit:</h4>
-<ul style="font-size: 16px; line-height: 1.6;">
-<li><strong>3–5 Min Loom Walkthrough:</strong> Run one workflow end-to-end out loud on real data (posting in ➔ tailored resume + tracker row logged).</li>
-<li><strong>Links / Exports:</strong> Project instructions, your 2+ skills, and your Google Sheets tracker.</li>
-<li><strong>300-word reflection:</strong> What tasks did you choose <em>not</em> to automate, and why?</li>
-</ul>
-</div>
-
-<div style="background: #fdf4ff; border: 1px solid #d8b4fe; padding: 18px; border-radius: 8px;">
-<h4 style="color: #7e22ce; margin-top: 0;">What We Grade:</h4>
-<ul style="font-size: 16px; line-height: 1.6;">
-<li><strong>The Loom video is the graded artifact.</strong> Everything else is what it demonstrates.</li>
-<li>Evidence that you understand <em>why</em> you built each piece.</li>
-<li>A rough system you can explain beats a slick system you can't!</li>
-</ul>
-</div>
-
-</div>
-
-</div>
-
-;;;
-
-### Your Privacy is Bounded
-
-<div style="max-width: 900px; margin: 35px auto; text-align: left; font-size: 20px; line-height: 1.8;">
-
-<div style="background: #fefce8; border: 2px solid #eab308; border-radius: 8px; padding: 24px;">
-<h4 style="color: #854d0e; margin-top: 0;">🔒 A Clear Rule on Student Privacy</h4>
-<p>
-Your résumé, target roles, salary requirements, and past rejections are personal.
+<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 20px 24px; border-radius: 8px; margin: 15px 0;">
+<h4 style="color: #5b21b6; margin-top: 0;">The Graded Artifact: 3–5 Minute Loom Walkthrough</h4>
+<p style="font-size: 16px; color: #334155; margin-bottom: 12px;">
+<em>No separate links, exports, or written reflections required — I evaluate your thinking and system directly from the Loom walkthrough.</em>
 </p>
-<p style="margin-bottom: 0;">
-<strong>We grade the Loom video and whatever you choose to show on camera — NOT the internal contents of your private Claude Project.</strong> Put whatever you need inside your workspace to make it genuinely useful to you.
-</p>
+
+<strong>What Your Loom Must Demonstrate:</strong>
+<ol style="font-size: 16px; line-height: 1.6; margin-top: 8px;">
+<li><strong>A Conversational Turn with a Skill:</strong> Run a real input through your custom skill (e.g., tailoring resume bullets to a posting using the WHO rubric).</li>
+<li><strong>A Conversational Turn with Your Data Store:</strong> Show Claude reading from or logging a row directly into your Google Sheets tracker.</li>
+<li><strong>Explanation of Decisions:</strong> Walk through <em>why</em> you chose your skills, which tasks you decided <em>not</em> to automate, and what your Google Sheets tracker tracks.</li>
+</ol>
+</div>
+
+<div style="background: #fefce8; border-left: 4px solid #eab308; padding: 12px 18px; border-radius: 6px; font-size: 15px; color: #854d0e;">
+🔒 <strong>Privacy Protected:</strong> We grade the Loom video and whatever you choose to show on camera — NOT the internal contents of your private Claude Project.
 </div>
 
 </div>
-
-Note:
-Make this boundary explicit so students don't hold back or sanitize their projects. Reassure them that instructor evaluation is strictly through the Loom recording and whatever they choose to present.
 
 ---
 
@@ -249,20 +234,20 @@ Walk through the triad: Project = who you are (always true). Skills = what you d
 
 ;;;
 
-### Why Connectors Matter (Closing the S2 Loop)
+### Why Connectors Matter: Systems of Record
 
-<div style="max-width: 900px; margin: 30px auto; font-size: 20px; line-height: 1.8; text-align: left;">
+<div style="max-width: 900px; margin: 30px auto; font-size: 19px; line-height: 1.8; text-align: left;">
 
-Last week we learned: **context windows are finite, and chats are temporary.**
+Context windows are finite, and chats are temporary:
 
-- Even as modern AI memory improves, a conversational chat **will never give you a queryable database**.
-- You cannot sort, filter, or run analytics on a chat transcript.
-- **Connectors exist because real workflows need systems of record:**
-  - **Google Sheets:** Live application tracker (State · Read/Write)
-  - **Baserow:** Curated MSU Career resources (Reference · Read)
-  - **Google Docs:** Exported resumes and letters (Artifacts · Write)
+- **Skills Manage Runtime Context:** You don't have to remember an SOP and neither does the agent. It gets invoked on-demand at runtime without polluting your active context window.
+- **Connectors Provide Systems of Record:** A chat interface will never give you a queryable database you can sort, filter, or audit.
+- **Real Workflows Need Structured Storage:**
+  - **Google Sheets:** Live application pipeline (State · Read/Write)
+  - **Baserow:** Curated, licensed MSU Career Services resources (Reference · Read)
+  - **Google Docs:** Exported resumes and cover letters (Artifacts · Write)
 
-*(We'll wire these up on Thursday!)*
+*(We'll wire these connectors up on Thursday!)*
 
 </div>
 
@@ -312,10 +297,36 @@ When assisting me with materials, ask clarifying questions if key context is mis
 Format dates consistently as [YYYY-MM] and follow the MSU WHO rubric.
 ```
 
+;;;
+
+### Anatomy of a Project Prompt: Why It's Built This Way
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 960px; margin: 15px auto; text-align: left; font-size: 15px; line-height: 1.6;">
+
+<div style="background: #f8fafc; border-left: 4px solid #7c3aed; padding: 14px 18px; border-radius: 6px;">
+<strong style="color: #5b21b6; font-size: 16px;">1. Identity & Target Roles</strong><br>
+<strong>Session 2 Concept:</strong> <em>Steering the Probability Landscape</em><br>
+Seeds the model's active working memory with high-dimensional domain vectors (social science, MSU, specific roles). Prevents wandering into the generic statistical average.
 </div>
 
-<div style="font-size: 17px; color: #7c3aed; text-align: center;">
-Take 10 minutes right now to draft your real project instructions!
+<div style="background: #f8fafc; border-left: 4px solid #ef4444; padding: 14px 18px; border-radius: 6px;">
+<strong style="color: #991b1b; font-size: 16px;">2. Negative Bounds & Constraints</strong><br>
+<strong>Session 2 Concept:</strong> <em>"Don't Prompt Like Peter"</em><br>
+Defines boundary walls upfront. Explicitly bans hallucinated metrics and corporate jargon ("synergy") before generation starts, avoiding context pollution.
+</div>
+
+<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 14px 18px; border-radius: 6px;">
+<strong style="color: #1e40af; font-size: 16px;">3. Operating Rules & Co-Pilot Mode</strong><br>
+<strong>Session 2 Concept:</strong> <em>Principle 3: Invite Participation</em><br>
+Forces Claude to act like a collaborative interviewer rather than an unguided monologue generator. Mandates the MSU WHO rubric.
+</div>
+
+<div style="background: #fdf4ff; border-left: 4px solid #a855f7; padding: 14px 18px; border-radius: 6px;">
+<strong style="color: #7e22ce; font-size: 16px;">💡 Challenge Exercise (Take-Home)</strong><br>
+<strong>Can AI write your project instructions?</strong><br>
+Try prompting a fresh Claude chat: <em>"Interview me step-by-step about my career goals, strengths, and writing preferences, then format the answers into a Project Instructions system prompt."</em>
+</div>
+
 </div>
 
 ---
@@ -436,81 +447,52 @@ Let's build that first real skill right now!
 
 ---
 
-## Live Build: Your First Skill
+## Live Build: Build Your First Skill Live
 
-### "Tailor Résumé to a Job Posting"
+### Using AI to Create Your Skill Prompt
 
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
+<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 17px; line-height: 1.7;">
 
-Most students do this by prompting: *"Make my resume match this job."*  
-**Result:** Generic buzzword stuffing that sounds like every other applicant.
+Rather than writing static prompt code from scratch, we use **collaborative dialogue** to generate our skill instructions in real-time.
 
-Instead, we encode **professional judgment** using the **MSU Career Services WHO Method**:
+<div style="background: #f8fafc; border: 2px solid #7c3aed; border-radius: 8px; padding: 20px; margin: 15px 0;">
+<strong style="color: #5b21b6; font-size: 18px;">Paste this Meta-Prompt into a Claude Chat:</strong>
 
-<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 18px 22px; border-radius: 6px; margin: 18px 0;">
-<strong>The WHO Method (MSU Career Standards):</strong>
-<ul style="font-size: 16px; margin: 8px 0 0 18px;">
-<li><strong>W — Who:</strong> Who did you work with? (Stakeholders, teams, clients, faculty)</li>
-<li><strong>H — How / What:</strong> What specific actions and tools did you use?</li>
-<li><strong>O — Outcome:</strong> What quantifiable impact, efficiency gain, or result was achieved?</li>
-</ul>
-</div>
+```text
+"I'd like to create a skill that helps me tailor my resume to a job posting using the MSU Career Services WHO method (Who you worked with, How/What you did, Outcome achieved).
 
-</div>
+Before writing the skill, ask me clarifying questions about my target roles, preferred bullet structure, and how you should handle experiences that need to be de-emphasized.
 
-;;;
-
-### The Secret Ingredient: The "And Why" Note
-
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.8;">
-
-Tailoring is not just adding keywords — it is **curation**:
-
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 18px 22px; border-radius: 6px; margin-bottom: 20px;">
-<strong style="color: #991b1b;">The Requirement that Forces Real Judgment:</strong><br>
-Your skill must output the tailored bullet points **PLUS an explicit note explaining what experiences got de-emphasized or cut, and why.**
-</div>
-
-- *Did you cut your retail customer service detail because this data role prioritized SQL modeling?*
-- *Did you de-emphasize a leadership title to spotlight direct statistical analysis?*
-
-If the model can't explain *why* it made those tradeoffs, it didn't use judgment — it just reformatted text.
-
-</div>
-
-;;;
-
-### Hands-On: Build the Skill in Claude
-
-<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 15px; line-height: 1.6;">
-
-In your Project, go to the **Skills** tab (or create a reusable workflow prompt):
-
-```markdown
-# Skill: Tailor Resume to Job Posting
-
-## Objective
-Analyze an input job posting against my master background. Generate tailored resume bullets
-grounded in the MSU WHO method, followed by an editorial tradeoff analysis.
-
-## Instructions
-1. Extract the top 3 hard skills and 2 soft competencies required by the target posting.
-2. Select 3-4 experiences from my background that provide direct evidence for those requirements.
-3. Rewrite the relevant experience bullets using the WHO format:
-   - [Active past-tense verb] + [What/How was done + tools used] + [Quantifiable outcome achieved].
-4. Append an "Editorial Tradeoff" section explicitly listing:
-   - What experiences were de-emphasized or removed
-   - Why those cuts make this application more competitive for this specific role.
-
-## Constraints
-- Never hallucinate metrics, titles, or dates.
-- Keep bullets under 2 lines each.
+Then generate the skill instructions for my project."
 ```
+</div>
+
+<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 12px 18px; border-radius: 6px; font-size: 15px; color: #1e40af;">
+Notice how this prompt enforces <strong>Principle 3 (Invite Participation)</strong>: it directs Claude to interview you before writing the procedure.
+</div>
 
 </div>
 
-<div style="font-size: 17px; color: #7c3aed; text-align: center; margin-top: 15px;">
-Open a new chat in your project, paste a real job posting + your resume, and run it!
+;;;
+
+### Hands-On Test: Run Your Skill on Real Data
+
+<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 18px; line-height: 1.7;">
+
+Now that Claude has generated your skill prompt, test it live in your project:
+
+<ol style="font-size: 17px; line-height: 1.8; margin-left: 20px;">
+<li><strong>Upload Your Resume:</strong> In your Project, click <strong>Add Content ➔ Upload Files</strong> and attach your current résumé.</li>
+<li><strong>Add the Skill:</strong> Paste the generated instructions into your project's <strong>Skills</strong> (or keep as a reusable prompt).</li>
+<li><strong>Start a Test Chat:</strong> Open a new conversation and paste a real job posting of your choosing.</li>
+<li><strong>Audit the Output:</strong>
+  <ul style="font-size: 15px; line-height: 1.6; margin-top: 6px;">
+  <li>Did it rewrite your bullets into the <strong>WHO format</strong> (Who / How / Outcome)?</li>
+  <li>Did it include an <strong>"Editorial Tradeoff"</strong> section explaining which experiences were de-emphasized and why?</li>
+  </ul>
+</li>
+</ol>
+
 </div>
 
 ---
@@ -593,7 +575,7 @@ Come to class Thursday with your Google Workspace logged in and ready to build!
 </div>
 
 <p style="text-align: center; color: #7c3aed; font-size: 22px; margin-top: 30px; font-weight: bold;">
-See you in the room Thursday at 10:20 AM!
+See you in the room Thursday at 2:10 PM!
 </p>
 
 </div>
