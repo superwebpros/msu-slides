@@ -93,21 +93,29 @@ Everything we build today — **Claude Projects** and **Skills** — depends dir
 
 ## BLOCKING CHECKPOINT: Join Claude.ai
 
-<div style="max-width: 920px; margin: 30px auto; text-align: left;">
+<div style="display: grid; grid-template-columns: 1fr 280px; gap: 30px; align-items: center; max-width: 960px; margin: 25px auto; text-align: left;">
 
-<div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 10px; padding: 24px; margin-bottom: 25px;">
-<h3 style="color: #b91c1c; margin-top: 0;">🛑 Mandatory Checkpoint: You Must Be In Claude.ai Today</h3>
-<p style="font-size: 19px; line-height: 1.7; color: #7f1d1d;">
+<div>
+<div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+<h3 style="color: #b91c1c; margin-top: 0; font-size: 22px;">🛑 Mandatory Gate: Join the Team Seat</h3>
+<p style="font-size: 17px; line-height: 1.6; color: #7f1d1d; margin-bottom: 12px;">
 We are building inside <strong>Claude.ai Team seats</strong>. If you are not in the workspace right now, you cannot build your project or complete today's lab.
 </p>
-<div style="background: white; padding: 14px 20px; border-radius: 6px; font-family: monospace; font-size: 20px; color: #1e293b; border: 1px solid #fca5a5; margin: 15px 0;">
-Check D2L / Email for the Course Invite Link ➔ Accept Invite
+<div style="background: white; padding: 12px 16px; border-radius: 6px; font-size: 16px; border: 1px solid #fca5a5;">
+👉 <strong>Direct Join Link:</strong><br>
+<a href="https://claude.ai/join/org#VRLoRVygKE9rHi5lwikaxg" target="_blank" style="color: #2563eb; word-break: break-all; font-family: monospace; font-size: 14px;">claude.ai/join/org#VRLoRVygKE9rHi5lwikaxg</a>
 </div>
 </div>
 
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 18px 22px; border-radius: 6px; font-size: 17px; line-height: 1.7;">
-<strong>Verify Success:</strong> When you log in, look at the top-left team selector. It should show our course workspace: <code>SSC 490 - Fall 2026</code>.<br>
-<em>If you see an error, raise your hand right now so we can resolve it before proceeding!</em>
+<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; font-size: 16px; line-height: 1.6;">
+<strong>Verify Success:</strong> When you log in, look at the top-left selector. It must show: <code>SSC 490 - Fall 2026</code>.<br>
+<em>Raise your hand right now if you see an error!</em>
+</div>
+</div>
+
+<div style="text-align: center;">
+<img src="assets/claude-join-qr.png" alt="Join Claude.ai QR Code" style="width: 250px; height: 250px; border: 2px solid #cbd5e1; border-radius: 10px; padding: 8px; background: white;">
+<div style="font-size: 14px; color: #6b7280; margin-top: 8px;">Scan to Join Claude.ai Team</div>
 </div>
 
 </div>
