@@ -7,6 +7,9 @@
  *   2. Answer Discord's PING handshake.
  *   3. For `/archie`, hand the question to the CourseAgent Durable Object
  *      *without awaiting it* and ack within Discord's 3-second window.
+ *   4. Route `/mcp/<secret>` to the remote MCP server in `src/mcp.ts` — a
+ *      second transport onto the same two tools, for claude.ai connectors.
+ *      Stateless: it does not touch the CourseAgent or its Durable Object.
  *
  * The 3-second limit is the whole reason this file is thin. Every slow thing —
  * embeddings, Qdrant, Baserow, the model — happens in the DO, after the ack,
@@ -26,6 +29,7 @@ import {
 	verifyRequest,
 	type Interaction,
 } from './discord';
+import { handleMcpRequest } from './mcp';
 
 /**
  * The slash command Archie answers. Registered guild-scoped.
@@ -76,6 +80,14 @@ async function handle(request: Request, env: Env, ctx: ExecutionContext): Promis
 	if (request.method === 'GET' && url.pathname === '/health') {
 		return new Response('ok', { status: 200, headers: { 'content-type': 'text/plain' } });
 	}
+
+	// Second transport: the remote MCP server students add as a custom connector
+	// in claude.ai, mounted at /mcp/<MCP_PATH_SECRET>. It returns null — not a
+	// 404 — for a wrong or missing secret, so the fall-through below answers it
+	// with the same "Not found" as any typo'd URL. Confirming the path exists
+	// with a 401 would just tell an attacker where to grind.
+	const mcpResponse = await handleMcpRequest(request, env, ctx);
+	if (mcpResponse) return mcpResponse;
 
 	if (request.method !== 'POST' || url.pathname !== '/interactions') {
 		return new Response('Not found', { status: 404 });
