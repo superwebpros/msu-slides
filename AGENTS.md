@@ -47,6 +47,18 @@ cp -rf source dest          # NOT: cp -r source dest
 - `apt-get` - use `-y` flag
 - `brew` - use `HOMEBREW_NO_AUTO_UPDATE=1` env var
 
+## Context & Rate Limit Hygiene (Critical for Slide Decks)
+
+This repository is especially prone to provider Tokens-Per-Minute (TPM) and Requests-Per-Minute (RPM) rate limits because slide markdown files are monolithic (25KB–35KB each) and the system prompt carries extensive project skills.
+
+**Mandatory rules for all agents in this repo:**
+1. **Targeted Reads Only:** NEVER read an entire slide deck markdown file in one call. Always specify `limit: 50-70` and `offset` around the exact section.
+2. **Bounded Git Commands:**
+   - Always use `git log -n 3 --oneline` (NEVER bare `git log`).
+   - Use `git diff --stat` or targeted files (NEVER bare `git diff`).
+   - Use `git status -s` when a quick check suffices.
+3. **Batch Operations:** Consolidate multiple edits into single operations instead of rapid-fire tool turns. Each turn re-sends the full 50k–80k token context to the provider.
+
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:970c3bf2 -->
 ## Beads Issue Tracker
 
