@@ -118,15 +118,25 @@ async function handleAsk(interaction: Interaction, env: Env, ctx: ExecutionConte
 		return messageResponse('Ask me a question — for example: `/archie what is due friday?`');
 	}
 
-	// One DO per channel/thread, so multi-turn context follows the conversation
-	// rather than the student. Falls back to the interaction id (a fresh, single
-	// -use conversation) if Discord somehow omits the channel.
-	const conversationId = interaction.channel_id ?? interaction.channel?.id ?? interaction.id;
-
-	// Rate-limit key only. The design deliberately does not track students, so
-	// the raw Discord id never leaves this function.
+	// Rate-limit key, and half the conversation key. The design deliberately does
+	// not track students, so the raw Discord id never leaves this function.
 	const userId = getInvokingUserId(interaction) ?? 'anonymous';
 	const userKey = await hashUserId(userId, env.ARCHIE_USER_SALT);
+
+	// One DO per (channel, student) — NOT per channel.
+	//
+	// Keying on the channel alone gave every student in it the same replayed
+	// history: a follow-up inherited someone else's question, and because the
+	// model then held every question asked in that channel, it could repeat one
+	// back — quietly defeating the ephemeral replies that exist precisely so
+	// students cannot see each other's questions.
+	//
+	// Including userKey also spreads a lab section across many DOs instead of
+	// serialising it through one. Rate-limit semantics are unchanged: counters
+	// were already per (channel, student), since the DO was per channel and
+	// archie_rate_events is keyed on userKey.
+	const channelId = interaction.channel_id ?? interaction.channel?.id ?? interaction.id;
+	const conversationId = `${channelId}:${userKey}`;
 
 	const ask: AskRequest = {
 		question,

@@ -290,24 +290,71 @@ describe('/archie', () => {
 		await drain();
 	});
 
-	it('hands the DO an AskRequest keyed on the channel, with a hashed user id', async () => {
+	it('hands the DO an AskRequest keyed on channel AND student, with a hashed user id', async () => {
 		const agent = stubAgentNamespace();
 		const { ctx, drain } = makeCtx();
 
 		await post(makeEnv({ COURSE_AGENT: agent.namespace }), ctx, askInteraction({ question: '  what is RAG?  ' }));
 		await drain();
 
-		expect(agent.names).toEqual(['555555555555555555']);
 		expect(agent.calls).toHaveLength(1);
 
 		const ask = agent.calls[0]!.body as Record<string, unknown>;
 		expect(ask.question).toBe('what is RAG?');
 		expect(ask.interactionToken).toBe('interaction-token-abc');
-		expect(ask.conversationId).toBe('555555555555555555');
 
 		// Opaque, and specifically not the Discord snowflake.
 		expect(ask.userKey).toMatch(/^[0-9a-f]{64}$/);
 		expect(ask.userKey).not.toContain('888888888888888888');
+
+		// Channel-scoped, but partitioned by student — and the raw snowflake
+		// must not appear in the DO name either.
+		expect(ask.conversationId).toBe(`555555555555555555:${ask.userKey}`);
+		expect(agent.names).toEqual([ask.conversationId]);
+		expect(agent.names[0]).not.toContain('888888888888888888');
+	});
+
+	it('gives two students in the SAME channel separate Durable Objects', async () => {
+		const agent = stubAgentNamespace();
+		const { ctx, drain } = makeCtx();
+		const env = makeEnv({ COURSE_AGENT: agent.namespace });
+
+		const student = (id: string) => {
+			const i = askInteraction({ question: 'what is due friday?' });
+			i.member.user.id = id;
+			return i;
+		};
+
+		await post(env, ctx, student('111111111111111111'));
+		await post(env, ctx, student('222222222222222222'));
+		await drain();
+
+		// The bug this guards: one DO per channel meant a shared replayed
+		// history, so a follow-up could surface another student's question
+		// despite the replies being ephemeral.
+		expect(agent.names).toHaveLength(2);
+		expect(agent.names[0]).not.toBe(agent.names[1]);
+		expect(agent.names[0]!.startsWith('555555555555555555:')).toBe(true);
+		expect(agent.names[1]!.startsWith('555555555555555555:')).toBe(true);
+	});
+
+	it('gives one student separate Durable Objects per channel', async () => {
+		const agent = stubAgentNamespace();
+		const { ctx, drain } = makeCtx();
+		const env = makeEnv({ COURSE_AGENT: agent.namespace });
+
+		const inChannel = (channelId: string) => {
+			const i = askInteraction({ question: 'what is due friday?' });
+			i.channel_id = channelId;
+			return i;
+		};
+
+		await post(env, ctx, inChannel('600000000000000000'));
+		await post(env, ctx, inChannel('700000000000000000'));
+		await drain();
+
+		expect(agent.names).toHaveLength(2);
+		expect(agent.names[0]).not.toBe(agent.names[1]);
 	});
 
 	it('rejects an empty question without touching the agent', async () => {
