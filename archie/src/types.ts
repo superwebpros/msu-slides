@@ -36,6 +36,16 @@ export interface Env {
 	 * only consumer, but the design promises not to track students, so salt it.
 	 */
 	ARCHIE_USER_SALT: string;
+	/**
+	 * Shared secret that forms the last path segment of the remote MCP mount:
+	 * `/mcp/<MCP_PATH_SECRET>`. A secret, never a `vars` entry — it is the only
+	 * thing standing between the open internet and the course tools.
+	 *
+	 * Optional on the type on purpose. When it is absent the MCP route does not
+	 * exist at all (`src/mcp.ts` declines and the Worker 404s); an unconfigured
+	 * secret must never degrade to an open endpoint.
+	 */
+	MCP_PATH_SECRET?: string;
 
 	// --- Vars (wrangler.jsonc) ---
 	ACTIVE_COURSE: string;
