@@ -1,0 +1,47 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "archie",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-04",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "COURSE_AGENT",
+        "class_name": "CourseAgent"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["CourseAgent"]
+    }
+  ],
+
+  // Non-secret configuration. Secrets go via `wrangler secret put` — see README.
+  "vars": {
+    // Semester filter. UPDATE EACH SEMESTER — see README "Recurring maintenance".
+    // Points in Qdrant not tagged with this value are invisible to Archie.
+    "ACTIVE_COURSE": "ssc-490",
+
+    // Hardcoded on purpose. Never derive this from user input or model choice:
+    // the Qdrant key can read every collection on the instance, including
+    // client data. Isolation depends on this literal until a scoped token exists.
+    "QDRANT_COLLECTION": "course_content",
+
+    "EMBEDDING_MODEL": "text-embedding-3-small",
+
+    // OpenAI, because the `archie` gateway holds OpenAI + Groq provider keys and
+    // no Anthropic key. Verified present on the account 2026-09-08.
+    "ANSWER_MODEL": "gpt-5.5",
+    "BASEROW_DOCUMENTS_TABLE_ID": "1068",
+    "COURSE_TIMEZONE": "America/Detroit",
+    "SEARCH_TOP_K": "10"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}
