@@ -26,8 +26,8 @@
 
 </div>
 <div style="text-align: center;">
-<img src="assets/poll-s05-qr.png" alt="Live Poll QR Code" style="width: 220px; height: 220px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
-<div style="font-size: 12px; color: #6b7280; margin-top: 6px;">Live Poll: <strong style="color: #7c3aed;">msu-slides-poll.jesse-41b.workers.dev/s05</strong></div>
+<img src="assets/poll-s06-qr.png" alt="Live Poll QR Code" style="width: 220px; height: 220px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
+<div style="font-size: 12px; color: #6b7280; margin-top: 6px;">Live Poll: <strong style="color: #7c3aed;">msu-slides-poll.jesse-41b.workers.dev/s06</strong></div>
 </div>
 </div>
 
@@ -180,7 +180,7 @@ Follow these steps in Claude.ai to enable the **MSU Career Services Connector**:
 
 <ol style="margin-left: 20px; font-size: 18px; line-height: 1.8;">
 <li>Navigate to your **Career Coach Project** in Claude.ai.</li>
-<li>Look for the **Integrations / Connectors** section on the project dashboard.</li>
+<li>Click **Customize** ➔ **Connectors**.</li>
 <li>Enable the **MSU Career Services** connector for your project.</li>
 <li>Verify that the connector shows an active/connected status.</li>
 </ol>
@@ -257,11 +257,11 @@ Notice how Claude explains the tables and querying functions available to it.
 
 <div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
 
-You can also inspect available connector tools directly inside the Claude UI:
+You can also inspect available connector tools directly inside Claude:
 
-- Look at the chat input box or project settings under **Tools &amp; Connectors**.
-- Click the connector icon to expand the list of exposed functions (e.g., query, search, list tables).
-- When Claude runs a query during a chat, notice the expandable tool-call block showing the exact query it sent and the records it received back!
+- Navigate into the connector's **directory entry** to inspect its declared capabilities.
+- When Claude queries a connector during a conversation, observe the tool-call block in real time.
+- Click to expand the call to see the exact parameters sent and the records returned!
 
 </div>
 
@@ -339,14 +339,14 @@ https://archie.jesse-41b.workers.dev/mcp/5208a43589497b3cb8196765db711ebd4659841
 </div>
 
 <p style="font-size: 17px; color: #475569;">
-Test it by asking: <em>"What did Jesse say in class on Tuesday about the three tests for a skill?"</em>
+Test it by asking: <em>"What did Jesse say about the three tests for a skill?"</em>
 </p>
 
 </div>
 
 ---
 
-## Building the Tracker — And Hitting the Wall
+## Building the Tracker
 
 ### Step 1: Connect to Google Drive
 
