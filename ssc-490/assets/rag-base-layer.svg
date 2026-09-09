@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ragGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <linearGradient id="smallBaseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+    <linearGradient id="largeBaseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.1" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="#ffffff" rx="12" />
+
+  <!-- Title -->
+  <text x="450" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="middle">
+    How RAG Works: Base Layer vs. Augmented Layer
+  </text>
+  <text x="450" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#64748b" text-anchor="middle">
+    Specific external information levels the playing field across model scales
+  </text>
+
+  <!-- LEFT: Small Model -->
+  <g transform="translate(80, 110)">
+    <!-- Small Model Label -->
+    <text x="140" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#1e293b" text-anchor="middle">Small Model</text>
+    <text x="140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(Haiku / Flash / 20B)</text>
+
+    <!-- Base Layer -->
+    <rect x="20" y="210" width="240" height="110" rx="8" fill="url(#smallBaseGrad)" stroke="#94a3b8" stroke-width="2" filter="url(#shadow)" />
+    <text x="140" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#334155" text-anchor="middle">Base Training Data</text>
+    <text x="140" y="285" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Smaller foundation</text>
+
+    <!-- Plus sign -->
+    <circle cx="140" cy="180" r="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" />
+    <text x="140" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#7c3aed" text-anchor="middle">+</text>
+
+    <!-- Augmented Layer -->
+    <rect x="20" y="65" width="240" height="95" rx="8" fill="url(#ragGrad)" filter="url(#shadow)" />
+    <text x="140" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Augmented Data (RAG)</text>
+    <text x="140" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#ede9fe" text-anchor="middle">Specific, verified records</text>
+  </g>
+
+  <!-- EQUALIZER ARROW / BANNER IN MIDDLE -->
+  <g transform="translate(380, 180)">
+    <line x1="10" y1="90" x2="130" y2="90" stroke="#7c3aed" stroke-width="3" stroke-dasharray="6,4" />
+    <polygon points="135,90 120,83 120,97" fill="#7c3aed" />
+    <rect x="15" y="65" width="110" height="50" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5" />
+    <text x="70" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#5b21b6" text-anchor="middle">EQUALIZER</text>
+    <text x="70" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#6d28d9" text-anchor="middle">Both answer accurately</text>
+  </g>
+
+  <!-- RIGHT: Large / Frontier Model -->
+  <g transform="translate(540, 110)">
+    <!-- Large Model Label -->
+    <text x="140" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#1e293b" text-anchor="middle">Frontier Model</text>
+    <text x="140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(Opus / Pro / 120B)</text>
+
+    <!-- Base Layer (Taller/Denser) -->
+    <rect x="20" y="210" width="240" height="110" rx="8" fill="url(#largeBaseGrad)" stroke="#64748b" stroke-width="2" filter="url(#shadow)" />
+    <text x="140" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#0f172a" text-anchor="middle">Base Training Data</text>
+    <text x="140" y="285" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle">Massive, broad foundation</text>
+
+    <!-- Plus sign -->
+    <circle cx="140" cy="180" r="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" />
+    <text x="140" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#7c3aed" text-anchor="middle">+</text>
+
+    <!-- Augmented Layer (Same exact specific data!) -->
+    <rect x="20" y="65" width="240" height="95" rx="8" fill="url(#ragGrad)" filter="url(#shadow)" />
+    <text x="140" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Augmented Data (RAG)</text>
+    <text x="140" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#ede9fe" text-anchor="middle">Specific, verified records</text>
+  </g>
+
+  <!-- Bottom Takeaway Bar -->
+  <g transform="translate(70, 440)">
+    <rect x="0" y="0" width="760" height="32" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+    <text x="380" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">
+      When you add specific information on top, the model answers accurately about that data — regardless of base model size.
+    </text>
+  </g>
+</svg>

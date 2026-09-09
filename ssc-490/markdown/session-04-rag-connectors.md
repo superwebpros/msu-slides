@@ -1,14 +1,14 @@
 ## Check-In & Housekeeping
 
 <div style="display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: center; max-width: 960px; margin: 25px auto;">
-<div style="text-align: left; font-size: 19px; line-height: 1.7;">
+<div style="text-align: left; font-size: 18px; line-height: 1.7;">
 
 <h3>Session 4: RAG &amp; Connectors</h3>
-<p>Grab a seat with a partner. Open your laptop, Claude.ai, and your Google Workspace.</p>
+<p>Open your laptop, Claude.ai, and your Google Workspace.</p>
 
-<div style="background: #fdf2f8; border-left: 4px solid #db2777; padding: 14px 18px; border-radius: 6px; margin: 15px 0;">
+<div style="background: #fdf2f8; border-left: 4px solid #db2777; padding: 12px 16px; border-radius: 6px; margin: 12px 0;">
 <strong style="color: #9d174d;">The Runway to Milestone 1:</strong>
-<ul style="margin: 6px 0 0 18px; font-size: 16px; line-height: 1.6;">
+<ul style="margin: 4px 0 0 16px; font-size: 15px; line-height: 1.5;">
 <li><strong>Today is the LAST in-person build session before M1 is due.</strong></li>
 <li><strong>Next Week:</strong> Jesse is at a conference in Atlanta.</li>
 <li><strong>Tue Sep 15:</strong> Guest lecture on AI Ethics + in-class build time.</li>
@@ -17,93 +17,55 @@
 </ul>
 </div>
 
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 14px 18px; border-radius: 8px; margin-top: 15px;">
+<strong style="color: #5b21b6; font-size: 17px;">Today's Live Poll Question:</strong>
+<p style="font-size: 17px; color: #1e293b; margin: 6px 0 0 0;">
+<strong>"Would you rather take an exam from memory or open book? Why?"</strong>
+</p>
+</div>
+
 </div>
 <div style="text-align: center;">
 <img src="assets/poll-s05-qr.png" alt="Live Poll QR Code" style="width: 220px; height: 220px; border: 2px solid #cbd5e1; border-radius: 8px; padding: 6px; background: white;">
-<div style="font-size: 13px; color: #6b7280; margin-top: 8px;">Live Poll: <strong style="color: #7c3aed;">msu-slides-poll.jesse-41b.workers.dev/s05</strong></div>
+<div style="font-size: 12px; color: #6b7280; margin-top: 6px;">Live Poll: <strong style="color: #7c3aed;">msu-slides-poll.jesse-41b.workers.dev/s05</strong></div>
 </div>
 </div>
 
 Note:
-Welcome everyone to Session 4. Set the stakes immediately: today is the LAST instructor-present build session before Milestone 1 is due on September 21. Next week has a guest lecture on Tuesday and a Breakout module on Thursday with Jesse away. Today is about giving their system eyes and hands so they are completely unblocked.
+Welcome everyone to Session 4. Set the stakes immediately: today is the LAST instructor-present build session before Milestone 1 is due on September 21. Have students answer the live poll question right as they walk in: "Would you rather take an exam from memory or open book? Why?"
 
 ---
 
-## The Warm-Up: A Question of Memory
+## Quick Skill Check from Tuesday
 
-<div style="max-width: 920px; margin: 35px auto; text-align: left; font-size: 22px; line-height: 1.8;">
+<div style="max-width: 900px; margin: 35px auto; text-align: left; font-size: 21px; line-height: 1.8;">
 
-<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 25px; border-radius: 10px; margin-bottom: 25px;">
-<h3 style="color: #5b21b6; margin-top: 0;">Would you rather take a final exam:</h3>
-<p style="margin-bottom: 0;">
-<strong>Option A:</strong> Purely from memory?<br>
-<strong>Option B:</strong> Open-book — where the textbook is 1,000 pages long, but you have an index card with page numbers pointing straight to the answers?
-</p>
+On Tuesday, everyone set up a Claude Project and built their first skill (**Resume Tailoring** using the WHO method):
+
+<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 25px; border-radius: 10px; margin: 25px 0;">
+<ul style="margin: 0 0 0 20px;">
+<li>Who ran their skill against a real job posting after class?</li>
+<li style="margin-top: 15px;"><strong>What did it get wrong?</strong></li>
+</ul>
 </div>
-
-<p style="font-size: 19px; color: #6b7280;">
-Every student chooses Option B. And that choice is the entire concept of today's class.
-</p>
 
 </div>
 
 Note:
-Ask this question to the room. Every hand goes up for Option B. Connect it immediately: Standard AI prompting is Option A (taking an exam from fuzzy training memory). Today we give the AI Option B (an open book on its desk with an index card).
+Cold-call 2-3 students to share what their skill produced when given a real job posting. Look for where the skill was missing outside information or where it got stuck.
 
-;;;
+---
 
-### Connecting the Metaphor to AI
+## How RAG Works
 
-<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 18px; border-radius: 6px;">
-<h4 style="color: #991b1b; margin-top: 0;">Closed-Book (Prompting Alone)</h4>
-<ul style="font-size: 16px; line-height: 1.6;">
-<li>The model answers from its frozen training memory.</li>
-<li>Prone to fuzzy guesses, hallucinated facts, and stale data.</li>
-<li><strong>Zero provenance:</strong> It cannot point to where the answer came from.</li>
-</ul>
+<div style="max-width: 860px; margin: 20px auto; text-align: center;">
+<img src="assets/rag-base-layer.svg" alt="How RAG Works Diagram" style="width: 100%; max-height: 480px; border: 1px solid #cbd5e1; border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
 </div>
 
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 18px; border-radius: 6px;">
-<h4 style="color: #15803d; margin-top: 0;">Open-Book (RAG / Retrieval)</h4>
-<ul style="font-size: 16px; line-height: 1.6;">
-<li>The model is given verified documents <em>before</em> answering.</li>
-<li>Answers are grounded in facts you chose and control.</li>
-<li><strong>100% Provenance:</strong> You can click the exact row or page it cited.</li>
-</ul>
-</div>
-
-</div>
-
-<div style="background: #eff6ff; padding: 14px 20px; border-radius: 6px; font-size: 17px; color: #1e40af; text-align: center;">
-The difference between basic prompting and RAG isn't intelligence — <strong>it is provenance.</strong>
-</div>
-
-</div>
-
-;;;
-
-### Quick Skill Check from Tuesday
-
-<div style="max-width: 900px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
-
-On Tuesday, everyone set up a Claude Project and built their first skill (**Resume Tailoring** using the WHO method):
-
-- Who ran their skill against a real job posting after class?
-- **What did it get wrong?**
-
-<div style="background: #f8fafc; border-left: 4px solid #7c3aed; padding: 16px 20px; border-radius: 6px; margin-top: 20px; font-size: 17px;">
-<em>The failures are the most interesting answers.</em> If your skill produced something bland, it's a steering constraint issue. If it lacked facts about MSU or your industry, it's a retrieval issue.
-</div>
-
-<div style="margin-top: 20px; text-align: center; font-size: 20px; color: #7c3aed; font-weight: bold;">
-Right now, your AI knows only what you typed. Today, we give it reach.
-</div>
-
-</div>
+Note:
+Walk through this conceptual diagram:
+In our minds, training data is the base layer. A bigger model has a bigger base, and a smaller model has a smaller base.
+When you add specific, verified information on top (you AUGMENT the data), the model becomes dramatically better at answering questions about that specific data — regardless of model size!
 
 ---
 
@@ -141,28 +103,29 @@ The model answers the question <strong>grounded directly in those retrieved reco
 </div>
 
 <div style="background: #ede9fe; padding: 16px 20px; border-radius: 8px; font-size: 18px; color: #5b21b6; text-align: center;">
-<strong>RAG is a pattern, not a product.</strong> It is simply fetching the right page before answering.
+<strong>RAG is a pattern, not a product.</strong> It is simply fetching the verified source before answering.
 </div>
 
 </div>
 
 Note:
-Walk through the 3 steps. Emphasize that RAG is a pattern. Demystify it: people think RAG requires vector math and embeddings. Clarify on the next slide that a simple database query is 100% RAG.
+Emphasize that RAG is a pattern. Ask -> Retrieve -> Generate. The difference between answering from pre-training memory vs. answering from retrieved records is provenance.
 
-;;;
+---
 
-### The Big Myth: "RAG Requires Vector Databases"
+## How We Access RAG: Connectors
 
 <div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
 
-Most people on the internet believe RAG *means* vector databases and mathematical embeddings. That belief is expensive.
+In production AI systems, **RAG is almost always accessed through Connectors.**
 
-- In class today, our retrieval store is a plain **Baserow database table**.
-- The retrieval step is a simple filtered query (`WHERE major = 'Economics'`).
-- **This is 100% a complete, working RAG system.**
+- Connectors are the bridges that allow Claude to reach into external databases, files, and services.
+- Connectors fundamentally take on **two distinct shapes**:
+  1. **Information Connectors (RAG):** Pulling external knowledge *IN* to read.
+  2. **Action Connectors (Tools):** Triggering operations *OUT* to write or change state.
 
-<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 16px 20px; border-radius: 6px; margin-top: 20px; font-size: 18px;">
-💡 <strong>What embeddings buy you later:</strong> Vector search lets you match on <em>conceptual meaning</em> rather than exact keywords (e.g. searching "helping people organize" finds records without those words). That is an <strong>upgrade to the retrieval step</strong>, but the RAG pattern remains identical.
+<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 16px 20px; border-radius: 6px; margin-top: 25px; font-size: 18px;">
+Today we will look at connectors that do both, but it is essential to keep them distinct: <strong>RAG gives AI information; Tools give AI action.</strong>
 </div>
 
 </div>
@@ -173,8 +136,6 @@ Most people on the internet believe RAG *means* vector databases and mathematica
 
 <div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 18px; line-height: 1.7;">
 
-A connector is simply how your AI connects to an external service. Connectors split into two fundamental jobs:
-
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
 
 <div style="background: #eff6ff; border: 2px solid #2563eb; border-radius: 8px; padding: 20px;">
@@ -183,8 +144,8 @@ A connector is simply how your AI connects to an external service. Connectors sp
 Reaching outside to pull verified knowledge <strong>IN</strong>.
 </p>
 <ul style="font-size: 15px; color: #1e3a8a; margin-top: 8px;">
-<li>Baserow (MSU Career Services data)</li>
-<li>Archie MCP (Course docs &amp; transcripts)</li>
+<li>Baserow (MSU Career Services database)</li>
+<li>Archie MCP (Course documents &amp; transcripts)</li>
 <li>Google Drive file search</li>
 </ul>
 </div>
@@ -196,15 +157,36 @@ Reaching outside to push changes <strong>OUT</strong> into the world.
 </p>
 <ul style="font-size: 15px; color: #6b21a8; margin-top: 8px;">
 <li>Creating a new spreadsheet file</li>
-<li>Sending a message in Discord</li>
-<li>Writing an application tracker row</li>
+<li>Sending a notification or message</li>
+<li>Writing an application tracker entry</li>
 </ul>
 </div>
 
 </div>
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 18px; border-radius: 6px; font-size: 16px; color: #475569; text-align: center;">
-Keep this distinction in mind: <strong>RAG is the AI's eyes. Tools are the AI's hands.</strong>
+Remember: <strong>RAG is the AI's eyes. Tools are the AI's hands.</strong>
+</div>
+
+</div>
+
+---
+
+## Let's Configure Your First Connector!
+
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+
+Follow these steps in Claude.ai to enable the **MSU Career Services Connector**:
+
+<ol style="margin-left: 20px; font-size: 18px; line-height: 1.8;">
+<li>Navigate to your **Career Coach Project** in Claude.ai.</li>
+<li>Look for the **Integrations / Connectors** section on the project dashboard.</li>
+<li>Enable the **MSU Career Services** connector for your project.</li>
+<li>Verify that the connector shows an active/connected status.</li>
+</ol>
+
+<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; margin-top: 20px; font-size: 16px;">
+Once enabled, every chat inside this Project has the ability to query this database!
 </div>
 
 </div>
@@ -213,246 +195,248 @@ Keep this distinction in mind: <strong>RAG is the AI's eyes. Tools are the AI's 
 
 ## RAG #1: The MSU Career Services Database
 
-### Your First Live Worked Example
+<div style="max-width: 940px; margin: 20px auto; text-align: left;">
 
-<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
-
-MSU Career Services maintains a curated database of career paths, professional associations, O*NET assessments, and employer resources.
-
-<div style="background: #f8fafc; border: 2px solid #7c3aed; border-radius: 8px; padding: 20px; margin: 20px 0;">
-<strong style="color: #5b21b6; font-size: 18px;">Hands-On Test: Cold vs. Connected</strong>
-<ol style="margin: 10px 0 0 20px; font-size: 17px; line-height: 1.7;">
-<li><strong>Cold Query (Connector Off):</strong> In a regular chat, ask:  
-    <em>"What professional associations serve criminal justice majors in Michigan?"</em></li>
-<li><strong>Connected Query (Connector On):</strong> Ask the exact same question with your Career Services connector enabled.</li>
-</ol>
+<div style="background: #f8fafc; border: 2px solid #7c3aed; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
+<strong style="color: #5b21b6; font-size: 16px;">The Test Prompt:</strong>
+<div style="font-family: monospace; font-size: 16px; color: #1e293b; margin-top: 6px;">
+"What professional associations serve criminal justice majors in Michigan?"
+</div>
 </div>
 
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; font-size: 16px;">
-<strong>The Difference:</strong> The cold answer isn't necessarily terrible, but the connected answer cites <strong>specific, vetted resources that MSU licenses for you</strong>.
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+<div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px;">
+<h4 style="color: #0f172a; margin-top: 0;">Step 1: Without Connector</h4>
+<p style="font-size: 15px; color: #334155; line-height: 1.6;">
+Open a regular chat (or turn the connector off).<br>
+Paste the prompt.<br><br>
+<em>Observe what it returns.</em>
+</p>
+</div>
+
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; border-radius: 8px; padding: 18px;">
+<h4 style="color: #5b21b6; margin-top: 0;">Step 2: With Connector Enabled</h4>
+<p style="font-size: 15px; color: #334155; line-height: 1.6;">
+In your project with the connector enabled, ask the exact same question.<br><br>
+<em>What changed? What did you notice?</em>
+</p>
+</div>
+
 </div>
 
 </div>
 
 Note:
-Have students run this comparison live. Emphasize that MSU pays for proprietary institutional subscriptions (like What Can I Do With This Major) that are accessible to enrolled students. The connector brings that vetted intelligence directly into Claude.
+Do not give away the difference beforehand! Let them run both prompts and tell you what they observe. The connected query cites vetted resources that MSU licenses for them.
 
-;;;
+---
 
-### Turning Exploration into a Skill
+## Let's Explore the Connection
 
-<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 18px; line-height: 1.7;">
+<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.8;">
 
-Running one-off queries in chat is just exploration. To make it part of a real system, we **memorialize the exploration into a reusable skill**:
+Before we build on top of this connector, let's inspect what it can actually do:
 
-<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 18px 22px; border-radius: 6px; margin: 15px 0;">
-<h4 style="color: #1e40af; margin-top: 0;">The Strategy vs. Execution Boundary</h4>
-<p style="font-size: 16px; margin-bottom: 8px;">
-When should Claude use the Career Services connector?
-</p>
-<ul style="font-size: 15px; line-height: 1.6;">
-<li><strong>Strategy / Exploration Mode (USE CONNECTOR):</strong> Asking "What roles fit me?", "What certifications am I missing?", "What associations exist for my major?" ➔ <strong>Pull from connector!</strong></li>
-<li><strong>Execution Mode (DO NOT USE CONNECTOR):</strong> Tailoring a resume bullet, drafting a cover letter ➔ <strong>Do not touch connector!</strong> (Handled by <code>resume-tailor-who</code> and your own background).</li>
-</ul>
-</div>
-
-<div style="background: #fdf2f8; border-left: 4px solid #db2777; padding: 12px 18px; border-radius: 6px; font-size: 15px; color: #9d174d;">
-<strong>Hard Output Rule:</strong> The skill must synthesize across tables and <strong>always return direct clickable URLs inline</strong> — never say "go look in Baserow."
-</div>
-
-</div>
-
-;;;
-
-### Live Build: Create `msu-career-strategist`
-
-<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 15px; line-height: 1.6;">
-
-In your Career Coach Project, paste this meta-prompt into a chat to build your second skill:
-
-```markdown
-"I want to create a skill called 'msu-career-strategist' that uses my MSU Career Services connector.
-
-Rules for this skill:
-1. Trigger only when I am exploring career strategy, direction, certifications, or professional associations.
-2. Boundary: Do NOT trigger for resume tailoring, cover letter writing, or specific job application drafting.
-3. Synthesis: Cross-reference my major and target roles across the available tables rather than dumping raw rows.
-4. Hard requirement: Always return the verified resource URLs inline next to each recommendation. Never tell me to check Baserow myself.
-
-Generate the skill instructions for my project."
-```
-
-</div>
-
-<div style="font-size: 17px; color: #7c3aed; text-align: center; margin-top: 15px;">
-Once Claude generates the skill, paste it into your Project's <strong>Skills</strong> tab!
-</div>
-
-;;;
-
-### Hands-On Test: Run Your New Skill Live!
-
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
-
-Now let's test whether your new skill properly commands the connector:
-
-<div style="background: #f8fafc; border: 2px solid #16a34a; border-radius: 8px; padding: 20px; margin: 20px 0;">
-<strong style="color: #15803d; font-size: 18px;">Open a New Chat in Your Project and Ask:</strong>
-<p style="font-size: 18px; font-family: monospace; color: #0f172a; margin: 12px 0 0 0;">
-"If I'm majoring in [Your Major], what assessments, certifications, and professional associations should I look into this semester?"
+<div style="background: #f8fafc; border: 2px solid #2563eb; border-radius: 8px; padding: 20px; margin: 20px 0;">
+<strong style="color: #1e40af; font-size: 18px;">Ask Claude in Chat:</strong>
+<p style="font-size: 18px; font-family: monospace; color: #0f172a; margin: 10px 0 0 0;">
+"What tools does this connector expose, and how do they work?"
 </p>
 </div>
 
-**Audit the Output:**
-- Did Claude invoke your `msu-career-strategist` skill?
-- Did it reach out to the connector?
-- Did it give you **clickable links** next to each recommendation?
+<p style="font-size: 17px; color: #6b7280;">
+Notice how Claude explains the tables and querying functions available to it.
+</p>
+
+</div>
+
+;;;
+
+### Seeing Tools Inside Claude's Interface
+
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+
+You can also inspect available connector tools directly inside the Claude UI:
+
+- Look at the chat input box or project settings under **Tools &amp; Connectors**.
+- Click the connector icon to expand the list of exposed functions (e.g., query, search, list tables).
+- When Claude runs a query during a chat, notice the expandable tool-call block showing the exact query it sent and the records it received back!
 
 </div>
 
 ---
 
-## RAG #2: Archie (Course Transcripts & Docs)
+## Making a Skill to Fit This Data
 
-### The Big Reveal
+<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+
+Now that we've explored what the connector exposes:
+
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 24px; border-radius: 10px; margin: 20px 0;">
+<h3 style="color: #5b21b6; margin-top: 0;">Let's imagine we want to make a skill to fit this data:</h3>
+<p style="font-size: 20px; color: #1e293b; margin-bottom: 0;">
+<strong>How would we pursue that?</strong>
+</p>
+</div>
+
+<p style="font-size: 17px; color: #475569;">
+Work with Claude to customize a skill for interacting with this data. What boundaries should it have? When should it query the database, and when should it leave you alone?
+</p>
+
+</div>
+
+;;;
+
+### Key Questions When Designing the Skill
+
+<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 17px; line-height: 1.7;">
+
+As you work with Claude to build your skill, consider:
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+
+<div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 18px; border-radius: 6px;">
+<h4 style="color: #1e40af; margin-top: 0;">1. Trigger Boundaries</h4>
+<p style="font-size: 15px; line-height: 1.6;">
+• <strong>Strategy Mode:</strong> Exploring certifications, career paths, or affiliations ➔ Query the connector!<br>
+• <strong>Execution Mode:</strong> Tailoring a specific resume bullet ➔ Don't touch the connector!
+</p>
+</div>
+
+<div style="background: #f8fafc; border-left: 4px solid #7c3aed; padding: 18px; border-radius: 6px;">
+<h4 style="color: #7c3aed; margin-top: 0;">2. Output Hygiene</h4>
+<p style="font-size: 15px; line-height: 1.6;">
+• Should it dump raw database rows, or synthesize recommendations around your major?<br>
+• <strong>Links:</strong> Make sure it returns direct clickable URLs inline so you don't have to hunt down resources.
+</p>
+</div>
+
+</div>
+
+<div style="text-align: center; font-size: 17px; color: #7c3aed; font-weight: bold;">
+Draft your skill in Claude, test it live, and add it to your Project Skills tab!
+</div>
+
+</div>
+
+---
+
+## RAG #2: Archie (Course Transcripts &amp; Docs)
 
 <div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
 
-Here is the secret: **you have been using a RAG system all semester without realizing it.**
+Our second worked example is **Archie**, our course assistant:
 
-- **Archie** is an MCP server that retrieves over our course syllabus, slide decks, assignment specs, and **live class transcripts**.
-- When you ask Archie a question in Discord, it runs the exact same 3 steps:  
-  *Your question ➔ Archie queries transcript store ➔ Answers grounded in what happened in class.*
+- Archie is a custom MCP server that retrieves over our syllabus, session slide decks, assignment briefs, and **live class transcripts**.
+- When you ask Archie a question, it retrieves the relevant excerpts and answers grounded in what happened in class.
 
-<div style="background: #eff6ff; border: 2px solid #2563eb; border-radius: 8px; padding: 18px; margin-top: 20px;">
-<strong style="color: #1e40af;">Connect Archie to Claude.ai via Remote MCP:</strong><br>
-<div style="font-family: monospace; font-size: 14px; word-break: break-all; margin-top: 8px; color: #1e293b;">
+<div style="background: #eff6ff; border: 2px solid #2563eb; border-radius: 8px; padding: 18px; margin: 20px 0;">
+<strong style="color: #1e40af;">Connect Archie via Remote MCP:</strong><br>
+<div style="font-family: monospace; font-size: 13px; word-break: break-all; margin-top: 8px; color: #1e293b;">
 https://archie.jesse-41b.workers.dev/mcp/5208a43589497b3cb8196765db711ebd4659841962ae15fb
 </div>
 </div>
 
-</div>
-
-Note:
-Show students that their career coach has the exact same architecture as Archie. Archie uses MCP to query vector/transcript stores; their project uses MCP to query Baserow. Archie is also their primary lifeline while Jesse is away in Atlanta.
-
-;;;
-
-### Testing Archie Live
-
-<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
-
-Once Archie is connected, try asking something that only exists in our room:
-
-<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 20px; border-radius: 8px; margin: 25px 0;">
-<strong>Ask Claude (via Archie):</strong><br>
-<em>"What did Jesse say in class on Tuesday about the three tests for a skill?"</em>
-</div>
-
-- Watch Claude query the Archie MCP tool.
-- Notice how it answers citing the exact discussion from Tuesday's lecture.
-- **Archie is your 24/7 TA:** When working on Milestone 1 while Jesse is in Atlanta, ask Archie in Discord or Claude!
+<p style="font-size: 17px; color: #475569;">
+Test it by asking: <em>"What did Jesse say in class on Tuesday about the three tests for a skill?"</em>
+</p>
 
 </div>
 
 ---
 
-## Demo: The Daily Discord Digest in n8n
+## Building the Tracker — And Hitting the Wall
 
-### First Look at the "Automated" World
-
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
-
-<em>(Watch the live demo — you do not need to build this today)</em>
-
-Here is how our daily course Discord announcement actually works behind the scenes in **n8n**:
-
-<div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px; margin: 20px 0;">
-<div style="font-family: monospace; font-size: 16px; line-height: 1.8;">
-1. <strong>Trigger:</strong> Schedule (Runs every morning at 8:00 AM — no human typing)<br>
-2. <strong>Retrieve:</strong> Queries course calendar &amp; unread Discord questions<br>
-3. <strong>Generate:</strong> Claude writes the daily brief<br>
-4. <strong>Deliver:</strong> Posts message directly into the Discord channel
-</div>
-</div>
-
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; border-radius: 6px; font-size: 17px; color: #991b1b;">
-<strong>The Critical Difference:</strong> Notice step 4. <strong>This workflow WRITES.</strong><br>
-It can post to Discord because the Discord integration exposes a "send message" action tool. Keep that in mind for what comes next!
-</div>
-
-</div>
-
-Note:
-10-minute visual walk of the n8n canvas. Show that automation is just RAG on a timer instead of a prompt. And point out that the Discord node has a WRITE tool (send message). This sets up the wall they are about to hit with Google Sheets.
-
----
-
-## Build the Tracker — And Hit the Wall
-
-### Part 1: Schema Design by Prompting
-
-<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 18px; line-height: 1.7;">
-
-Don't guess columns from scratch. Ask Claude to design your job application tracker:
-
-<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 16px 20px; border-radius: 8px; margin: 15px 0;">
-<strong>Prompt:</strong><br>
-<em>"I am applying to 30–50 jobs over the next six months. Design a clean spreadsheet schema for my job application tracker so I know what's live, when to follow up, and what materials I sent."</em>
-</div>
-
-<div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 14px 18px; border-radius: 6px; margin-top: 15px;">
-<strong style="color: #1e40af;">Cross-Table Comparison Beat (5 min):</strong><br>
-Compare your columns with your table partner:
-<ul style="margin: 6px 0 0 16px; font-size: 15px;">
-<li>Which columns did you both include? Which did only one of you include?</li>
-<li><strong>Test:</strong> <em>Will you actually fill this in?</em> (A column that takes 10 minutes of manual effort will be abandoned by week 3).</li>
-<li><strong>Fixed Stages vs. Free Text:</strong> Why "Interview Round 1" beats messy paragraph notes (you can't filter on prose!).</li>
-</ul>
-</div>
-
-</div>
-
-;;;
-
-### Part 2: Claude Creates the Sheet
+### Step 1: Connect to Google Drive
 
 <div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
 
-Now, ask Claude to create the tracker in your Google Drive:
+Now we shift from **Information (RAG)** to **Action (Tools)**:
 
-<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 20px; border-radius: 8px; margin: 20px 0;">
-<strong>Prompt:</strong><br>
-<em>"Create a new Google Sheet in my Google Drive called 'Job Application Tracker' with these exact columns."</em>
+1. In Claude.ai, open your **Connectors / Integrations** settings.
+2. Select **Google Drive** and authenticate with your MSU Google account.
+3. Verify that Google Drive is connected to your project.
+
+<div style="background: #f8fafc; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; margin-top: 20px; font-size: 16px;">
+This connector allows Claude to interact with files in your Google Drive.
 </div>
 
-- Claude calls the Google Drive tool.
-- It generates a CSV and uploads it to your Drive.
-- Open your Google Drive: **There it is! A working spreadsheet.**
+</div>
 
-<p style="text-align: center; color: #16a34a; font-weight: bold; font-size: 22px;">
-Everything feels magical... until the next prompt.
+;;;
+
+### Step 2: Explore Google Drive Tools
+
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+
+Just like we did with Career Services, let's explore the tool surface:
+
+<div style="background: #f8fafc; border: 2px solid #2563eb; border-radius: 8px; padding: 20px; margin: 20px 0;">
+<strong style="color: #1e40af; font-size: 18px;">Ask Claude in Chat:</strong>
+<p style="font-size: 18px; font-family: monospace; color: #0f172a; margin: 10px 0 0 0;">
+"What tools do you have for Google Drive, and what can you do with them?"
+</p>
+</div>
+
+<p style="font-size: 17px; color: #6b7280;">
+Pay close attention to what actions are listed.
 </p>
 
 </div>
 
 ;;;
 
-### Part 3: The Wall
+### Step 3: Design Your Application Tracker
 
-<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
+<div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 18px; line-height: 1.7;">
 
-Now ask Claude the obvious next question:
+Now, work with Claude to propose a clean design for your **Job Application Tracker** in Google Sheets:
 
-<div style="background: #fef2f2; border: 2px solid #ef4444; padding: 20px; border-radius: 8px; margin: 20px 0;">
-<strong>Prompt:</strong><br>
-<em>"Great! Now add this job I found this morning as a new row in my tracker."</em>
+<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 20px; border-radius: 8px; margin: 20px 0;">
+<strong>Your Task:</strong><br>
+Ask Claude to suggest a practical column schema for tracking 30–50 job applications over the next six months.
 </div>
 
-<h3 style="color: #b91c1c; text-align: center; margin: 25px 0;">🛑 It Cannot Do It.</h3>
+**Things to think about as you review Claude's suggestions:**
+- *Will you actually fill this in?* (A column that requires 10 minutes of manual research after every application will end up blank).
+- *Fixed Stages vs. Free Text:* "Phone Screen", "Interview Round 1", "Offer" beat messy paragraph notes (you can't filter on prose!).
 
-<p style="font-size: 18px; color: #334155;">
-Claude will apologize and tell you it cannot append a row to an existing Google Sheet. Why?
+</div>
+
+;;;
+
+### Step 4: Claude Creates the Sheet
+
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 19px; line-height: 1.8;">
+
+When you are satisfied with the columns you and Claude designed:
+
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; padding: 22px; border-radius: 8px; margin: 20px 0;">
+<strong>Direction:</strong><br>
+Ask Claude to create the Google Sheet in your Google Drive with those chosen columns.
+</div>
+
+- Claude calls the Google Drive file creation tool.
+- Check your Google Drive: your tracking spreadsheet is created and ready!
+
+</div>
+
+;;;
+
+### Step 5: The Wall
+
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
+
+Now give Claude the next instruction:
+
+<div style="background: #fef2f2; border: 2px solid #ef4444; padding: 22px; border-radius: 8px; margin: 25px 0;">
+<strong style="color: #b91c1c; font-size: 20px;">Your Next Direction:</strong><br>
+Ask Claude to add a dummy row to your spreadsheet representing a job you found today.
+</div>
+
+<p style="text-align: center; font-size: 24px; color: #991b1b; font-weight: bold;">
+What happened?
 </p>
 
 </div>
@@ -463,70 +447,37 @@ Claude will apologize and tell you it cannot append a row to an existing Google 
 
 <div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
 
-The wrong diagnosis: *"Spreadsheets aren't databases"* or *"AI is broken."*  
-(Claude just wrote a whole spreadsheet 2 minutes ago!)
+The wrong diagnosis: *"Spreadsheets aren't databases"* or *"AI failed."*  
+(Claude just created the file two minutes ago!)
 
 <div style="background: #fdf4ff; border-left: 4px solid #a855f7; padding: 18px 22px; border-radius: 8px; margin: 20px 0;">
 <strong style="font-size: 22px; color: #7e22ce;">The Real Diagnosis:</strong><br>
 <strong>A connector is only as capable as the specific tools it exposes.</strong>
 </div>
 
-The Google Drive connector exposes exactly 4 tools:
+The Google Drive connector exposes:
 1. `create_file` ✅
 2. `copy_file` ✅
 3. `read_file` ✅
 4. `trash_file` ✅
 ❌ `append_row` **does not exist.**
 
-<div style="font-size: 17px; color: #6b7280; text-align: center; margin-top: 15px;">
-When you hit a wall in AI, ask: <em>"Did the model fail, or does the connector lack the tool?"</em>
-</div>
-
 </div>
 
 ;;;
 
-### The Workaround Today: "Paste-a-Row"
+### Finding a Workaround
 
-<div style="max-width: 940px; margin: 25px auto; text-align: left; font-size: 18px; line-height: 1.7;">
+<div style="max-width: 920px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
 
-For **Milestone 1**, we don't need complicated API servers to record a row. We use **Paste-a-Row**:
-
-<div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px; margin: 15px 0;">
-<strong>Prompt Claude:</strong><br>
-<em>"Parse this job posting, extract the company, role, salary, stage ('Applied'), and next follow-up date (10 days from today). Output this as a <strong>single tab-separated line</strong> ready for my tracker."</em>
+<div style="background: #f8fafc; border: 2px solid #7c3aed; padding: 22px; border-radius: 8px; margin: 20px 0;">
+<strong style="color: #5b21b6; font-size: 20px;">Your Challenge:</strong><br>
+Work with Claude to try and find a workaround.  
+<em>Can your Claude find a practical way to format and get data into your spreadsheet?</em>
 </div>
 
-1. Claude outputs one formatted line.
-2. Click **Copy**.
-3. Click cell `A2` (or the next empty row) in your Google Sheet and press **Ctrl+V / Cmd+V**.
-4. It instantly spreads perfectly across all columns!
-
-<div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 18px; border-radius: 6px; font-size: 15px; margin-top: 15px;">
-💡 <strong>Reality Check:</strong> Copy-pasting a row takes 2 seconds. The bottleneck in a job search was never data entry — it's forgetting to follow up on Day 10.
-</div>
-
-</div>
-
-;;;
-
-### Challenge Exercise: Automated Reminders
-
-<div style="max-width: 900px; margin: 30px auto; text-align: left; font-size: 20px; line-height: 1.8;">
-
-<div style="background: #fefce8; border: 2px solid #eab308; border-radius: 8px; padding: 24px;">
-<h4 style="color: #854d0e; margin-top: 0;">💡 Take-Home Challenge</h4>
-<p>
-If data entry isn't the bottleneck, what is? <strong>Follow-up momentum.</strong>
-</p>
-<p style="margin-bottom: 0;">
-How could a system alert you when a row's <code>Next Action Date</code> is today?  
-Could a scheduled task (like our n8n Discord digest) check your spreadsheet every morning and send you a notification?
-</p>
-</div>
-
-<p style="text-align: center; color: #7c3aed; font-size: 18px; margin-top: 20px;">
-<em>When Jesse returns from Atlanta in Session 7, we'll build tools that actually write!</em>
+<p style="font-size: 18px; color: #475569;">
+Spend a few minutes experimenting with Claude to see what solutions it proposes.
 </p>
 
 </div>
@@ -542,12 +493,17 @@ Could a scheduled task (like our n8n Discord digest) check your spreadsheet ever
 <div style="background: #f8fafc; border: 2px solid #16a34a; border-radius: 8px; padding: 20px; margin: 15px 0;">
 <ul style="font-size: 16px; line-height: 1.7;">
 <li><strong>Loom Walkthrough Only (3–5 min):</strong> Run through your system live on camera.</li>
-<li><strong>No Magic Auto-Writing Required:</strong> We do NOT expect Claude to magically auto-populate your Google Sheet. Demonstrating <em>Paste-a-Row</em> or showing your schema is 100% sufficient!</li>
-<li><strong>One Working Connector:</strong> Connecting <strong>MSU Career Services</strong> or <strong>Archie</strong> completely fulfills the connector requirement!</li>
+<li><strong>No Auto-Writing Expected:</strong> We do NOT expect Claude to magically auto-populate your Google Sheet. Using a copy-paste row format into your sheet is completely expected!</li>
+<li><strong>Working Connectors for M1:</strong> The working connectors are:
+  <ol style="margin-top: 6px;">
+  <li>The <strong>MSU Career Services connector</strong> (Information / RAG)</li>
+  <li>The <strong>Google Sheet connector</strong> (used to create and house your tracker)</li>
+  </ol>
+</li>
 </ul>
 </div>
 
-**What I'm Grading:** Evidence of comprehension. Did you configure a Project? Did you build working Skills? Can you explain the difference between a prompt and a skill?
+**What I'm Grading:** Evidence of comprehension. Did you configure a Project? Did you build working Skills? Can you explain the difference between a prompt, a skill, and a connector?
 
 </div>
 
@@ -559,10 +515,10 @@ Could a scheduled task (like our n8n Discord digest) check your spreadsheet ever
 
 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 22px;">
 <ol style="margin-left: 20px;">
-<li><strong>Keep Both Connectors Live:</strong> Make sure Career Services and Archie are active in your Claude workspace.</li>
-<li><strong>Test Your 2 Skills:</strong> Run real postings through <code>resume-tailor-who</code> and <code>msu-career-strategist</code>.</li>
-<li><strong>Log at Least 3 Real Rows:</strong> Add 3 real jobs you'd actually apply for into your Google Sheet tracker.</li>
-<li><strong>Stuck? Ask Archie in Discord!</strong> Archie has our transcripts and course docs loaded.</li>
+<li><strong>Keep Both Connectors Live:</strong> Make sure Career Services and Google Drive are connected in your Claude workspace.</li>
+<li><strong>Test Your 2 Skills:</strong> Run real queries through <code>resume-tailor-who</code> and your new career strategist skill.</li>
+<li><strong>Add at Least 3 Real Rows:</strong> Log 3 real jobs you'd actually apply for into your Google Sheet tracker.</li>
+<li><strong>Stuck? Ask Archie!</strong> Archie has our course materials and transcripts loaded.</li>
 </ol>
 </div>
 
