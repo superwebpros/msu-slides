@@ -9,10 +9,8 @@
 <div style="background: #fdf2f8; border-left: 4px solid #db2777; padding: 12px 16px; border-radius: 6px; margin: 12px 0;">
 <strong style="color: #9d174d;">The Runway to Milestone 1:</strong>
 <ul style="margin: 4px 0 0 16px; font-size: 15px; line-height: 1.5;">
-<li><strong>Today is the LAST in-person build session before M1 is due.</strong></li>
-<li><strong>Next Week:</strong> Jesse is at a conference in Atlanta.</li>
-<li><strong>Tue Sep 15:</strong> Guest lecture on AI Ethics + in-class build time.</li>
-<li><strong>Thu Sep 17:</strong> Breakout Module 1 (collaborative design debrief).</li>
+<li><strong>Tue Sep 15:</strong> Guest lecture on AI Ethics + build time (Jesse in Atlanta).</li>
+<li><strong>Thu Sep 17:</strong> Breakout Module 1 (Jesse back in class in person!).</li>
 <li><strong>Mon Sep 21:</strong> Milestone 1 (Career Coach) due in D2L.</li>
 </ul>
 </div>
@@ -523,7 +521,7 @@ Spend a few minutes experimenting with Claude to see what solutions it proposes.
 </div>
 
 <p style="text-align: center; font-size: 20px; color: #7c3aed; margin-top: 25px; font-weight: bold;">
-Have a great session with Maya on Tuesday — I'll see you when I'm back from Atlanta!
+Have a great session with Maya on Tuesday — I'll see you back in class on Thursday!
 </p>
 
 </div>
