@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 330" width="940" height="330" role="img" aria-label="You send a request with a verb and a URL; the server sends back a response with the data.">
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <style>
+    .lbl   { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-weight: 700; }
+    .sub   { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .mono  { font-family: ui-monospace, Menlo, Consolas, monospace; }
+  </style>
+
+  <!-- YOU -->
+  <rect x="20" y="95" width="230" height="140" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="135" y="152" text-anchor="middle" class="lbl" font-size="34" fill="#1e40af">You</text>
+  <text x="135" y="188" text-anchor="middle" class="sub" font-size="19" fill="#1e3a8a">your browser</text>
+  <text x="135" y="212" text-anchor="middle" class="sub" font-size="19" fill="#1e3a8a">or n8n</text>
+
+  <!-- SERVER -->
+  <rect x="690" y="95" width="230" height="140" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+  <text x="805" y="152" text-anchor="middle" class="lbl" font-size="34" fill="#14532d">Server</text>
+  <text x="805" y="188" text-anchor="middle" class="sub" font-size="19" fill="#14532d">where the</text>
+  <text x="805" y="212" text-anchor="middle" class="sub" font-size="19" fill="#14532d">records live</text>
+
+  <!-- REQUEST -->
+  <text x="470" y="72" text-anchor="middle" class="lbl" font-size="22" fill="#1e40af">REQUEST</text>
+  <line x1="262" y1="118" x2="678" y2="118" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+  <rect x="318" y="128" width="304" height="40" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="470" y="155" text-anchor="middle" class="mono" font-size="22" fill="#1e3a8a">GET /users</text>
+  <text x="470" y="192" text-anchor="middle" class="sub" font-size="17" fill="#64748b">a verb, and a URL to point it at</text>
+
+  <!-- RESPONSE -->
+  <line x1="678" y1="228" x2="262" y2="228" stroke="#16a34a" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <text x="470" y="262" text-anchor="middle" class="lbl" font-size="22" fill="#15803d">RESPONSE</text>
+  <text x="470" y="288" text-anchor="middle" class="sub" font-size="17" fill="#64748b">the answer, and the data</text>
+
+  <!-- bottom rule -->
+  <text x="470" y="322" text-anchor="middle" class="sub" font-size="19" fill="#334155">That's it. Everything else is detail.</text>
+</svg>
