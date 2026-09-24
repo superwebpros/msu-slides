@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "msu-slides-poll",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-04",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "POLL_ROOM",
+        "class_name": "PollRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["PollRoom"]
+    }
+  ]
+}
