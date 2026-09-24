@@ -491,6 +491,54 @@ Have students celebrate this moment. Last week Claude gave them an error saying 
 
 ---
 
+## When It Breaks: The Four Real Errors
+
+<div style="max-width: 940px; margin: 20px auto; text-align: left; font-size: 17px; line-height: 1.6;">
+
+<p style="font-size: 16px; color: #475569; margin-top: 0;">These are the actual errors the server logged during class — not hypotheticals. If your workflow fails, it is almost certainly one of these four.</p>
+
+<div style="background: #fef2f2; border: 2px solid #dc2626; border-radius: 8px; padding: 14px 18px; margin-bottom: 14px;">
+<strong style="color: #991b1b;">1. "…cannot be executed on its own."</strong>
+<pre style="background: white; border: 1px solid #fecaca; padding: 8px; border-radius: 6px; font-size: 14px; margin: 6px 0;"><code>The tool "Insert row in Data table" cannot be
+executed on its own. Connect it to an AI Agent
+and try again.</code></pre>
+<p style="margin: 6px 0 0 0; font-size: 15px;"><strong>Why:</strong> You grabbed the <em>Tool</em> version of the node (the one that plugs into an AI Agent) and then pressed <strong>Test step</strong> on it directly. A Tool node can only be run <em>by</em> an agent.<br>
+<strong>Fix:</strong> Don't test it in isolation — test it from Claude through your MCP connector. To test standalone, add the plain (non-Tool) Data table node instead.</p>
+</div>
+
+<div style="background: #fffbeb; border: 2px solid #d97706; border-radius: 8px; padding: 14px 18px; margin-bottom: 14px;">
+<strong style="color: #92400e;">2. Empty or placeholder table ID</strong>
+<pre style="background: white; border: 1px solid #fde68a; padding: 8px; border-radius: 6px; font-size: 14px; margin: 6px 0;"><code>Data table with ID '' could not be found
+Data table with ID 'table' could not be found</code></pre>
+<p style="margin: 6px 0 0 0; font-size: 15px;"><strong>Why:</strong> The table selector was left blank, or left in <em>By ID</em> mode with the placeholder text still in it.<br>
+<strong>Fix:</strong> Switch the selector to <strong>From list</strong> and pick your table from the dropdown. Never type the ID by hand.</p>
+</div>
+
+<div style="background: #eff6ff; border: 2px solid #2563eb; border-radius: 8px; padding: 14px 18px; margin-bottom: 14px;">
+<strong style="color: #1e40af;">3. Imported workflow, dangling table</strong>
+<pre style="background: white; border: 1px solid #bfdbfe; padding: 8px; border-radius: 6px; font-size: 14px; margin: 6px 0;"><code>It may have been deleted, or skipped when the
+workflow was imported. Choose an existing data
+table in the node.</code></pre>
+<p style="margin: 6px 0 0 0; font-size: 15px;"><strong>Why:</strong> You imported a workflow JSON that points at a data table in <em>someone else's</em> project. Table IDs are project-scoped, so the reference arrives broken. <strong>This is not your mistake</strong> — it's how import works.<br>
+<strong>Fix:</strong> Open every Data table node in the imported workflow and re-select <em>your own</em> table.</p>
+</div>
+
+<div style="background: #f5f3ff; border: 2px solid #7c3aed; border-radius: 8px; padding: 14px 18px;">
+<strong style="color: #5b21b6;">4. Duplicate table name</strong>
+<pre style="background: white; border: 1px solid #ddd6fe; padding: 8px; border-radius: 6px; font-size: 14px; margin: 6px 0;"><code>Data table with name 'job_applications'
+already exists in this project</code></pre>
+<p style="margin: 6px 0 0 0; font-size: 15px;"><strong>Fix:</strong> You already made it — use the existing one. If you truly want a second, give it a distinct name.</p>
+</div>
+
+</div>
+
+Note:
+These four came straight out of the n8n container logs from the live session — 11 students hit #1 alone, which is the single biggest trap. The Tools-vs-action node distinction is a genuine n8n UI problem, not student error: both variants have nearly identical names in the node picker. Say that out loud so nobody feels stupid.
+Error #3 is the one that most looks like "the server is broken" — worth calling out explicitly if you hand out any template JSON.
+None of these were server faults. The instance was healthy; there were no database lock or concurrency errors.
+
+---
+
 ## Introducing Groups &amp; Breakout Learning
 
 <div style="max-width: 920px; margin: 25px auto; text-align: left; font-size: 19px; line-height: 1.7;">
